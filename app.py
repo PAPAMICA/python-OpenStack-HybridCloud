@@ -7,7 +7,7 @@ import os
 import re
 import json 
 
-arg_json = 1
+arg_json = 0
 
 # Instance
 instance_name = ""
@@ -16,8 +16,9 @@ instance_network= ""
 instance_securitygroup = ""
 instance_keypair = ""
 
-# Cloud
+# Others
 cloud_name = "Infomaniak"
+keypair_name = ""
 
 
 def cloud_connection(cloud_name):
@@ -69,5 +70,20 @@ def get_instances_list(cloud):
     return total    
         
 
+def create_keypair(cloud, keypair_name):
+    keypair = cloud.compute.find_keypair(keypair_name)
+
+    if not keypair:
+        keypair = cloud.compute.create_keypair(name=keypair_name)
+        if arg_json == 1:
+            data = {'Private Key': keypair.private_key}
+            return data
+        else:
+            return keypair.private_key
+    else:
+        print("This keypair already exist !")
+
+
 cloud = cloud_connection(cloud_name)
-print(get_instances_list(cloud))
+#get_instances_list(cloud)
+#create_keypair(cloud, keypair_name)
