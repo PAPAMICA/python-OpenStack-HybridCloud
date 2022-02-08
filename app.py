@@ -53,9 +53,9 @@ def get_instances_list(cloud):
             data['Image'] = image.name
             data['Flavor'] = server.flavor['original_name']
             data_json = json.dumps(data, indent = 4)
-            print(data_json)
+            return(data_json)
         else:
-            print(f"{server.name} : \n  Cloud : {cloud_name}\n  IP : {IPv4.group()}\n  Image : {image.name}\n  Flavor: {server.flavor['original_name']}")
+            return(f"{server.name} : \n  Cloud : {cloud_name}\n  IP : {IPv4.group()}\n  Image : {image.name}\n  Flavor: {server.flavor['original_name']}")
         
 
 cloud = cloud_connection(cloud_name)
