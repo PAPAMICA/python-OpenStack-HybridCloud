@@ -115,10 +115,26 @@ def list_images(cloud):
 
     return total
 
+# List flavors
+def list_flavors(cloud):
+    total = ""
+    for flavor in cloud.compute.flavors():
+        if arg_json == 1:
+            data = {'flavor': flavor.name}
+            data_json = json.dumps(data, indent = 4)
+            total = total + data_json
+        else:
+            if (total == ""):
+                total = flavor.name
+            else:
+                total = total + ", " + flavor.name
+
+    return total
 
 
 cloud = cloud_connection(cloud_name)
 #get_instances_list(cloud)
 #create_keypair(cloud, keypair_name)
 #list_networks(cloud)
-print(list_images(cloud))
+#list_images(cloud)
+print(list_flavors(cloud))
