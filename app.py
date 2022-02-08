@@ -44,7 +44,12 @@ def cloud_connection(cloud_name):
 def get_instances_list(cloud):
     total = ""
     for server in cloud.compute.servers():
-        #print(server)
+        secgroup = ""
+        for i in server.security_groups:
+            if (secgroup == ""):
+                secgroup = i['name']
+            else:
+                secgroup = secgroup + ", " + i['name']
         image = cloud.compute.find_image(server.image.id)
         IPv4 = re.search(r'([0-9]{1,3}\.){3}[0-9]{1,3}', str(server.addresses))
         if arg_json == 1:
@@ -53,10 +58,11 @@ def get_instances_list(cloud):
             data['IP'] = IPv4.group()
             data['Image'] = image.name
             data['Flavor'] = server.flavor['original_name']
+            data['Security_groups'] = secgroup
             data_json = json.dumps(data, indent = 4)
             total = total + data_json
         else:
-            total = str(total) + f"{server.name} : \n  Cloud : {cloud_name}\n  IP : {IPv4.group()}\n  Image : {image.name}\n  Flavor: {server.flavor['original_name']} \n"
+            total = str(total) + f"{server.name}: \n  Cloud: {cloud_name}\n  IP: {IPv4.group()}\n  Image: {image.name}\n  Flavor: {server.flavor['original_name']} \n  Security_groups: {secgroup} \n "
     return total    
         
 
