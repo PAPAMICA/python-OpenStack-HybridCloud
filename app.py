@@ -20,7 +20,7 @@ instance_keypair = ""
 cloud_name = "Infomaniak"
 keypair_name = ""
 
-
+# Connect to Openstack
 def cloud_connection(cloud_name):
     if (cloud_name == "Infomaniak"):
         return openstack.connect(
@@ -41,7 +41,7 @@ def cloud_connection(cloud_name):
         print("Cloud selected ERROR")
         exit()
 
-
+# Get all informations of all instances
 def get_instances_list(cloud):
     total = ""
     for server in cloud.compute.servers():
@@ -69,7 +69,7 @@ def get_instances_list(cloud):
             total = str(total) + f"{server.name}: \n  Cloud: {cloud_name}\n  IP: {IPv4.group()}\n  Keypair: {server.key_name} \n  Image: {image.name}\n  Network: {next(iter(server.addresses))} \n  Flavor: {server.flavor['original_name']} \n  Security_groups: {secgroup} \n "
     return total    
         
-
+# Create Keypair
 def create_keypair(cloud, keypair_name):
     keypair = cloud.compute.find_keypair(keypair_name)
 
@@ -83,7 +83,24 @@ def create_keypair(cloud, keypair_name):
     else:
         print("This keypair already exist !")
 
+def list_network(cloud):
+    total = ""
+    for network in cloud.network.networks():
+        if arg_json == 1:
+            data = {'network': network.name}
+            data_json = json.dumps(data, indent = 4)
+            total = total + data_json
+        else:
+            if (total == ""):
+                total = network.name
+            else:
+                total = total + ", " + network.name
+
+    return total
+
+
 
 cloud = cloud_connection(cloud_name)
 #get_instances_list(cloud)
 #create_keypair(cloud, keypair_name)
+#list_network(cloud)
