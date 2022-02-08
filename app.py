@@ -7,7 +7,7 @@ import os
 import re
 import json 
 
-arg_json = 0
+arg_json = 1
 
 # Instance
 instance_name = ""
@@ -83,7 +83,8 @@ def create_keypair(cloud, keypair_name):
     else:
         print("This keypair already exist !")
 
-def list_network(cloud):
+# List networks
+def list_networks(cloud):
     total = ""
     for network in cloud.network.networks():
         if arg_json == 1:
@@ -98,9 +99,25 @@ def list_network(cloud):
 
     return total
 
+def list_images(cloud):
+    total = ""
+    for image in cloud.compute.images():
+        if arg_json == 1:
+            data = {'image': image.name}
+            data_json = json.dumps(data, indent = 4)
+            total = total + data_json
+        else:
+            if (total == ""):
+                total = image.name
+            else:
+                total = total + ", " + image.name
+
+    return total
+
 
 
 cloud = cloud_connection(cloud_name)
 #get_instances_list(cloud)
 #create_keypair(cloud, keypair_name)
-#list_network(cloud)
+#list_networks(cloud)
+print(list_images(cloud))
