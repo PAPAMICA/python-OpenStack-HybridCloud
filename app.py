@@ -99,6 +99,7 @@ def list_networks(cloud):
 
     return total
 
+# List images
 def list_images(cloud):
     total = ""
     for image in cloud.compute.images():
