@@ -7,7 +7,7 @@ import os
 import re
 import json 
 
-arg_json = 0
+arg_json = 1
 
 # Instance
 instance_name = ""
@@ -44,6 +44,7 @@ def cloud_connection(cloud_name):
 def get_instances_list(cloud):
     total = ""
     for server in cloud.compute.servers():
+        #print(server)
         secgroup = ""
         for i in server.security_groups:
             if (secgroup == ""):
@@ -56,13 +57,15 @@ def get_instances_list(cloud):
             data = {'instance': server.name}
             data['Cloud'] = cloud_name
             data['IP'] = IPv4.group()
+            data['Keypair'] = server.key_name
             data['Image'] = image.name
             data['Flavor'] = server.flavor['original_name']
+            data['Network'] = next(iter(server.addresses))
             data['Security_groups'] = secgroup
             data_json = json.dumps(data, indent = 4)
             total = total + data_json
         else:
-            total = str(total) + f"{server.name}: \n  Cloud: {cloud_name}\n  IP: {IPv4.group()}\n  Image: {image.name}\n  Flavor: {server.flavor['original_name']} \n  Security_groups: {secgroup} \n "
+            total = str(total) + f"{server.name}: \n  Cloud: {cloud_name}\n  IP: {IPv4.group()}\n  Keypair: {server.key_name} \n  Image: {image.name}\n  Network: {next(iter(server.addresses))} \n  Flavor: {server.flavor['original_name']} \n  Security_groups: {secgroup} \n "
     return total    
         
 
