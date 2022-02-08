@@ -4,7 +4,10 @@
 import openstack
 import openstack.exceptions
 import os
+import re
+import json 
 
+arg_json = 0
 
 # Instance
 instance_name = ""
@@ -39,9 +42,21 @@ def cloud_connection(cloud_name):
 
 
 def get_instances_list(cloud):
-     for server in cloud.compute.servers():
-         print(server)
-
+    for server in cloud.compute.servers():
+        #print(server)
+        image = cloud.compute.find_image(server.image.id)
+        IPv4 = re.search(r'([0-9]{1,3}\.){3}[0-9]{1,3}', str(server.addresses))
+        if arg_json == 1:
+            data = {'instance': server.name}
+            data['Cloud'] = cloud_name
+            data['IP'] = IPv4.group()
+            data['Image'] = image.name
+            data['Flavor'] = server.flavor['original_name']
+            data_json = json.dumps(data, indent = 4)
+            print(data_json)
+        else:
+            print(f"{server.name} : \n  Cloud : {cloud_name}\n  IP : {IPv4.group()}\n  Image : {image.name}\n  Flavor: {server.flavor['original_name']}")
+        
 
 cloud = cloud_connection(cloud_name)
 get_instances_list(cloud)
