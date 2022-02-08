@@ -42,6 +42,7 @@ def cloud_connection(cloud_name):
 
 
 def get_instances_list(cloud):
+    total = ""
     for server in cloud.compute.servers():
         #print(server)
         image = cloud.compute.find_image(server.image.id)
@@ -53,10 +54,11 @@ def get_instances_list(cloud):
             data['Image'] = image.name
             data['Flavor'] = server.flavor['original_name']
             data_json = json.dumps(data, indent = 4)
-            return(data_json)
+            total = total + data_json
         else:
-            return(f"{server.name} : \n  Cloud : {cloud_name}\n  IP : {IPv4.group()}\n  Image : {image.name}\n  Flavor: {server.flavor['original_name']}")
+            total = str(total) + f"{server.name} : \n  Cloud : {cloud_name}\n  IP : {IPv4.group()}\n  Image : {image.name}\n  Flavor: {server.flavor['original_name']} \n"
+    return total    
         
 
 cloud = cloud_connection(cloud_name)
-get_instances_list(cloud)
+print(get_instances_list(cloud))
