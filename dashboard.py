@@ -5,7 +5,7 @@ import openstack
 import openstack.exceptions
 import os
 import re
-import json 
+import json
 from flask import Flask, request
 
 app = Flask(__name__)
@@ -52,6 +52,11 @@ def cloud_connection(cloud_name):
 
 # Get all informations of all instances
 @app.route("/list")
+def display_instances_list():
+    with open("cloud.json","r") as file:
+        cloud = file.read()
+        return(cloud)
+
 def get_instances_list(cloud):
     result = ""
     for server in cloud.compute.servers():
@@ -78,7 +83,7 @@ def get_instances_list(cloud):
             result = result + data_json
         else:
             result = str(result) + f"{server.name}: \n  Cloud: {cloud_name}\n  Status: {server.status}\n  IP: {IPv4.group()}\n  Keypair: {server.key_name} \n  Image: {image.name}\n  Network: {next(iter(server.addresses))} \n  Flavor: {server.flavor['original_name']} \n  Security_groups: {secgroup} \n "
-    return result    
+    return result
 
 # Find and display information about one instance
 @app.route("/get_instance_information")
@@ -259,6 +264,10 @@ def delete_instance(cloud, server_name):
 
 
 cloud = cloud_connection(cloud_name)
+result = get_instances_list(cloud)
+with open("cloud.json","w+") as file:
+    file.write(result)
+app.run(host="192.168.2.53", port=8085, debug=False)
 #get_instances_list(cloud)
 #get_instance_information(cloud, server_name)
 #create_keypair(cloud, keypair_name)
