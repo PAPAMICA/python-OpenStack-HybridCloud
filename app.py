@@ -228,6 +228,15 @@ def reboot_instance(cloud, server_name):
     except:
         return f"[ERROR] Can't reboot instance {server_name} !"
 
+# Delete instance
+def delete_instance(cloud, server_name):
+    try:
+        server = cloud.compute.find_server(server_name)
+        server = cloud.compute. delete_server(server.id)
+        return f"[SUCCESS] {server_name} has been deleted !"
+    except:
+        return f"[ERROR] Can't delete instance {server_name} !"
+
 
 cloud = cloud_connection(cloud_name)
 #get_instances_list(cloud)
@@ -241,3 +250,4 @@ cloud = cloud_connection(cloud_name)
 #stop_instance(cloud, server_name)
 #start_instance(cloud, server_name)
 #reboot_instance(cloud, server_name)
+#delete_instance(cloud, server_name)
