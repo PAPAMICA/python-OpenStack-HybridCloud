@@ -1,9 +1,38 @@
-<form action="list" method="post">
-        <hr>
-        <label id="icon" for="cloud"></label>
-        <input type="text" name="cloud" id="name" placeholder="Entrer le nom du cloud (y a que K qui fonctionne)" required/>
-    <hr>
-    <div class="btn-block">
-        <button type="submit">Confirmer</button>
+<!DOCTYPE html>
+
+
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Coucou toi</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+
+<body>
+  <div class="login-root">
+    <div class="box-root flex-flex flex-direction--column" style="min-height: 100vh;flex-grow: 1;">
+      <div class="box-root padding-top--24 flex-flex flex-direction--column" style="flex-grow: 1; z-index: 9;">
+        <div class="box-root padding-top--48 padding-bottom--24 flex-flex flex-justifyContent--center">
+          <h1><a href="http://papamica.com" rel="dofollow">PAPAMICA</a></h1>
+        </div>
+        <div class="formbg-outer">
+          <div class="formbg">
+            <div class="formbg-inner padding-horizontal--48">
+              <span class="padding-bottom--15">Lister les instances d'un cloud</span>
+              <form id="stripe-login" action="list" method="post">
+                <div class="field padding-bottom--24">
+                  <label for="cloud">Cloud (ex : Infomaniak)</label>
+                  <input type="text" name="cloud" id="name" required/>
+                </div>
+                <div class="field padding-bottom--24">
+                  <input type="submit" name="submit" value="Confirmer">
+                </div>
+              </form>
+            </div>
+          </div>
+      </div>
     </div>
-</form>
+  </div>
+</body>
+
+</html>

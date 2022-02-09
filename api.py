@@ -8,7 +8,7 @@ import re
 import json 
 #from flask import Flask, request, render_template, redirect
 
-arg_json = 0
+arg_json = 1
 
 # Instance
 instance_name = "test-name"

@@ -1,5 +1,5 @@
 import api
-from flask import Flask, request, render_template, redirect
+from flask import Flask, request, render_template, redirect, jsonify
 
 dashboard_ip = "0.0.0.0"
 
@@ -11,7 +11,7 @@ def display_instances_list():
     cloud_name = request.form['cloud']
     cloud = api.cloud_connection(cloud_name)
     result = api.get_instances_list(cloud)
-    return(result)
+    return result
 
 
 @app.route("/", methods=['GET','POST'])
