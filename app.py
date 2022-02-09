@@ -201,6 +201,33 @@ def create_instance(cloud, instance_name,instance_image, instance_flavor, instan
     print(get_instance_information(cloud, instance_name))
 
 
+# Start instance
+def start_instance(cloud, server_name):
+    try:
+        server = cloud.compute.find_server(server_name)
+        server = cloud.compute. start_server(server.id)
+        return f"[SUCCESS] {server_name} has been started !"
+    except:
+        return f"[ERROR] Can't start instance {server_name} !"
+
+# Stop instance
+def stop_instance(cloud, server_name):
+    try:
+        server = cloud.compute.find_server(server_name)
+        server = cloud.compute. stop_server(server.id)
+        return f"[SUCCESS] {server_name} has been stopped !"
+    except:
+        return f"[ERROR] Can't stop instance {server_name} !"
+
+# Reboot instance
+def reboot_instance(cloud, server_name):
+    try:
+        server = cloud.compute.find_server(server_name)
+        server = cloud.compute. reboot_server(server.id, "HARD")
+        return f"[SUCCESS] {server_name} has been rebooted !"
+    except:
+        return f"[ERROR] Can't reboot instance {server_name} !"
+
 
 cloud = cloud_connection(cloud_name)
 #get_instances_list(cloud)
@@ -210,4 +237,7 @@ cloud = cloud_connection(cloud_name)
 #list_security_groups(cloud)
 #list_images(cloud)
 #list_flavors(cloud))
-create_instance(cloud, instance_name,instance_image, instance_flavor, instance_network, instance_keypair, instance_securitygroup)
+#create_instance(cloud, instance_name,instance_image, instance_flavor, instance_network, instance_keypair, instance_securitygroup)
+#stop_instance(cloud, server_name)
+#start_instance(cloud, server_name)
+#reboot_instance(cloud, server_name)
