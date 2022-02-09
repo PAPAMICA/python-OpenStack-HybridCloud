@@ -82,8 +82,7 @@ def get_instances_list(cloud):
             data_json = json.dumps(data, indent = 4)
             result = result + data_json
         else:
-            result = str(result) + f"{server.name}: \n  Cloud: {cloud_name}\n  Status: {server.status}\n  IP: {IPv4.group()}\n  Keypair: {server.key_name} \n  Image: {image.name}\n  Network: {next(iter(server.addresses))} \n  Flavor:
- {server.flavor['original_name']} \n  Security_groups: {secgroup} \n "
+            result = str(result) + f"{server.name}: \n  Cloud: {cloud_name}\n  Status: {server.status}\n  IP: {IPv4.group()}\n  Keypair: {server.key_name} \n  Image: {image.name}\n  Network: {next(iter(server.addresses))} \n  Flavor: {server.flavor['original_name']} \n  Security_groups: {secgroup} \n "
     return result
 
 # Find and display information about one instance
@@ -114,8 +113,7 @@ def get_instance_information(cloud, server_name):
             data_json = json.dumps(data, indent = 4)
             result = result + data_json
         else:
-            result = str(result) + f"{server.name}: \n  Cloud: {cloud_name}\n  Status: {server.status}\n  IP: {IPv4.group()}\n  Keypair: {server.key_name} \n  Image: {image.name}\n  Network: {next(iter(server.addresses))} \n  Flavor:
- {server.flavor['original_name']} \n  Security_groups: {secgroup} \n "
+            result = str(result) + f"{server.name}: \n  Cloud: {cloud_name}\n  Status: {server.status}\n  IP: {IPv4.group()}\n  Keypair: {server.key_name} \n  Image: {image.name}\n  Network: {next(iter(server.addresses))} \n  Flavor: {server.flavor['original_name']} \n  Security_groups: {secgroup} \n "
         return result
     except:
         return (f"{server_name} not found !")
@@ -226,8 +224,6 @@ def create_instance(cloud, instance_name,instance_image, instance_flavor, instan
 
 # Start instance
 @app.route("/start_instance")
-def start_instance(cloud, server_name):
-    try:
 def start_instance(cloud, server_name):
     try:
         server = cloud.compute.find_server(server_name)
