@@ -228,6 +228,8 @@ def create_instance(cloud, instance_name,instance_image, instance_flavor, instan
 @app.route("/start_instance")
 def start_instance(cloud, server_name):
     try:
+def start_instance(cloud, server_name):
+    try:
         server = cloud.compute.find_server(server_name)
         server = cloud.compute. start_server(server.id)
         return f"[SUCCESS] {server_name} has been started !"
