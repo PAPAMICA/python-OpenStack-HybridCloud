@@ -58,6 +58,7 @@ def get_instances_list(cloud):
         if arg_json == 1:
             data = {'instance': server.name}
             data['Cloud'] = cloud_name
+            data['Status'] = server.status
             data['IP'] = IPv4.group()
             data['Keypair'] = server.key_name
             data['Image'] = image.name
@@ -67,9 +68,42 @@ def get_instances_list(cloud):
             data_json = json.dumps(data, indent = 4)
             result = result + data_json
         else:
-            result = str(result) + f"{server.name}: \n  Cloud: {cloud_name}\n  IP: {IPv4.group()}\n  Keypair: {server.key_name} \n  Image: {image.name}\n  Network: {next(iter(server.addresses))} \n  Flavor: {server.flavor['original_name']} \n  Security_groups: {secgroup} \n "
+            result = str(result) + f"{server.name}: \n  Cloud: {cloud_name}\n  Status: {server.status}\n  IP: {IPv4.group()}\n  Keypair: {server.key_name} \n  Image: {image.name}\n  Network: {next(iter(server.addresses))} \n  Flavor: {server.flavor['original_name']} \n  Security_groups: {secgroup} \n "
     return result    
-        
+
+# Find and display information about one instance
+def get_instance_information(cloud, server_name):
+    try:
+        result = ""
+        server = cloud.compute.find_server(server_name)
+        server = cloud.compute.get_server(server.id)
+        secgroup = ""
+        for i in server.security_groups:
+            if (secgroup == ""):
+                secgroup = i['name']
+            else:
+                secgroup = secgroup + ", " + i['name']
+        image = cloud.compute.find_image(server.image.id)
+        IPv4 = re.search(r'([0-9]{1,3}\.){3}[0-9]{1,3}', str(server.addresses))
+        if arg_json == 1:
+            data = {'instance': server.name}
+            data['Cloud'] = cloud_name
+            data['Status'] = server.status
+            data['IP'] = IPv4.group()
+            data['Keypair'] = server.key_name
+            data['Image'] = image.name
+            data['Flavor'] = server.flavor['original_name']
+            data['Network'] = next(iter(server.addresses))
+            data['Security_groups'] = secgroup
+            data_json = json.dumps(data, indent = 4)
+            result = result + data_json
+        else:
+            result = str(result) + f"{server.name}: \n  Cloud: {cloud_name}\n  Status: {server.status}\n  IP: {IPv4.group()}\n  Keypair: {server.key_name} \n  Image: {image.name}\n  Network: {next(iter(server.addresses))} \n  Flavor: {server.flavor['original_name']} \n  Security_groups: {secgroup} \n "
+        return result
+    except:
+        return (f"{server_name} not found !")
+
+
 # Create Keypair
 def create_keypair(cloud, keypair_name):
     keypair = cloud.compute.find_keypair(keypair_name)
@@ -152,7 +186,6 @@ def list_flavors(cloud):
 
 # Create instance
 def create_instance(cloud, instance_name,instance_image, instance_flavor, instance_network, instance_keypair, instance_securitygroup):
-    result = ""
     image = cloud.compute.find_image(instance_image)
     flavor = cloud.compute.find_flavor(instance_flavor)
     network = cloud.network.find_network(instance_network)
@@ -164,29 +197,17 @@ def create_instance(cloud, instance_name,instance_image, instance_flavor, instan
         networks=[{"uuid": network.id}], key_name=keypair.name)
 
     server = cloud.compute.wait_for_server(server)
-    server1 = cloud.compute.add_security_group_to_server(server, security_group)
-    IPv4 = re.search(r'([0-9]{1,3}\.){3}[0-9]{1,3}', str(server.addresses))
-    if arg_json == 1:
-        data = {'instance': server.name}
-        data['Cloud'] = cloud_name
-        data['IP'] = IPv4.group()
-        data['Keypair'] = server.key_name
-        data['Image'] = image.name
-        data['Flavor'] = server.flavor['original_name']
-        data['Network'] = next(iter(server.addresses))
-        data['Security_groups'] = instance_securitygroup
-        result = json.dumps(data, indent = 4)
-    else:
-        result = str(result) + f"{server.name}: \n  Cloud: {cloud_name}\n  IP: {IPv4.group()}\n  Keypair: {server.key_name} \n  Image: {image.name}\n  Network: {next(iter(server.addresses))} \n  Flavor: {server.flavor['original_name']} \n  Security_groups: {instance_securitygroup} \n "
-    return result
+    server = cloud.compute.add_security_group_to_server(server, security_group)
+    print(get_instance_information(cloud, instance_name))
 
 
 
 cloud = cloud_connection(cloud_name)
 #get_instances_list(cloud)
+#get_instance_information(cloud, server_name)
 #create_keypair(cloud, keypair_name)
 #list_networks(cloud)
 #list_security_groups(cloud)
 #list_images(cloud)
 #list_flavors(cloud))
-#create_instance(cloud, instance_name,instance_image, instance_flavor, instance_network, instance_keypair, instance_securitygroup)
+create_instance(cloud, instance_name,instance_image, instance_flavor, instance_network, instance_keypair, instance_securitygroup)
