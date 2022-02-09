@@ -1,0 +1,10 @@
+PLEX: 
+  Cloud: Infomaniak
+  Status: ACTIVE
+  IP: 195.15.243.217
+  Keypair: Yubikey 
+  Image: Debian 11.2 bullseye
+  Network: ext-net1 
+  Flavor: a2-ram4-disk20-perf1 
+  Security_groups: ALLL, ZABBIX AGENT, PLEX, PORTAINER AGENT 
+ 

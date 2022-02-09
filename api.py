@@ -6,9 +6,7 @@ import openstack.exceptions
 import os
 import re
 import json 
-from flask import Flask, request
-
-app = Flask(__name__)
+#from flask import Flask, request, render_template, redirect
 
 arg_json = 0
 
@@ -23,10 +21,6 @@ instance_keypair = "Yubikey"
 # Others
 cloud_name = "Infomaniak"
 keypair_name = ""
-
-@app.route("/")
-def hello():
-    return "Hello from Flask!"
 
 # Connect to Openstack
 def cloud_connection(cloud_name):
@@ -51,7 +45,12 @@ def cloud_connection(cloud_name):
 
 
 # Get all informations of all instances
-@app.route("/list")
+#@app.route("/list", methods=['GET','POST'])
+def display_instances_list():
+    cloud = cloud_connection(cloud_name)
+    result = get_instances_list(cloud)
+    return(result)
+
 def get_instances_list(cloud):
     result = ""
     for server in cloud.compute.servers():
@@ -81,7 +80,7 @@ def get_instances_list(cloud):
     return result    
 
 # Find and display information about one instance
-@app.route("/get_instance_information")
+#@app.route("/get_instance_information")
 def get_instance_information(cloud, server_name):
     try:
         result = ""
@@ -115,7 +114,7 @@ def get_instance_information(cloud, server_name):
 
 
 # Create Keypair
-@app.route("/create_keypair")
+#@app.route("/create_keypair")
 def create_keypair(cloud, keypair_name):
     keypair = cloud.compute.find_keypair(keypair_name)
 
@@ -131,7 +130,7 @@ def create_keypair(cloud, keypair_name):
         return keypair
 
 # List networks
-@app.route("/list_networks")
+#@app.route("/list_networks")
 def list_networks(cloud):
     result = ""
     for network in cloud.network.networks():
@@ -148,7 +147,7 @@ def list_networks(cloud):
     return result
 
 # List security groups
-@app.route("/list_security_groups")
+#@app.route("/list_security_groups")
 def list_security_groups(cloud):
     result = ""
     for sc in cloud.network.security_groups():
@@ -166,7 +165,7 @@ def list_security_groups(cloud):
     return result
 
 # List images
-@app.route("/list_images")
+#@app.route("/list_images")
 def list_images(cloud):
     result = ""
     for image in cloud.compute.images():
@@ -183,7 +182,7 @@ def list_images(cloud):
     return result
 
 # List flavors
-@app.route("/list_flavors")
+#@app.route("/list_flavors")
 def list_flavors(cloud):
     result = ""
     for flavor in cloud.compute.flavors():
@@ -200,7 +199,7 @@ def list_flavors(cloud):
     return result
 
 # Create instance
-@app.route("/create_server")
+#@app.route("/create_server")
 def create_instance(cloud, instance_name,instance_image, instance_flavor, instance_network, instance_keypair, instance_securitygroup):
     image = cloud.compute.find_image(instance_image)
     flavor = cloud.compute.find_flavor(instance_flavor)
@@ -218,7 +217,7 @@ def create_instance(cloud, instance_name,instance_image, instance_flavor, instan
 
 
 # Start instance
-@app.route("/start_instance")
+#@app.route("/start_instance")
 def start_instance(cloud, server_name):
     try:
         server = cloud.compute.find_server(server_name)
@@ -228,7 +227,7 @@ def start_instance(cloud, server_name):
         return f"[ERROR] Can't start instance {server_name} !"
 
 # Stop instance
-@app.route("/stop_instance")
+#@app.route("/stop_instance")
 def stop_instance(cloud, server_name):
     try:
         server = cloud.compute.find_server(server_name)
@@ -238,7 +237,7 @@ def stop_instance(cloud, server_name):
         return f"[ERROR] Can't stop instance {server_name} !"
 
 # Reboot instance
-@app.route("/reboot_instance")
+#@app.route("/reboot_instance")
 def reboot_instance(cloud, server_name):
     try:
         server = cloud.compute.find_server(server_name)
@@ -248,7 +247,7 @@ def reboot_instance(cloud, server_name):
         return f"[ERROR] Can't reboot instance {server_name} !"
 
 # Delete instance
-@app.route("/delete_instance")
+#@app.route("/delete_instance")
 def delete_instance(cloud, server_name):
     try:
         server = cloud.compute.find_server(server_name)
@@ -258,7 +257,8 @@ def delete_instance(cloud, server_name):
         return f"[ERROR] Can't delete instance {server_name} !"
 
 
-cloud = cloud_connection(cloud_name)
+#cloud = cloud_connection(cloud_name)
+#result = get_instances_list(cloud)
 #get_instances_list(cloud)
 #get_instance_information(cloud, server_name)
 #create_keypair(cloud, keypair_name)
