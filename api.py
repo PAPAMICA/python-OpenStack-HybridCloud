@@ -6,9 +6,23 @@ import openstack.exceptions
 import os
 import re
 import json 
+import argparse
 #from flask import Flask, request, render_template, redirect
 
-arg_json = 1
+parser = argparse.ArgumentParser()
+parser.add_argument("--json", help="Output as json", action="store_true")
+parser.add_argument("--dict", help="Output as dict", action="store_true")
+args = parser.parse_args()
+if args.json:
+    arg_json = 1
+else:
+    arg_json = 0
+
+if args.dict:
+    arg_dict = 1
+else:
+    arg_dict = 0
+
 
 # Instance
 instance_name = "test-name"
@@ -52,7 +66,10 @@ def display_instances_list():
     return(result)
 
 def get_instances_list(cloud):
-    result = ""
+    if arg_dict == 1:
+        result = {}
+    else:
+        result = ""
     for server in cloud.compute.servers():
         #print(server)
         secgroup = ""
@@ -63,18 +80,20 @@ def get_instances_list(cloud):
                 secgroup = secgroup + ", " + i['name']
         image = cloud.compute.find_image(server.image.id)
         IPv4 = re.search(r'([0-9]{1,3}\.){3}[0-9]{1,3}', str(server.addresses))
-        if arg_json == 1:
-            data = {'instance': server.name}
-            data['Cloud'] = cloud_name
-            data['Status'] = server.status
-            data['IP'] = IPv4.group()
-            data['Keypair'] = server.key_name
-            data['Image'] = image.name
-            data['Flavor'] = server.flavor['original_name']
-            data['Network'] = next(iter(server.addresses))
-            data['Security_groups'] = secgroup
-            data_json = json.dumps(data, indent = 4)
-            result = result + data_json
+        data = {'instance': server.name}
+        data['Cloud'] = cloud_name
+        data['Status'] = server.status
+        data['IP'] = IPv4.group()
+        data['Keypair'] = server.key_name
+        data['Image'] = image.name
+        data['Flavor'] = server.flavor['original_name']
+        data['Network'] = next(iter(server.addresses))
+        data['Security_groups'] = secgroup
+        if arg_dict == 1:
+            result[server.name] = data
+        elif arg_json == 1:
+            data = json.dumps(data, indent = 4)
+            result = result + data
         else:
             result = str(result) + f"{server.name}: \n  Cloud: {cloud_name}\n  Status: {server.status}\n  IP: {IPv4.group()}\n  Keypair: {server.key_name} \n  Image: {image.name}\n  Network: {next(iter(server.addresses))} \n  Flavor: {server.flavor['original_name']} \n  Security_groups: {secgroup} \n "
     return result    
@@ -83,7 +102,10 @@ def get_instances_list(cloud):
 #@app.route("/get_instance_information")
 def get_instance_information(cloud, server_name):
     try:
-        result = ""
+        if arg_dict == 1:
+            result = {}
+        else:
+            result = ""
         server = cloud.compute.find_server(server_name)
         server = cloud.compute.get_server(server.id)
         secgroup = ""
@@ -94,18 +116,20 @@ def get_instance_information(cloud, server_name):
                 secgroup = secgroup + ", " + i['name']
         image = cloud.compute.find_image(server.image.id)
         IPv4 = re.search(r'([0-9]{1,3}\.){3}[0-9]{1,3}', str(server.addresses))
-        if arg_json == 1:
-            data = {'instance': server.name}
-            data['Cloud'] = cloud_name
-            data['Status'] = server.status
-            data['IP'] = IPv4.group()
-            data['Keypair'] = server.key_name
-            data['Image'] = image.name
-            data['Flavor'] = server.flavor['original_name']
-            data['Network'] = next(iter(server.addresses))
-            data['Security_groups'] = secgroup
-            data_json = json.dumps(data, indent = 4)
-            result = result + data_json
+        data = {'instance': server.name}
+        data['Cloud'] = cloud_name
+        data['Status'] = server.status
+        data['IP'] = IPv4.group()
+        data['Keypair'] = server.key_name
+        data['Image'] = image.name
+        data['Flavor'] = server.flavor['original_name']
+        data['Network'] = next(iter(server.addresses))
+        data['Security_groups'] = secgroup
+        if arg_dict == 1:
+            result[server.name] = data
+        elif arg_json == 1:
+            data = json.dumps(data, indent = 4)
+            result = result + data
         else:
             result = str(result) + f"{server.name}: \n  Cloud: {cloud_name}\n  Status: {server.status}\n  IP: {IPv4.group()}\n  Keypair: {server.key_name} \n  Image: {image.name}\n  Network: {next(iter(server.addresses))} \n  Flavor: {server.flavor['original_name']} \n  Security_groups: {secgroup} \n "
         return result
@@ -120,8 +144,12 @@ def create_keypair(cloud, keypair_name):
 
     if not keypair:
         keypair = cloud.compute.create_keypair(name=keypair_name)
-        if arg_json == 1:
+        if arg_dict == 1:
             data = {'Private Key': keypair.private_key}
+            return data
+        elif arg_json == 1:
+            data = {'Private Key': keypair.private_key}
+            data = json.dumps(data, indent = 4)
             return data
         else:
             print (keypair.private_key)
@@ -132,12 +160,17 @@ def create_keypair(cloud, keypair_name):
 # List networks
 #@app.route("/list_networks")
 def list_networks(cloud):
-    result = ""
+    if arg_dict == 1:
+        result = {}
+    else:
+        result = ""
     for network in cloud.network.networks():
-        if arg_json == 1:
-            data = {'network': network.name}
-            data_json = json.dumps(data, indent = 4)
-            result = result + data_json
+        if arg_dict == 1:
+            result[network.id] = network.name
+        elif arg_json == 1:
+            data = {network.id: network.name}
+            data = json.dumps(data, indent = 4)
+            result = result + data
         else:
             if (result == ""):
                 result = network.name
@@ -149,30 +182,39 @@ def list_networks(cloud):
 # List security groups
 #@app.route("/list_security_groups")
 def list_security_groups(cloud):
-    result = ""
+    if arg_dict == 1:
+        result = {}
+    else:
+        result = ""
     for sc in cloud.network.security_groups():
-        if arg_json == 1:
-            data = {'security_group': sc.name}
-            data['description'] = sc.description
-            data_json = json.dumps(data, indent = 4)
-            result = result + data_json
+        if arg_dict == 1:
+            result[sc.id] = sc.name
+        elif arg_json == 1:
+            data = {sc.id: sc.name}
+            data = json.dumps(data, indent = 4)
+            result = result + data
         else:
             if (result == ""):
-                result = sc.name + " (" + sc.description + ")"
+                result = sc.name
             else:
-                result = result + ", " + sc.name + " (" + sc.description + ")"
+                result = result + ", " + sc.name
 
     return result
 
 # List images
 #@app.route("/list_images")
 def list_images(cloud):
-    result = ""
+    if arg_dict == 1:
+        result = {}
+    else:
+        result = ""
     for image in cloud.compute.images():
-        if arg_json == 1:
-            data = {'image': image.name}
-            data_json = json.dumps(data, indent = 4)
-            result = result + data_json
+        if arg_dict == 1:
+            result[image.id] = image.name
+        elif arg_json == 1:
+            data = {image.id: image.name}
+            data = json.dumps(data, indent = 4)
+            result = result + data
         else:
             if (result == ""):
                 result = image.name
@@ -181,15 +223,21 @@ def list_images(cloud):
 
     return result
 
+
 # List flavors
 #@app.route("/list_flavors")
 def list_flavors(cloud):
-    result = ""
+    if arg_dict == 1:
+        result = {}
+    else:
+        result = ""
     for flavor in cloud.compute.flavors():
-        if arg_json == 1:
-            data = {'flavor': flavor.name}
-            data_json = json.dumps(data, indent = 4)
-            result = result + data_json
+        if arg_dict == 1:
+            result[flavor.id] = flavor.name
+        elif arg_json == 1:
+            data = {flavor.id: flavor.name}
+            data = json.dumps(data, indent = 4)
+            result = result + data
         else:
             if (result == ""):
                 result = flavor.name
@@ -257,7 +305,7 @@ def delete_instance(cloud, server_name):
         return f"[ERROR] Can't delete instance {server_name} !"
 
 
-#cloud = cloud_connection(cloud_name)
+cloud = cloud_connection(cloud_name)
 #result = get_instances_list(cloud)
 #get_instances_list(cloud)
 #get_instance_information(cloud, server_name)
@@ -265,7 +313,7 @@ def delete_instance(cloud, server_name):
 #list_networks(cloud)
 #list_security_groups(cloud)
 #list_images(cloud)
-#list_flavors(cloud))
+#print(list_flavors(cloud))
 #create_instance(cloud, instance_name,instance_image, instance_flavor, instance_network, instance_keypair, instance_securitygroup)
 #stop_instance(cloud, server_name)
 #start_instance(cloud, server_name)
