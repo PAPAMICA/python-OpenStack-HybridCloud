@@ -1,23 +1,20 @@
 import api
-from flask import Flask, request, render_template, redirect, jsonify
-
-dashboard_ip = "0.0.0.0"
+import requests
+from flask import Flask, request, render_template, redirect
 
 app = Flask(__name__)
-
-
-@app.route("/list", methods=['GET','POST'])
-def display_instances_list():
-    cloud_name = request.form['cloud']
-    cloud = api.cloud_connection(cloud_name)
-    result = api.get_instances_list(cloud)
-    return result
-
+dashbord_url = "0.0.0.0"
 
 @app.route("/", methods=['GET','POST'])
-def home():
+def hello():
     return render_template("index.html")
 
+@app.route("/list/", methods=['GET','POST'])
+def web_list_instances():
+    cloud_name = request.form["cloud"]
+    url = f'http://{dashbord_url}:8086/api/list/{cloud_name}'
+    result = requests.get(url)
+    return result.content
+
 if __name__ == "__main__":
-    app.run(host=dashboard_ip, port=8086, debug=True)
-    
+    app.run(host=dashbord_url, port=8085, debug=True)

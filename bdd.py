@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 import sqlite3
-import api
+import openstack_api
 
 def create_db_cloud(cloudname):
     try:
@@ -42,14 +42,14 @@ def readSqliteTable(cloud_name, type):
 
 
 def fill_database(cloud_name):
-    cloud = api.cloud_connection(cloud_name)
-    data = api.list_flavors(cloud).values()
+    cloud = openstack_api.cloud_connection(cloud_name)
+    data = openstack_api.list_flavors(cloud).values()
     insert_db_data(cloud_name, "FLAVOR", data)
-    data = api.list_images(cloud).values()
+    data = openstack_api.list_images(cloud).values()
     insert_db_data(cloud_name, "IMAGE", data)
-    data = api.list_networks(cloud).values()
+    data = openstack_api.list_networks(cloud).values()
     insert_db_data(cloud_name, "NETWORK", data)
-    data = api.list_security_groups(cloud).values()
+    data = openstack_api.list_security_groups(cloud).values()
     insert_db_data(cloud_name, "SECURITY_GROUP", data)
 
 conn = sqlite3.connect('database.db')
