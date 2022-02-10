@@ -30,9 +30,10 @@ def home():
         elif request.form.get('start'):
             instance_name = request.form.getlist('start')
             cloud_name = request.form.getlist('cloud')
-            #print(instance_name, flush=True, file=sys.stdout)
             url = f'{dashbord_url}/api/stop/{cloud_name}/{instance_name}/start'
+            print(url, flush=True, file=sys.stdout)
             result = requests.get(url,verify=True)
+            print(result, flush=True, file=sys.stdout)
             reload_list(cloud_name)
     return render_template("index.html")
 
