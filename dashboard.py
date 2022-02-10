@@ -7,7 +7,7 @@ dashbord_url = "https://hybridcloud.papamica.com"
 
 @app.route("/", methods=['GET','POST'])
 def hello():
-    test = None
+    test = False
     if request.method == 'POST':
         cloud_name = request.form["cloud"]
         url = f'{dashbord_url}/api/list/{cloud_name}'

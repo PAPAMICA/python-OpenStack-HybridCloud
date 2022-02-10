@@ -60,10 +60,6 @@ def cloud_connection(cloud_name):
 
 # Get all informations of all instances
 #@app.route("/list", methods=['GET','POST'])
-def display_instances_list():
-    cloud = cloud_connection(cloud_name)
-    result = get_instances_list(cloud)
-    return(result)
 
 def get_instances_list(cloud):
     if arg_dict == 1:
