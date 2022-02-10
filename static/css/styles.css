@@ -346,6 +346,11 @@ span.status-offline {
 .column-3 {
   float: left;
   width: 33.33%;
+  margin: auto;
+}
+
+.center {
+  text-align: center;
 }
 
 .cote {
@@ -354,6 +359,7 @@ span.status-offline {
 
 .milieux {
   width: 20%;
+  margin-left: -5%;
 }
 
 /* Clear floats after the columns */
