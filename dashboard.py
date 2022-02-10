@@ -17,4 +17,4 @@ def web_list_instances():
     return result.content
 
 if __name__ == "__main__":
-    app.run(host=dashbord_url, port=8085, debug=True)
+    app.run(host=dashbord_url, port=8086, debug=True)
