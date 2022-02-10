@@ -254,29 +254,9 @@ a.ssolink {
 	  background-color: #c0c0c0;
 }
 
-.container td:first-child { color: #66d1fb; }
+.container td:first-child { color: #2f83e4; }
 
-.container tr:hover {
-   color: #e3e8ee;
-   background-color: #464A52;
--webkit-box-shadow: 0 6px 6px -6px #0E1119;
-	   -moz-box-shadow: 0 6px 6px -6px #0E1119;
-	        box-shadow: 0 6px 6px -6px #0E1119;
-}
 
-.container td:hover {
-  background-color: #42b3ff;
-  color: #403E10;
-  font-weight: bold;
-  
-  box-shadow: #7F7C21 -1px 1px, #7F7C21 -2px 2px, #7F7C21 -3px 3px, #7F7C21 -4px 4px, #7F7C21 -5px 5px, #7F7C21 -6px 6px;
-  transform: translate3d(6px, -6px, 0);
-  
-  transition-delay: 0s;
-	  transition-duration: 0.4s;
-	  transition-property: all;
-  transition-timing-function: line;
-}
 
 @media (max-width: 800px) {
 .container td:nth-child(4),
