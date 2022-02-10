@@ -286,17 +286,14 @@ a.ssolink {
 
 span.status-online {
   background-color: #7fb900;
-  border: 1px solid #242629;
   border-radius: 50%;
   content: "";
   display: block;
   height: 18px;
-  left: 50%;
-  position: absolute;
-  top: -9px;
-  transform: translateX(-50%);
   width: 18px;
-  &::before {
+}
+
+span.status-online::before {
     animation: pulse 1.15s;
     animation-iteration-count: infinite;
     animation-timing-function: linear;
@@ -309,20 +306,16 @@ span.status-online {
     top: 50%;
     transform: translate(-50%,-50%);
   }
-}
 span.status-offline {
   background-color: #d82736;
-  border: 1px solid #242629;
   border-radius: 50%;
   content: "";
   display: block;
   height: 18px;
-  left: 50%;
-  position: absolute;
-  top: -9px;
-  transform: translateX(-50%);
   width: 18px;
-  &::before {
+}
+
+span.status-offline::before {
     animation: pulse 1.15s;
     animation-iteration-count: infinite;
     animation-timing-function: linear;
@@ -335,4 +328,3 @@ span.status-offline {
     top: 50%;
     transform: translate(-50%,-50%);
   }
-}
