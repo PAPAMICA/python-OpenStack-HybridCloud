@@ -3,7 +3,7 @@ from flask import Flask, request, render_template, redirect
 app = Flask(__name__)
 import api
 
-dashbord_url = "10.10.0.108"
+dashbord_url = "0.0.0.0"
 
 @app.route("/", methods=['GET','POST'])
 def hello():
