@@ -9,7 +9,7 @@ dashbord_url = "https://hybridcloud.papamica.com"
 def hello():
     return render_template("index.html")
 
-@app.route("/list/", methods=['GET','POST'])
+@app.route("/list", methods=['GET','POST'])
 def web_list_instances():
     cloud_name = request.form["cloud"]
     url = f'{dashbord_url}/api/list/{cloud_name}'
