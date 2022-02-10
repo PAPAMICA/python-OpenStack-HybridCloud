@@ -5,7 +5,7 @@
 <head>
   <meta charset="utf-8">
   <title>Coucou toi</title>
-  <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/template.css') }}">
 </head>
 
 <body>
@@ -30,7 +30,7 @@
               </form>
             </div>
           </div>
-          <table class="container">
+          <!-- <table class="container">
             <thead>
               <tr>
                 <th><h1>Name</h1></th>
@@ -59,7 +59,78 @@
               </tr>
               {%endfor%}
             </tbody>
-          </table>
+          </table> -->
+
+          <div class="container-fluid py-4">
+            <div class="row">
+              <div class="col-12">
+                <div class="card mb-4">
+                  <div class="card-header pb-0">
+                    <h6>Liste des instances</h6>
+                  </div>
+                  <div class="card-body px-0 pt-0 pb-2">
+                    <div class="table-responsive p-0">
+                      <table class="table align-items-center mb-0">
+                        <thead>
+                          <tr>
+                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Name</th>
+                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Status</th>
+                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">IP</th>
+                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Image</th>
+                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Keypair</th>
+                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Network</th>
+                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Security Group</th>
+                            <th class="text-secondary opacity-7"></th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          {%for instance in instances%}
+                          <tr>
+                            <td>
+                              <div class="d-flex px-2 py-1">
+                                <div>
+                                  <img src="/static//img/IPC.jpg" class="avatar avatar-sm me-3" alt="user1">
+                                </div>
+                                <div class="d-flex flex-column justify-content-center">
+                                  <h6 class="mb-0 text-sm">{{ instance }}</h6>
+                                </div>
+                              </div>
+                            </td>
+                            {% if instances[instance]['Status'] == "ACTIVE" %}
+                            <td class="align-middle text-center text-sm">
+                              <span class="badge badge-sm bg-gradient-success">Online</span>
+                            </td>
+                            {% else %}
+                            <td class="align-middle text-center text-sm">
+                              <span class="badge badge-sm bg-gradient-secondary">Offline</span>
+                            </td>
+                            {% endif %}
+                            <td>
+                              <p class="text-xs font-weight-bold mb-0">{{ instances[instance]['IP'] }}</p>
+                            </td>
+                            <td>
+                              <p class="text-xs font-weight-bold mb-0">{{ instances[instance]['Image'] }}</p>
+                            </td>
+                            <td>
+                              <p class="text-xs font-weight-bold mb-0">{{ instances[instance]['Keypair'] }}</p>
+                            </td>
+                            <td>
+                              <p class="text-xs font-weight-bold mb-0">{{ instances[instance]['Network'] }}</p>
+                            </td>
+                            <td>
+                              <p class="text-xs font-weight-bold mb-0">{{ instances[instance]['Security_groups'] }}</p>
+                            </td>
+                          </tr>
+                          {%endfor%}
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
       </div>
     </div>
   </div>
