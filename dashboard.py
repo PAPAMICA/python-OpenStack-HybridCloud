@@ -30,6 +30,7 @@ def home():
         elif request.form.get('start'):
             instance_name = request.form.getlist('start')
             print(instance_name, flush=True, file=sys.stdout)
+            print(instance_name[0], flush=True, file=sys.stdout)
             url = f'{dashbord_url}/api/stop/{instance_name[0]}/{instance_name[1]}/start'
             result = requests.get(url,verify=True)
             reload_list(cloud_name)
