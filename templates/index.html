@@ -30,7 +30,12 @@
               </form>
             </div>
           </div>
-          <p>{{ test }}</p>
+          <ol>
+            {%for i in range(0, len)%}
+  
+            <li>{{test[i]}}</li>
+            {%endfor%}
+          </ol>
       </div>
     </div>
   </div>
