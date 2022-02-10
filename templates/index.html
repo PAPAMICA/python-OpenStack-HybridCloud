@@ -31,9 +31,10 @@
             </div>
           </div>
           <ol>
+            {{ test }}
             {%for i in test%}
   
-            <li>{{test[i]}}</li>
+            <li>{{ i }}</li>
             {%endfor%}
           </ol>
       </div>
