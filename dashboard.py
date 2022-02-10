@@ -8,16 +8,16 @@ import api
 dashbord_url = "https://hybridcloud.papamica.com"
 
 @app.route("/", methods=['GET','POST'])
-def hello():
-    test = dict()
+def list_instances():
+    data = dict()
     if request.method == 'POST':
         cloud_name = request.form["cloud"]
         url = f'{dashbord_url}/api/list/{cloud_name}'
         result = requests.get(url,verify=True)
         data = result.content
         data = json.loads(data.decode('utf-8'))
-        # if test == None:
-        #     test = {}   
+        if data == None:
+            data = {}   
     return render_template("index.html",instances=data)
 
 # @app.route("/list", methods=['GET','POST'])
