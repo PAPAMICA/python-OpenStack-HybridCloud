@@ -46,7 +46,11 @@
               {%for instance in instances%}
               <tr>
                 <td>{{ instance }}</td>
-                <td>{{ instances[instance]['Status'] }}</td>
+                {% if instances[instance]['Status'] == "ACTIVE" %}
+                <td><span class="status-online"></span></td>
+                {% else %}
+                <td><span class="status-offline"></span></td>
+                {% endif %}
                 <td>{{ instances[instance]['IP'] }}</td>
                 <td>{{ instances[instance]['Image'] }}</td>
                 <td>{{ instances[instance]['Keypair'] }}</td>
