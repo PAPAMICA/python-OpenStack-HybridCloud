@@ -1,8 +1,8 @@
-import api
 import requests
 from flask import Flask, request, render_template, redirect
-
 app = Flask(__name__)
+import api
+
 dashbord_url = "10.10.0.108"
 
 @app.route("/", methods=['GET','POST'])
