@@ -347,6 +347,7 @@ span.status-offline {
   float: left;
   width: 33.33%;
   margin: auto;
+  margin-bottom: 10px;
 }
 
 .center {
