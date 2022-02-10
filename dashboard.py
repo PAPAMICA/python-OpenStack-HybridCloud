@@ -13,9 +13,10 @@ def hello():
         url = f'{dashbord_url}/api/list/{cloud_name}'
         result = requests.get(url,verify=True)
         test = result.content
+        test_json = test.json()
         # if test == None:
         #     test = {}   
-    return render_template("index.html",test=test)
+    return render_template("index.html",test=test_json)
 
 # @app.route("/list", methods=['GET','POST'])
 # def web_list_instances():
