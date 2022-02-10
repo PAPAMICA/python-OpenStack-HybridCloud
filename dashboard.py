@@ -8,10 +8,10 @@ import api
 dashbord_url = "https://hybridcloud.papamica.com"
 
 @app.route("/", methods=['GET','POST'])
-def list_instances():
+def home():
     data = dict()
     if request.method == 'POST':
-        if request.form['cloud']:
+        if request.form.get('cloud'):
             cloud_name = request.form.getlist('cloud')
             if cloud_name:
                 cloud_name = "Infomaniak"
@@ -23,9 +23,10 @@ def list_instances():
             data = json.loads(data.decode('utf-8'))
             if data == None:
                 data = {}   
-        elif request.form['start']:
+            
+            return render_template("index.html",instances=data)
+        elif request.form.get('start'):
             instance_name = request.form.getlist('start')
-    return render_template("index.html",instances=data)
 
 # @app.route("/list", methods=['GET','POST'])
 # def web_list_instances():
