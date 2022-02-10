@@ -197,7 +197,7 @@
                               <div class="d-flex px-2 py-1">
                                 <form method="post" action="/">
                                 <div>
-                                  <input type="submit" src="{{ url_for('static', filename='img/start.png') }}" class="avatar avatar-sm me-3" name="start" value="[{{ cloud_name }}, {{ instance }}]" alt="start" />
+                                  <input type="submit" src="{{ url_for('static', filename='img/start.png') }}" class="avatar avatar-sm me-3" name="start" value="{{ cloud_name }}, {{ instance }}" alt="start" />
                                 </div>
                                 <div>
                                   <input type="image" src="{{ url_for('static', filename='img/reboot.png') }}" class="avatar avatar-sm me-3" name="reboot" value="{{ instance }}" alt="reboot" />
