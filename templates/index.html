@@ -39,7 +39,7 @@
               <ul>
                 {%for value in instances[instance]%}
                 <li>
-                  {{ value }} : {{ value[1] }}
+                  {{ value }} : {{ value.values() }}
                 </li>
                 {%endfor%}
               </ul>
