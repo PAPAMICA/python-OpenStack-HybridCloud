@@ -32,17 +32,10 @@
           </div>
           <ul>
             {{ instances }}
-            {%for key, value in instances%}
+            {%for instance in instances%}
   
             <li>
-              <ul>
-                <li>
-                  {{ key }}
-                </li>
-                <li>
-                  {{ value }}
-                </li>
-              </ul>
+              {{ instance }}
             </li>
             {%endfor%}
           </ul>
