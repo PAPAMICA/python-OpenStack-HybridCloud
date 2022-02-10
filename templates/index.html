@@ -38,22 +38,22 @@
               {{ instance }}
               <ul>
                 <li>
-                  Status : instances[instance]['Status']
+                  Status : {{ instances[instance]['Status'] }}
                 </li>
                 <li>
-                  IP : instances[instance]['IP']
+                  IP : {{ instances[instance]['IP'] }}
                 </li>
                 <li>
-                  Image : instances[instance]['Image']
+                  Image : {{ instances[instance]['Image'] }}
                 </li>
                 <li>
-                  Keypair : instances[instance]['Keypair']
+                  Keypair : {{ instances[instance]['Keypair'] }}
                 </li>
                 <li>
-                  Network : instances[instance]['Network']
+                  Network : {{ instances[instance]['Network'] }}
                 </li>
                 <li>
-                  Security groups : instances[instance]['Security_groups']
+                  Security groups : {{ instances[instance]['Security_groups'] }}
                 </li>
               </ul>
             </li>
