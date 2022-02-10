@@ -9,7 +9,7 @@ info:
   license:
     name: "Apache 2.0"
     url: "http://www.apache.org/licenses/LICENSE-2.0.html"
-host: "https://hybridcloud.papamica.com"
+host: "hybridcloud.papamica.com"
 basePath: ""
 tags:
 - name: "cloud"
