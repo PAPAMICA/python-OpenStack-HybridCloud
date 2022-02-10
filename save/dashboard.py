@@ -1,4 +1,4 @@
-import api
+import dashboard_copy
 import requests
 from flask import Flask, request, render_template, redirect
 
@@ -14,6 +14,14 @@ def web_list_instances():
     url = f'http://192.168.2.53:8086/api/list/{cloud_name}'
     result = requests.get(url)
     return result.content
+    
+
+@app.route("/api/list/<cloud_name>", methods=['GET','POST'])
+def display_instances_list(cloud_name):
+    cloud = dashboard_copy.cloud_connection(cloud_name)
+    result = dashboard_copy.get_instances_list(cloud)
+    return(result)
 
 if __name__ == "__main__":
-    app.run(host="192.168.2.53", port=8085, debug=False)
+    app.run(host="192.168.2.53", port=8086, debug=False)
+    #app.run(host="192.168.2.53", port=8086, debug=False)

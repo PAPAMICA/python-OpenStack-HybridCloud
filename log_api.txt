@@ -1,0 +1,313 @@
+ * Serving Flask app "api" (lazy loading)
+ * Environment: production
+   WARNING: This is a development server. Do not use it in a production deployment.
+   Use a production WSGI server instead.
+ * Debug mode: off
+ * Running on http://192.168.2.53:8086/ (Press CTRL+C to quit)
+192.168.2.12 - - [09/Feb/2022 15:13:22] "GET /api/list/Infomaniak HTTP/1.1" 200 -
+ * Serving Flask app "api" (lazy loading)
+ * Environment: production
+   WARNING: This is a development server. Do not use it in a production deployment.
+   Use a production WSGI server instead.
+ * Debug mode: off
+ * Running on http://192.168.2.53:8086/ (Press CTRL+C to quit)
+ * Serving Flask app "api" (lazy loading)
+ * Environment: production
+   WARNING: This is a development server. Do not use it in a production deployment.
+   Use a production WSGI server instead.
+ * Debug mode: off
+ * Running on http://192.168.2.53:8086/ (Press CTRL+C to quit)
+ * Serving Flask app "api" (lazy loading)
+ * Environment: production
+   WARNING: This is a development server. Do not use it in a production deployment.
+   Use a production WSGI server instead.
+ * Debug mode: off
+ * Running on http://192.168.2.53:8086/ (Press CTRL+C to quit)
+192.168.2.53 - - [09/Feb/2022 16:31:37] "GET /api/list/Infomaniak HTTP/1.1" 400 -
+192.168.2.12 - - [09/Feb/2022 16:32:29] "GET /api/list/Infomaniak HTTP/1.1" 400 -
+192.168.2.53 - - [09/Feb/2022 16:33:16] "GET /api/list/Infomaniak HTTP/1.1" 400 -
+ * Serving Flask app "api" (lazy loading)
+ * Environment: production
+   WARNING: This is a development server. Do not use it in a production deployment.
+   Use a production WSGI server instead.
+ * Debug mode: off
+ * Running on http://192.168.2.53:8086/ (Press CTRL+C to quit)
+ * Serving Flask app "api" (lazy loading)
+ * Environment: production
+   WARNING: This is a development server. Do not use it in a production deployment.
+   Use a production WSGI server instead.
+ * Debug mode: off
+ * Running on http://192.168.2.53:8086/ (Press CTRL+C to quit)
+[2022-02-09 16:34:00,969] ERROR in app: Exception on /api/list/Infomaniak [GET]
+Traceback (most recent call last):
+  File "/usr/lib/python3/dist-packages/flask/app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/usr/lib/python3/dist-packages/flask/app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/usr/lib/python3/dist-packages/flask/app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/usr/lib/python3/dist-packages/flask/_compat.py", line 39, in reraise
+    raise value
+  File "/usr/lib/python3/dist-packages/flask/app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/usr/lib/python3/dist-packages/flask/app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "api.py", line 9, in display_instances_list
+    result = dashboard.get_instances_list(cloud)
+TypeError: get_instances_list() takes 0 positional arguments but 1 was given
+192.168.2.12 - - [09/Feb/2022 16:34:00] "GET /api/list/Infomaniak HTTP/1.1" 500 -
+ * Serving Flask app "api" (lazy loading)
+ * Environment: production
+   WARNING: This is a development server. Do not use it in a production deployment.
+   Use a production WSGI server instead.
+ * Debug mode: off
+Traceback (most recent call last):
+  File "api.py", line 13, in <module>
+    app.run(host="192.168.2.53", port=8086, debug=False)
+  File "/usr/lib/python3/dist-packages/flask/app.py", line 990, in run
+    run_simple(host, port, self, **options)
+  File "/usr/lib/python3/dist-packages/werkzeug/serving.py", line 1012, in run_simple
+    inner()
+  File "/usr/lib/python3/dist-packages/werkzeug/serving.py", line 956, in inner
+    srv = make_server(
+  File "/usr/lib/python3/dist-packages/werkzeug/serving.py", line 807, in make_server
+    return ThreadedWSGIServer(
+  File "/usr/lib/python3/dist-packages/werkzeug/serving.py", line 701, in __init__
+    HTTPServer.__init__(self, server_address, handler)
+  File "/usr/lib/python3.8/socketserver.py", line 452, in __init__
+    self.server_bind()
+  File "/usr/lib/python3.8/http/server.py", line 138, in server_bind
+    socketserver.TCPServer.server_bind(self)
+  File "/usr/lib/python3.8/socketserver.py", line 466, in server_bind
+    self.socket.bind(self.server_address)
+OSError: [Errno 98] Address already in use
+[2022-02-09 16:37:01,561] ERROR in app: Exception on /api/list/Infomaniak [GET]
+Traceback (most recent call last):
+  File "/usr/lib/python3/dist-packages/flask/app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/usr/lib/python3/dist-packages/flask/app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/usr/lib/python3/dist-packages/flask/app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/usr/lib/python3/dist-packages/flask/_compat.py", line 39, in reraise
+    raise value
+  File "/usr/lib/python3/dist-packages/flask/app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/usr/lib/python3/dist-packages/flask/app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "api.py", line 9, in display_instances_list
+    result = dashboard_copy.get_instances_list(cloud)
+TypeError: get_instances_list() takes 0 positional arguments but 1 was given
+192.168.2.12 - - [09/Feb/2022 16:37:01] "GET /api/list/Infomaniak HTTP/1.1" 500 -
+[2022-02-09 16:37:56,377] ERROR in app: Exception on /api/list/Infomaniak [GET]
+Traceback (most recent call last):
+  File "/usr/lib/python3/dist-packages/flask/app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/usr/lib/python3/dist-packages/flask/app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/usr/lib/python3/dist-packages/flask/app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/usr/lib/python3/dist-packages/flask/_compat.py", line 39, in reraise
+    raise value
+  File "/usr/lib/python3/dist-packages/flask/app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/usr/lib/python3/dist-packages/flask/app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "api.py", line 9, in display_instances_list
+    result = dashboard_copy.get_instances_list(cloud)
+TypeError: get_instances_list() takes 0 positional arguments but 1 was given
+192.168.2.12 - - [09/Feb/2022 16:37:56] "GET /api/list/Infomaniak HTTP/1.1" 500 -
+ * Serving Flask app "api" (lazy loading)
+ * Environment: production
+   WARNING: This is a development server. Do not use it in a production deployment.
+   Use a production WSGI server instead.
+ * Debug mode: off
+ * Running on http://192.168.2.53:8086/ (Press CTRL+C to quit)
+192.168.2.128 - - [10/Feb/2022 09:23:30] "GET / HTTP/1.1" 200 -
+192.168.2.128 - - [10/Feb/2022 09:23:30] "GET /favicon.ico HTTP/1.1" 404 -
+192.168.2.128 - - [10/Feb/2022 09:23:32] "POST /list HTTP/1.1" 308 -
+[2022-02-10 09:23:32,773] ERROR in app: Exception on /list/ [POST]
+Traceback (most recent call last):
+  File "/usr/lib/python3/dist-packages/flask/app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/usr/lib/python3/dist-packages/flask/app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/usr/lib/python3/dist-packages/flask/app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/usr/lib/python3/dist-packages/flask/_compat.py", line 39, in reraise
+    raise value
+  File "/usr/lib/python3/dist-packages/flask/app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/usr/lib/python3/dist-packages/flask/app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "api.py", line 14, in web_list_instances
+    result = requests.get(f'192.168.2.53:8086/api/list/{cloud_name}')
+  File "/usr/lib/python3/dist-packages/requests/api.py", line 76, in get
+    return request('get', url, params=params, **kwargs)
+  File "/usr/lib/python3/dist-packages/requests/api.py", line 61, in request
+    return session.request(method=method, url=url, **kwargs)
+  File "/usr/lib/python3/dist-packages/requests/sessions.py", line 542, in request
+    resp = self.send(prep, **send_kwargs)
+  File "/usr/lib/python3/dist-packages/requests/sessions.py", line 649, in send
+    adapter = self.get_adapter(url=request.url)
+  File "/usr/lib/python3/dist-packages/requests/sessions.py", line 742, in get_adapter
+    raise InvalidSchema("No connection adapters were found for {!r}".format(url))
+requests.exceptions.InvalidSchema: No connection adapters were found for '192.168.2.53:8086/api/list/Infomaniak'
+192.168.2.128 - - [10/Feb/2022 09:23:32] "POST /list/ HTTP/1.1" 500 -
+192.168.2.53 - - [10/Feb/2022 09:24:14] "GET /api/list/Infomaniak HTTP/1.1" 200 -
+ * Serving Flask app "api" (lazy loading)
+ * Environment: production
+   WARNING: This is a development server. Do not use it in a production deployment.
+   Use a production WSGI server instead.
+ * Debug mode: off
+ * Running on http://192.168.2.53:8086/ (Press CTRL+C to quit)
+192.168.2.128 - - [10/Feb/2022 09:27:05] "GET / HTTP/1.1" 200 -
+192.168.2.128 - - [10/Feb/2022 09:27:07] "POST /list HTTP/1.1" 308 -
+[2022-02-10 09:27:07,395] ERROR in app: Exception on /list/ [POST]
+Traceback (most recent call last):
+  File "/usr/lib/python3/dist-packages/flask/app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/usr/lib/python3/dist-packages/flask/app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/usr/lib/python3/dist-packages/flask/app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/usr/lib/python3/dist-packages/flask/_compat.py", line 39, in reraise
+    raise value
+  File "/usr/lib/python3/dist-packages/flask/app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/usr/lib/python3/dist-packages/flask/app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "api.py", line 14, in web_list_instances
+    result = requests.get(f'192.168.2.53:8086/api/list/{cloud_name}')
+  File "/usr/lib/python3/dist-packages/requests/api.py", line 76, in get
+    return request('get', url, params=params, **kwargs)
+  File "/usr/lib/python3/dist-packages/requests/api.py", line 61, in request
+    return session.request(method=method, url=url, **kwargs)
+  File "/usr/lib/python3/dist-packages/requests/sessions.py", line 542, in request
+    resp = self.send(prep, **send_kwargs)
+  File "/usr/lib/python3/dist-packages/requests/sessions.py", line 649, in send
+    adapter = self.get_adapter(url=request.url)
+  File "/usr/lib/python3/dist-packages/requests/sessions.py", line 742, in get_adapter
+    raise InvalidSchema("No connection adapters were found for {!r}".format(url))
+requests.exceptions.InvalidSchema: No connection adapters were found for '192.168.2.53:8086/api/list/Infomaniak'
+192.168.2.128 - - [10/Feb/2022 09:27:07] "POST /list/ HTTP/1.1" 500 -
+ * Serving Flask app "api" (lazy loading)
+ * Environment: production
+   WARNING: This is a development server. Do not use it in a production deployment.
+   Use a production WSGI server instead.
+ * Debug mode: off
+ * Running on http://192.168.2.53:8086/ (Press CTRL+C to quit)
+192.168.2.53 - - [10/Feb/2022 10:14:18] "GET /api/list/Infomaniak HTTP/1.1" 200 -
+192.168.2.53 - - [10/Feb/2022 10:15:26] "GET /api/list/Infomaniak HTTP/1.1" 200 -
+ * Serving Flask app "api" (lazy loading)
+ * Environment: production
+   WARNING: This is a development server. Do not use it in a production deployment.
+   Use a production WSGI server instead.
+ * Debug mode: off
+ * Running on http://192.168.2.53:8080/ (Press CTRL+C to quit)
+ * Serving Flask app "api" (lazy loading)
+ * Environment: production
+   WARNING: This is a development server. Do not use it in a production deployment.
+   Use a production WSGI server instead.
+ * Debug mode: off
+ * Running on http://192.168.2.53:8086/ (Press CTRL+C to quit)
+ * Serving Flask app "dashboard" (lazy loading)
+ * Environment: production
+   WARNING: This is a development server. Do not use it in a production deployment.
+   Use a production WSGI server instead.
+ * Debug mode: off
+ * Running on http://192.168.2.53:8085/ (Press CTRL+C to quit)
+192.168.2.128 - - [10/Feb/2022 10:36:36] "GET / HTTP/1.1" 200 -
+192.168.2.128 - - [10/Feb/2022 10:36:38] "POST /list HTTP/1.1" 308 -
+[2022-02-10 10:36:38,526] ERROR in app: Exception on /api/list/Infomaniak [GET]
+Traceback (most recent call last):
+  File "/usr/lib/python3/dist-packages/flask/app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/usr/lib/python3/dist-packages/flask/app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/usr/lib/python3/dist-packages/flask/app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/usr/lib/python3/dist-packages/flask/_compat.py", line 39, in reraise
+    raise value
+  File "/usr/lib/python3/dist-packages/flask/app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/usr/lib/python3/dist-packages/flask/app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "api.py", line 8, in display_instances_list
+    cloud = dashboard_copy.cloud_connection(cloud_name)
+NameError: name 'dashboard_copy' is not defined
+192.168.2.53 - - [10/Feb/2022 10:36:38] "GET /api/list/Infomaniak HTTP/1.1" 500 -
+192.168.2.128 - - [10/Feb/2022 10:36:38] "POST /list/ HTTP/1.1" 200 -
+ * Serving Flask app "api" (lazy loading)
+ * Environment: production
+   WARNING: This is a development server. Do not use it in a production deployment.
+   Use a production WSGI server instead.
+ * Debug mode: off
+ * Running on http://192.168.2.53:8086/ (Press CTRL+C to quit)
+[2022-02-10 10:38:09,235] ERROR in app: Exception on /api/list/Infomaniak [GET]
+Traceback (most recent call last):
+  File "/usr/lib/python3/dist-packages/flask/app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/usr/lib/python3/dist-packages/flask/app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/usr/lib/python3/dist-packages/flask/app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/usr/lib/python3/dist-packages/flask/_compat.py", line 39, in reraise
+    raise value
+  File "/usr/lib/python3/dist-packages/flask/app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/usr/lib/python3/dist-packages/flask/app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "api.py", line 8, in display_instances_list
+    cloud = dashboard_copy.cloud_connection(cloud_name)
+NameError: name 'dashboard_copy' is not defined
+192.168.2.53 - - [10/Feb/2022 10:38:09] "GET /api/list/Infomaniak HTTP/1.1" 500 -
+ * Serving Flask app "api" (lazy loading)
+ * Environment: production
+   WARNING: This is a development server. Do not use it in a production deployment.
+   Use a production WSGI server instead.
+ * Debug mode: off
+ * Running on http://192.168.2.53:8086/ (Press CTRL+C to quit)
+ * Serving Flask app "dashboard" (lazy loading)
+ * Environment: production
+   WARNING: This is a development server. Do not use it in a production deployment.
+   Use a production WSGI server instead.
+ * Debug mode: off
+ * Running on http://192.168.2.53:8085/ (Press CTRL+C to quit)
+192.168.2.128 - - [10/Feb/2022 10:39:02] "GET / HTTP/1.1" 200 -
+192.168.2.128 - - [10/Feb/2022 10:39:05] "POST /list HTTP/1.1" 308 -
+[2022-02-10 10:39:05,827] ERROR in app: Exception on /api/list/Infomaniak [GET]
+Traceback (most recent call last):
+  File "/usr/lib/python3/dist-packages/flask/app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/usr/lib/python3/dist-packages/flask/app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/usr/lib/python3/dist-packages/flask/app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/usr/lib/python3/dist-packages/flask/_compat.py", line 39, in reraise
+    raise value
+  File "/usr/lib/python3/dist-packages/flask/app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/usr/lib/python3/dist-packages/flask/app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "api.py", line 9, in display_instances_list
+    result = openstack_functions.get_instances_list(cloud)
+TypeError: get_instances_list() takes 0 positional arguments but 1 was given
+192.168.2.53 - - [10/Feb/2022 10:39:05] "GET /api/list/Infomaniak HTTP/1.1" 500 -
+192.168.2.128 - - [10/Feb/2022 10:39:05] "POST /list/ HTTP/1.1" 200 -
+ * Serving Flask app "dashboard" (lazy loading)
+ * Environment: production
+   WARNING: This is a development server. Do not use it in a production deployment.
+   Use a production WSGI server instead.
+ * Debug mode: off
+ * Running on http://192.168.2.53:8085/ (Press CTRL+C to quit)
+ * Serving Flask app "api" (lazy loading)
+ * Environment: production
+   WARNING: This is a development server. Do not use it in a production deployment.
+   Use a production WSGI server instead.
+ * Debug mode: off
+ * Running on http://192.168.2.53:8086/ (Press CTRL+C to quit)
+192.168.2.128 - - [10/Feb/2022 10:40:16] "GET / HTTP/1.1" 200 -
+192.168.2.128 - - [10/Feb/2022 10:40:17] "POST /list HTTP/1.1" 308 -
+192.168.2.53 - - [10/Feb/2022 10:40:18] "GET /api/list/Infomaniak HTTP/1.1" 200 -
+192.168.2.128 - - [10/Feb/2022 10:40:18] "POST /list/ HTTP/1.1" 200 -

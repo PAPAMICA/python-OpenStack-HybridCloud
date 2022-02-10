@@ -14,6 +14,6 @@ def web_list_instances():
     url = f'http://192.168.2.53:8086/api/list/{cloud_name}'
     result = requests.get(url)
     return result.content
-
+    
 if __name__ == "__main__":
-    app.run(host="192.168.2.53", port=8085, debug=False)
+    app.run(host="192.168.2.53", port=8080, debug=False)
