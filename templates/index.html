@@ -37,9 +37,9 @@
             <li>
               {{ instance }}
               <ul>
-                {%for key, value in instances[instance]%}
+                {%for value in instances[instance]%}
                 <li>
-                  {{ key }} : {{ value }}
+                  {{ value }}
                 </li>
                 {%endfor%}
               </ul>
