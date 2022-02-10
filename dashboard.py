@@ -13,6 +13,8 @@ def hello():
         url = f'{dashbord_url}/api/list/{cloud_name}'
         result = requests.get(url,verify=True)
         test = result.content
+        if test == None:
+            test = {}   
     return render_template("index.html",test=test)
 
 # @app.route("/list", methods=['GET','POST'])
