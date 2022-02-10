@@ -31,17 +31,28 @@
             </div>
           </div>
           <ul>
-            {{ instances }}
             {%for instance in instances%}
-  
-            <li>
-              {{ instance.Cloud }}
+            <li class="formbg-inner padding-horizontal--48">
+              {{ instance }}
               <ul>
-                {%for data in instance%}
                 <li>
-                  {{ data }}
+                  Status : {{ instances[instance]['Status'] }}
                 </li>
-                {%endfor%}
+                <li>
+                  IP : {{ instances[instance]['IP'] }}
+                </li>
+                <li>
+                  Image : {{ instances[instance]['Image'] }}
+                </li>
+                <li>
+                  Keypair : {{ instances[instance]['Keypair'] }}
+                </li>
+                <li>
+                  Network : {{ instances[instance]['Network'] }}
+                </li>
+                <li>
+                  Security groups : {{ instances[instance]['Security_groups'] }}
+                </li>
               </ul>
             </li>
             {%endfor%}
