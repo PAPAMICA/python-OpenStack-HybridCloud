@@ -1,0 +1,4 @@
+openstack
+flask
+requests
+sqlite3
