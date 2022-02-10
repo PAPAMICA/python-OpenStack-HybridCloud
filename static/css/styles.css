@@ -340,5 +340,5 @@ span.status-offline {
 }
 
 .switch input[type="checkbox"]:checked + label {
-  background-color: green;
+  background-color:  #5469d4;
 }
