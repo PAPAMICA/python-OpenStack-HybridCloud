@@ -31,7 +31,10 @@ def readSqliteTable(cloud_name, type):
         cursor.execute(sqlite_select_query)
         records = cursor.fetchall()
         for row in records:
-            if (row[0] == type):
+            if (type == "ALL"):
+                print(f"{row[0]} - {row[1]}")
+                
+            elif (row[0] == type):
                 print(row[1])
 
     except sqlite3.Error as error:
@@ -46,6 +49,8 @@ def fill_database(cloud_name):
     insert_db_data(cloud_name, "IMAGE", data)
     data = api.list_networks(cloud).values()
     insert_db_data(cloud_name, "NETWORK", data)
+    data = api.list_security_groups(cloud).values()
+    insert_db_data(cloud_name, "SECURITY_GROUP", data)
 
 conn = sqlite3.connect('database.db')
 cursor = conn.cursor()
@@ -54,7 +59,7 @@ create_db_cloud("Infomaniak")
 list_db_table()
 cloud_name = 'Infomaniak'
 fill_database(cloud_name)
-readSqliteTable(cloud_name, "IMAGE")
+readSqliteTable(cloud_name, "ALL")
 delete_db_table(cloud_name)
 conn.close()
 
