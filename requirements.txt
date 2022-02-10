@@ -1,4 +1,4 @@
-openstack
+python-openstackclient
 flask
 requests
 sqlite3
