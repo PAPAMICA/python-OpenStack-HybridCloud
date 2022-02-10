@@ -114,7 +114,7 @@ paths:
         description: "The name of the key pair to create"
         required: true
         schema:
-          $ref: "examples.json#/keypair"
+          $ref: "#/definitions/keypair"
       responses:
         "200":
           description: "successful operation"
@@ -333,6 +333,11 @@ securityDefinitions:
     name: "api_key"
     in: "header"
 definitions:
+  keypair:
+    type: "object"
+    properties:
+      key_pair:
+        type: "String"
   Order:
     type: "object"
     properties:
