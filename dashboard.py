@@ -30,6 +30,7 @@ def home():
             url = f'{dashbord_url}/api/stop/{cloud_name}/{instance_name}/stop'
             result = requests.get(url,verify=True)
             reload_list(cloud_name)
+    return render_template("index.html")
 
 def reload_list(cloud_name):
     url = f'{dashbord_url}/api/list/{cloud_name}'
