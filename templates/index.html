@@ -32,10 +32,9 @@
           </div>
           <ul>
             {{ instances }}
-            {%for instance, key, value in instances%}
+            {%for key, value in instances%}
   
             <li>
-              {{ instance }}
               <ul>
                 <li>
                   {{ key }}
