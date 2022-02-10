@@ -307,6 +307,8 @@ span.status-offline {
 /* -------- Switch Styles ------------*/
 .switch {
   position: relative;
+  margin-bottom: 12px;
+  
 }
 
 .switch label {

@@ -153,6 +153,7 @@
                             <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Keypair</th>
                             <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Network</th>
                             <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Security Group</th>
+                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Actions</th>
                             <th class="text-secondary opacity-7"></th>
                           </tr>
                         </thead>
@@ -192,6 +193,22 @@
                             </td>
                             <td>
                               <p class="text-xs font-weight-bold mb-0">{{ instances[instance]['Security_groups'] }}</p>
+                            </td>
+                            <td>
+                              <div class="d-flex px-2 py-1">
+                                <div>
+                                  <img src="{{ url_for('static', filename='img/start.png') }}" class="avatar avatar-sm me-3" alt="user1">
+                                </div>
+                                <div>
+                                  <img src="{{ url_for('static', filename='img/reboot.png') }}" class="avatar avatar-sm me-3" alt="user1">
+                                </div>
+                                <div>
+                                  <img src="{{ url_for('static', filename='img/stop.png') }}" class="avatar avatar-sm me-3" alt="user1">
+                                </div>
+                                <div>
+                                  <img src="{{ url_for('static', filename='img/destroy.png') }}" class="avatar avatar-sm me-3" alt="user1">
+                                </div>
+                              </div>
                             </td>
                           </tr>
                           {%endfor%}
