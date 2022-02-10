@@ -23,7 +23,7 @@ def list_instances():
             data = json.loads(data.decode('utf-8'))
             if data == None:
                 data = {}   
-        if request.form['start'] == "*":
+        elif request.form['start'] == "*":
             instance_name = request.form.getlist('start')
     return render_template("index.html",instances=data)
 
