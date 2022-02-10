@@ -63,3 +63,21 @@ def start_instance(cloud_name, server_name):
     cloud  = openstack_api.cloud_connection(cloud_name)
     result = start_instance(cloud, server_name)
     return result
+
+@app.route("/api/<cloud_name>/<server_name>/stop")
+def stop_instance(cloud_name, server_name):
+    cloud  = openstack_api.cloud_connection(cloud_name)
+    result = openstack_api.stop_instance(cloud, server_name)
+    return result
+
+@app.route("/api/<cloud_name>/<server_name>/reboot")
+def reboot_instance(cloud_name, server_name):
+    cloud  = openstack_api.cloud_connection(cloud_name)
+    result = openstack_api.reboot_instance(cloud, server_name)
+    return result
+
+@app.route("/api/<cloud_name>/<server_name>/delete")
+def delete_instance(cloud_name, server_name):
+    cloud  = openstack_api.cloud_connection(cloud_name)
+    result = openstack_api.delete_instance(cloud, server_name)
+    return result
