@@ -15,10 +15,10 @@ def hello():
         url = f'{dashbord_url}/api/list/{cloud_name}'
         result = requests.get(url,verify=True)
         data = result.content
-        result = json.loads(data.decode('utf-8'))
+        data = json.loads(data.decode('utf-8'))
         # if test == None:
         #     test = {}   
-    return render_template("index.html",instances=result)
+    return render_template("index.html",instances=data)
 
 # @app.route("/list", methods=['GET','POST'])
 # def web_list_instances():
