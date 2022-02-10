@@ -305,67 +305,40 @@ span.status-offline {
 
 
 /* -------- Switch Styles ------------*/
-// Tweak these to change the style of the toggle
-$toggle-background-color-on: dodgerblue;
-$toggle-background-color-off: darkgray;
-$toggle-control-color: white;
-$toggle-width: 100px;
-$toggle-height: 50px;
-$toggle-gutter: 5px;
-$toggle-radius: 50%;
-$toggle-control-speed: .15s;
-$toggle-control-ease: ease-in;
-
-// These are our computed variables
-// change at your own risk.
-$toggle-radius: $toggle-height / 2;
-$toggle-control-size: $toggle-height - ($toggle-gutter * 2);
-
-.toggle-control {
-  display: block;
+.switch {
   position: relative;
-  padding-left: $toggle-width;
-  margin-bottom: 12px;
-  cursor: pointer;
-  font-size: 22px;
-  user-select: none;
+}
 
-  input {
-    position: absolute;
-    opacity: 0;
-    cursor: pointer;
-    height: 0;
-    width: 0;
-  }
+.switch label {
+  width: 55px;
+  height: 23px;
+  position: absolute;
+  background-color: #999;
+  top: 0;
+  left: 0;
+  border-radius: 50px;
+}
 
-  input:checked ~ .control {
-    background-color: $toggle-background-color-on;
-    
-    &:after {
-      left: $toggle-width - $toggle-control-size - $toggle-gutter;
-    }
-  }
+.switch input[type="checkbox"] {
+  visibility: hidden;
+}
 
-  .control {
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: $toggle-height;
-    width: $toggle-width;
-    border-radius: $toggle-radius;
-    background-color: $toggle-background-color-off;
-    transition: background-color $toggle-control-speed $toggle-control-ease;
+.switch label:after {
+  content: '';
+  width: 21px;
+  height: 21px;
+  border-radius: 50px;
+  position: absolute;
+  top: 1px;
+  left: 1px;
+  transition: all 0.1s;
+  background-color: white;
+}
 
-    &:after {
-      content: "";
-      position: absolute;
-      left: $toggle-gutter;
-      top: $toggle-gutter;
-      width: $toggle-control-size;
-      height: $toggle-control-size;
-      border-radius: $toggle-radius;
-      background: $toggle-control-color;
-      transition: left $toggle-control-speed $toggle-control-ease;
-    }
-  }
+.switch input[type="checkbox"]:checked + label:after {
+  left: 33px;
+}
+
+.switch input[type="checkbox"]:checked + label {
+  background-color: green;
 }

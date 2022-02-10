@@ -6,7 +6,7 @@
   <meta charset="utf-8">
   <title>Coucou toi</title>
   <link rel="stylesheet" href="{{ url_for('static', filename='css/template.css') }}">
-  <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.scss') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
 </head>
 
 <body>
@@ -25,10 +25,10 @@
                   <label for="cloud">Cloud (ex : Infomaniak)</label>
                   <input type="text" name="cloud" id="name" required/>
                 </div>
-                <label class="toggle-control">
-                  <input type="checkbox" checked="checked">
-                  <span class="control"></span>
-                </label>
+                <div class="switch">
+                  <input type="checkbox" id="checkbox1">
+                  <label for="checkbox1"></label>
+                </div>
                 <div class="field padding-bottom--24">
                   <input type="submit" name="submit" value="Confirmer">
                 </div>
