@@ -14,7 +14,7 @@ def hello():
         result = requests.get(url,verify=True)
         test = result.content
         if test == None:
-            test = ""    
+            test = {}   
     return render_template("index.html",test=test)
 
 # @app.route("/list", methods=['GET','POST'])
