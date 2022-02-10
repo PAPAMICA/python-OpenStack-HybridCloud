@@ -3,7 +3,7 @@ from flask import Flask, request, render_template, redirect
 app = Flask(__name__)
 import api
 
-dashbord_url = "https://hybridcloud.papamica.com"
+dashbord_url = "hybridcloud.papamica.com"
 
 @app.route("/", methods=['GET','POST'])
 def hello():
