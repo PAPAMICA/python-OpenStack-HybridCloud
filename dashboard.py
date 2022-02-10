@@ -10,7 +10,7 @@ def hello():
     test = False
     if request.method == 'POST':
         test = True
-    return render_template("index.html",test)
+    return render_template("index.html",test=test)
 
 @app.route("/list", methods=['GET','POST'])
 def web_list_instances():
