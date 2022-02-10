@@ -1,3 +1,6 @@
-"keypair": {
+{
+  "keypair":
+  {
   "keypair_name":"awsomeName"
+}
 }
