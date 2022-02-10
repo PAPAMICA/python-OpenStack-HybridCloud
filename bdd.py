@@ -4,33 +4,57 @@
 import sqlite3
 import api
 
-conn = sqlite3.connect('database.db')
-cursor = conn.cursor()
-
-print ("Opened database successfully")
-
 def create_db_cloud(cloudname):
-    conn.execute(f'''CREATE TABLE '{cloudname}'
-            (ID INT PRIMARY KEY     NOT NULL,
-            DATE           TEXT    NOT NULL,
-            IMAGES           TEXT    NOT NULL,
-            NETWORKS           TEXT    NOT NULL,
-            FLAVORS            TEXT     NOT NULL);''')
-         
-    print ("Table created successfully")
+    try:
+        conn.execute(f'''CREATE TABLE '{cloudname}'
+                (TYPE           TEXT    NOT NULL,
+                DATA           TEXT    NOT NULL);''')
+    except:
+        print (f"Table {cloudname} already exist")
 
 def list_db_table():
     cursor.execute("SELECT name FROM sqlite_master WHERE type='table';")
-    print(cursor.fetchall())
 
-def insert_db_data(cloud, type, data):
-    conn.execute(f"INSERT INTO {cloud} ({type}) VALUES ({data})")
-    conn.commit()
+def delete_db_table(table):
+    cursor.execute(f"DROP TABLE {table}")
+
+def insert_db_data(cloud_name, prout, data):
+    for i in data:
+        #sql = f'''INSERT INTO {cloud} (TYPE, DATA) VALUES ({type},{i})'''
+        sql = f'''INSERT INTO {cloud_name} (TYPE, DATA) VALUES ("{prout}","{i}")'''
+        conn.execute(sql)
+        conn.commit()
+
+def readSqliteTable(cloud_name, type):
+    try:
+        sqlite_select_query = f"""SELECT * from {cloud_name}"""
+        cursor.execute(sqlite_select_query)
+        records = cursor.fetchall()
+        for row in records:
+            if (row[0] == type):
+                print(row[1])
+
+    except sqlite3.Error as error:
+        print("Failed to read data from sqlite table", error)
 
 
+def fill_database(cloud_name):
+    cloud = api.cloud_connection(cloud_name)
+    data = api.list_flavors(cloud).values()
+    insert_db_data(cloud_name, "FLAVOR", data)
+    data = api.list_images(cloud).values()
+    insert_db_data(cloud_name, "IMAGE", data)
+    data = api.list_networks(cloud).values()
+    insert_db_data(cloud_name, "NETWORK", data)
 
-#create_db_cloud("Infomaniak")
-#list_db_table()
-insert_db_data("Infomaniak", "FLAVORS", data)
+conn = sqlite3.connect('database.db')
+cursor = conn.cursor()
+
+create_db_cloud("Infomaniak")
+list_db_table()
+cloud_name = 'Infomaniak'
+fill_database(cloud_name)
+readSqliteTable(cloud_name, "IMAGE")
+delete_db_table(cloud_name)
 conn.close()
 

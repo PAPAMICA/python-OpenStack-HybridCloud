@@ -23,7 +23,7 @@ if args.dict:
 else:
     arg_dict = 0
 
-
+arg_dict = 1
 # Instance
 instance_name = "test-name"
 instance_image = "Debian 11.2 bullseye"
@@ -305,7 +305,7 @@ def delete_instance(cloud, server_name):
         return f"[ERROR] Can't delete instance {server_name} !"
 
 
-cloud = cloud_connection(cloud_name)
+#cloud = cloud_connection(cloud_name)
 #result = get_instances_list(cloud)
 #get_instances_list(cloud)
 #get_instance_information(cloud, server_name)
