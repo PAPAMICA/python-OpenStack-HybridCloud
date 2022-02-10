@@ -12,7 +12,7 @@ def hello():
 @app.route("/list/", methods=['GET','POST'])
 def web_list_instances():
     cloud_name = request.form["cloud"]
-    url = f'{dashbord_url}/api/list/{cloud_name}'
+    url = f'https://{dashbord_url}/api/list/{cloud_name}'
     result = requests.get(url)
     return result.content
 
