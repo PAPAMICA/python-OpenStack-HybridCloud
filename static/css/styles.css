@@ -348,6 +348,14 @@ span.status-offline {
   width: 33.33%;
 }
 
+.cote {
+  width: 40%;
+}
+
+.milieux {
+  width: 20%;
+}
+
 /* Clear floats after the columns */
 .row:after {
   content: "";
