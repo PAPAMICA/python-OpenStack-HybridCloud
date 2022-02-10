@@ -30,13 +30,22 @@
               </form>
             </div>
           </div>
-          <ol>
+          <ul>
             {{ instances }}
             {%for instance in instances%}
   
-            <li>{{ instance }}</li>
+            <li>
+              {{ instance }}
+              <ul>
+                {%for data in instance%}
+                <li>
+                  {{ data }}
+                </li>
+                {%endfor%}
+              </ul>
+            </li>
             {%endfor%}
-          </ol>
+          </ul>
       </div>
     </div>
   </div>
