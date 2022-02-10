@@ -23,11 +23,23 @@ def home():
             data = json.loads(data.decode('utf-8'))
             if data == None:
                 data = {}   
-            
-            return render_template("index.html",instances=data)
+            return render_template("index.html",instances=data, cloud_name=cloud_name)
+
         elif request.form.get('start'):
             instance_name = request.form.getlist('start')
-            return instance_name
+            url = f'{dashbord_url}/api/stop/{cloud_name}/{instance_name}/stop'
+            result = requests.get(url,verify=True)
+            reload_list(cloud_name)
+
+def reload_list(cloud_name):
+    url = f'{dashbord_url}/api/list/{cloud_name}'
+    result = requests.get(url,verify=True)
+    data = result.content
+    data = json.loads(data.decode('utf-8'))
+    if data == None:
+        data = {}   
+    return render_template("index.html",instances=data, cloud_name=cloud_name)
+
 
 # @app.route("/list", methods=['GET','POST'])
 # def web_list_instances():
