@@ -30,33 +30,32 @@
               </form>
             </div>
           </div>
-          <ul>
-            {%for instance in instances%}
-            <li class="formbg-inner padding-horizontal--48">
-              <h2>{{ instance }}</h2>
-              <ul>
-                <li>
-                  Status : {{ instances[instance]['Status'] }}
-                </li>
-                <li>
-                  IP : {{ instances[instance]['IP'] }}
-                </li>
-                <li>
-                  Image : {{ instances[instance]['Image'] }}
-                </li>
-                <li>
-                  Keypair : {{ instances[instance]['Keypair'] }}
-                </li>
-                <li>
-                  Network : {{ instances[instance]['Network'] }}
-                </li>
-                <li>
-                  Security groups : {{ instances[instance]['Security_groups'] }}
-                </li>
-              </ul>
-            </li>
-            {%endfor%}
-          </ul>
+          <table class="container">
+            <thead>
+              <tr>
+                <th><h1>Name</h1></th>
+                <th><h1>Status</h1></th>
+                <th><h1>IP</h1></th>
+                <th><h1>Image</h1></th>
+                <th><h1>Keypair</h1></th>
+                <th><h1>Network</h1></th>
+                <th><h1>Security Group</h1></th>
+              </tr>
+            </thead>
+            <tbody>
+              {%for instance in instances%}
+              <tr>
+                <td>{{ instance }}</td>
+                <td>{{ instances[instance]['Status'] }}</td>
+                <td>{{ instances[instance]['IP'] }}</td>
+                <td>{{ instances[instance]['Image'] }}</td>
+                <td>{{ instances[instance]['Keypair'] }}</td>
+                <td>{{ instances[instance]['Network'] }}</td>
+                <td>{{ instances[instance]['Security_groups'] }}</td>
+              </tr>
+              {%endfor%}
+            </tbody>
+          </table>
       </div>
     </div>
   </div>
