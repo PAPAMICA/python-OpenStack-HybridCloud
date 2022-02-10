@@ -485,7 +485,7 @@
   .container-lg,
   .container-xl,
   .container-xxl {
-    width: 100%;
+    width: 90%;
     padding-right: var(--bs-gutter-x, 1.5rem);
     padding-left: var(--bs-gutter-x, 1.5rem);
     margin-right: auto;
