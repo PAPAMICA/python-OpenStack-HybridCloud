@@ -30,7 +30,7 @@ def home():
         elif request.form.get('start'):
             instance_name = request.form.getlist('start')
             cloud_name = request.form.getlist('cloud_name')
-            url = f'{dashbord_url}/api/stop/{cloud_name}/{instance_name}/start'
+            url = f'{dashbord_url}/api/stop/{cloud_name[0]}/{instance_name[0]}/start'
             print(url, flush=True, file=sys.stdout)
             result = requests.get(url,verify=True)
             print(result, flush=True, file=sys.stdout)
