@@ -52,12 +52,13 @@ def display_flavors(cloud_name):
 
 @app.route("/api/<cloud_name>/new_instance", methods=['POST'])
 def create_instance(cloud_name):
-    instance_name    = request.headers['instance_name']
-    instance_image   = request.headers['instance_image']
-    instance_flavor  = request.headers['instance_flavor']
-    instance_network = request.headers['instance_network']
-    instance_keypair = request.headers['instance_keypair']
-    instance_securitygroup = request.headers['instance_securitygroup']
+    data = request.json
+    instance_name    = data['instance_name']
+    instance_image   = data['instance_image']
+    instance_flavor  = data['instance_flavor']
+    instance_network = data['instance_network']
+    instance_keypair = data['instance_keypair']
+    instance_securitygroup = data['instance_securitygroup']
     cloud  = openstack_api.cloud_connection(cloud_name)
     result = openstack_api.create_instance(cloud, instance_name,instance_image, instance_flavor, instance_network, instance_keypair, instance_securitygroup)
     return result
