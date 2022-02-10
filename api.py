@@ -9,7 +9,7 @@ def display_instances_list(cloud_name):
     result = openstack_api.get_instances_list(cloud)
     return result
 
-@app.route("/api/list/<cloud_name>/<server_name>", methods=['GET','DELETE'])
+@app.route("/api/<cloud_name>/<server_name>", methods=['GET','DELETE'])
 def display_instance_information(cloud_name,server_name):
     cloud  = openstack_api.cloud_connection(cloud_name)
     if request.method == 'GET':
