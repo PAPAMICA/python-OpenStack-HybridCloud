@@ -15,8 +15,7 @@ def hello():
         url = f'{dashbord_url}/api/list/{cloud_name}'
         result = requests.get(url,verify=True)
         data = result.content
-        data = data.decode("UTF-8")
-        result = ast.literal_eval(data)
+        result = json.loads(data.decode('utf-8'))
         # if test == None:
         #     test = {}   
     return render_template("index.html",instances=result)
