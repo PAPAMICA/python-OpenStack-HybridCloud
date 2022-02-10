@@ -1,4 +1,6 @@
 import requests
+import json
+import ast
 from flask import Flask, request, render_template, redirect
 app = Flask(__name__)
 import api
@@ -12,11 +14,12 @@ def hello():
         cloud_name = request.form["cloud"]
         url = f'{dashbord_url}/api/list/{cloud_name}'
         result = requests.get(url,verify=True)
-        test = result.content
-        test_json = test.json()
+        data = result.content
+        data = data.decode("UTF-8")
+        result = ast.literal_eval(data)
         # if test == None:
         #     test = {}   
-    return render_template("index.html",test=test_json)
+    return render_template("index.html",instances=result)
 
 # @app.route("/list", methods=['GET','POST'])
 # def web_list_instances():
