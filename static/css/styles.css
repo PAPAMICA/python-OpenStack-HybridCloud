@@ -229,6 +229,7 @@ a.ssolink {
 	  overflow: hidden;
 	  width: 80%;
 	  margin: 0 auto;
+    margin-top: 20px;
   display: table;
   padding: 0 0 8em 0;
 }
