@@ -242,7 +242,7 @@ a.ssolink {
 
 /* Background-color of the odd rows */
 .container tr:nth-child(odd) {
-	  background-color: #323C50;
+	  background-color: #E8E8E8;
 }
 
 /* Background-color of the even rows */
@@ -254,9 +254,10 @@ a.ssolink {
 	  background-color: #c0c0c0;
 }
 
-.container td:first-child { color: #FB667A; }
+.container td:first-child { color: #66d1fb; }
 
 .container tr:hover {
+   color: #e3e8ee;
    background-color: #464A52;
 -webkit-box-shadow: 0 6px 6px -6px #0E1119;
 	   -moz-box-shadow: 0 6px 6px -6px #0E1119;
