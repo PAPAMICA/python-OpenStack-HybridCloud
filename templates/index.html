@@ -37,9 +37,9 @@
             <li>
               {{ instance }}
               <ul>
+                {%for key, value in instances[instance]%}
                 <li>
-                test
-                {{ instances[instance]['IP'] }}
+                {{ key }} : {{ value }}
                 </li>
               </ul>
             </li>
