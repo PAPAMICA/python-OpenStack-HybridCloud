@@ -342,3 +342,15 @@ span.status-offline {
 .switch input[type="checkbox"]:checked + label {
   background-color:  #5469d4;
 }
+
+.column {
+  float: left;
+  width: 33.33%;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
