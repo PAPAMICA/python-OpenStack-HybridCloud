@@ -7,12 +7,13 @@ dashbord_url = "https://hybridcloud.papamica.com"
 
 @app.route("/", methods=['GET','POST'])
 def hello():
-    test = False
+    test = None
     if request.method == 'POST':
         cloud_name = request.form["cloud"]
         url = f'{dashbord_url}/api/list/{cloud_name}'
         result = requests.get(url,verify=True)
-    return render_template("index.html",test=result.content)
+        test = result.content
+    return render_template("index.html",test=test)
 
 # @app.route("/list", methods=['GET','POST'])
 # def web_list_instances():
