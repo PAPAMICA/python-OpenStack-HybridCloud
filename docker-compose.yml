@@ -1,0 +1,13 @@
+version : "2"
+
+services:
+  hybridcloud:
+    build: .
+#    image: hybridcloud
+    container_name: hybridcloud
+    environment:
+      OS_PROJECT_NAME: ''
+      OS_USERNAME: ''
+      OS_PASSWORD: ''
+    volumes:
+    - /etc/localtime:/etc/localtime
