@@ -195,18 +195,20 @@
                             </td>
                             <td>
                               <div class="d-flex px-2 py-1">
+                                <form method="post" action="/">
                                 <div>
-                                  <input type="image" src="{{ url_for('static', filename='img/start.png') }}" class="avatar avatar-sm me-3" alt="start" />
+                                  <input type="image" src="{{ url_for('static', filename='img/start.png') }}" class="avatar avatar-sm me-3" name="start" value="{{ instance }}" alt="start" />
                                 </div>
                                 <div>
-                                  <input type="image" src="{{ url_for('static', filename='img/reboot.png') }}" class="avatar avatar-sm me-3" alt="reboot" />
+                                  <input type="image" src="{{ url_for('static', filename='img/reboot.png') }}" class="avatar avatar-sm me-3" name="reboot" value="{{ instance }}" alt="reboot" />
                                 </div>
                                 <div>
-                                  <input type="image" src="{{ url_for('static', filename='img/stop.png') }}" class="avatar avatar-sm me-3" alt="stop" />
+                                  <input type="image" src="{{ url_for('static', filename='img/stop.png') }}" class="avatar avatar-sm me-3" name="stop" value="{{ instance }}" alt="stop" />
                                 </div>
                                 <div>
-                                  <input type="image" src="{{ url_for('static', filename='img/reboot.png') }}" class="avatar avatar-sm me-3" alt="reboot" />
+                                  <input type="image" src="{{ url_for('static', filename='img/destroy.png') }}" class="avatar avatar-sm me-3" name="destroy" value="{{ instance }}" alt="destroy" />
                                 </div>
+                              </form>
                               </div>
                             </td>
                           </tr>
