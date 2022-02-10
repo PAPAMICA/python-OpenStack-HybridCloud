@@ -27,6 +27,7 @@ def home():
             return render_template("index.html",instances=data)
         elif request.form.get('start'):
             instance_name = request.form.getlist('start')
+            return instance_name
 
 # @app.route("/list", methods=['GET','POST'])
 # def web_list_instances():
