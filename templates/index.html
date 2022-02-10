@@ -37,11 +37,24 @@
             <li>
               {{ instance }}
               <ul>
-                {%for value in instances[instance]%}
                 <li>
-                  {{ value }} : {{ value }}
+                  Status : instances[instance]['Status']
                 </li>
-                {%endfor%}
+                <li>
+                  IP : instances[instance]['IP']
+                </li>
+                <li>
+                  Image : instances[instance]['Image']
+                </li>
+                <li>
+                  Keypair : instances[instance]['Keypair']
+                </li>
+                <li>
+                  Network : instances[instance]['Network']
+                </li>
+                <li>
+                  Security groups : instances[instance]['Security_groups']
+                </li>
               </ul>
             </li>
             {%endfor%}
