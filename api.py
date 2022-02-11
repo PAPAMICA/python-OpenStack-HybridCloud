@@ -66,7 +66,7 @@ def create_instance(cloud_name):
 @app.route("/api/<cloud_name>/<server_name>/start", methods=['GET'])
 def start_instance(cloud_name, server_name):
     cloud  = openstack_api.cloud_connection(cloud_name)
-    result = start_instance(cloud, server_name)
+    result = openstack_api.start_instance(cloud, server_name)
     return result
 
 @app.route("/api/<cloud_name>/<server_name>/stop", methods=['GET'])
