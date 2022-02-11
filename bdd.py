@@ -59,7 +59,7 @@ def fill_database(cloud_name):
 
 def insert_api_key(key):
     conn, cursor = connect_to_db()
-    query = f"INSERT INTO api_keys (key) VALUES('{key}');"
+    query = f"INSERT IGNORE INTO api_keys (key) VALUES('{key}');"
     cursor.execute(query)
     conn.commit()
     conn.close()
