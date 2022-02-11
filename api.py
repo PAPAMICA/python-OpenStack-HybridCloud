@@ -5,9 +5,11 @@ from flask import Flask, request, render_template, redirect
 
 @app.route("/api/list/<cloud_name>", methods=['GET'])
 def display_instances_list(cloud_name):
-    cloud  = openstack_api.cloud_connection(cloud_name)
-    result = openstack_api.get_instances_list(cloud)
-    return result
+    api_key = request.args.get('api_key')
+    if api_key == "BTbKgc6HQCt92d7ym6m":
+        cloud  = openstack_api.cloud_connection(cloud_name)
+        result = openstack_api.get_instances_list(cloud)
+        return result
 
 @app.route("/api/<cloud_name>/<server_name>", methods=['GET','DELETE'])
 def display_instance_information(cloud_name,server_name):
