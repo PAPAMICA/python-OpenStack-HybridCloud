@@ -80,6 +80,7 @@ def home():
             else:
                 cloud_name = "local"
             url = f'{dashbord_url}/api/list/instances/{cloud_name}?api_key=1234'
+            print(cloud_name, flush=True, file=sys.stdout)
             result = requests.get(url,verify=True)
             data = result.content
             data = json.loads(data.decode('utf-8'))

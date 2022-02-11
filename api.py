@@ -9,7 +9,7 @@ def display_instances_list(cloud_name):
     api_key = request.args.get('api_key')
     res = bdd.seek_api_key(api_key)
     if res:
-        result = bdd.get_resource_list(cloud_name)
+        result = openstack_api.get_resource_list(cloud_name)
         return result
 
 @app.route("/api/list/resources/<cloud_name>", methods=['GET'])
