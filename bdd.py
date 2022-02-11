@@ -82,7 +82,7 @@ def seek_api_key(key):
 # # cmd = "SELECT * FROM api_keys;"
 # # res = cursor.execute(cmd)
 # # print(res.fetchone())
-# insert_api_key("1234")
+# # insert_api_key("1234")
 # key = seek_api_key("1234")
 # print(key)
 # conn.close()
