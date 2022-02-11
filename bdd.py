@@ -9,6 +9,22 @@ def connect_to_db():
     cursor = conn.cursor()
     return conn, cursor
 
+def result_to_dict(dbresult):
+    index = []
+    for i in dbresult:
+        index.append(i[0])
+        index = list(set(index))
+
+    result = {}
+    for i in index:
+        data = []
+        for r in dbresult:
+            if (r[0] == i):
+                data.append(r[1])
+        result[i] = data
+    
+    return result
+
 
 def create_db_cloud(cloudname):
     try:
@@ -47,7 +63,8 @@ def get_resources_list(cloud_name):
         cursor.execute(sqlite_select_query)
         records = cursor.fetchall()
         conn.close
-        return records
+        result = result_to_dict(records)
+        return result
 
     except sqlite3.Error as error:
         print("Failed to read data from sqlite table", error)
