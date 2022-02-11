@@ -444,6 +444,12 @@ button, input[name="destroy"] {
 .one {
   width:33px;
   height:33px;
-  margin: 5px;
+  margin: auto;
+}
+
+.two {
+  width:33px;
+  height:33px;
+  margin-top: 5px;
 }
 
