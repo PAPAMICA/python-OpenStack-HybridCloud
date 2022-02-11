@@ -356,6 +356,13 @@ span.status-offline {
   margin-bottom: 10px;
 }
 
+.column-3-2 {
+  float: left;
+  width: 33.33%;
+  margin: auto;
+  margin-bottom: 10px;
+}
+
 .center {
   text-align: center;
 }
