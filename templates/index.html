@@ -77,21 +77,17 @@
                 <div class="column-3">
                   <div class="formbg">
                     <div class="formbg-inner padding-horizontal--48">
-                      <span class="padding-bottom--15"><h2 class="center">Create instance</h2></span>
+                      <span class="padding-bottom--15"><h2 class="center">Generate API Key</h2></span>
                       <form id="stripe-login" method="post">
                         <div class="row">
-                          <div class="column-3 cote">
-                            <h3 class="center">LOCAL</h3>
+                          <div class="field padding-bottom--24">
+
+                            {% if api_key %}
+                            <label for="cloud">Your API Key</label>
+                            <input type="text" value="{{ api_key }}" readonly="readonly"/>
+                            {% endif %}
                           </div>
-                          <div class="column-3 milieux">
-                            <div class="switch">
-                              <input type="checkbox" name="cloud" id="checkbox3">
-                              <label for="checkbox3"></label>
-                            </div>
-                          </div>
-                          <div class="column-3 cote">
-                            <h3 class="center">PUBLIC</h3>
-                          </div>
+                          <div class="field padding-bottom--24">
                         </div>
                         
                         <div class="field padding-bottom--24">
