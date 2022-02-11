@@ -454,4 +454,8 @@ button, input[name="destroy"] {
 .two {
   margin-top: 5px;
 }
-
+.logo-cloud {
+  width: 55px !important;
+  height: 55px !important;
+  font-size: 0.875rem;
+}
