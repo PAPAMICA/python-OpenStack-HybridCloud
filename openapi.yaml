@@ -17,11 +17,11 @@ tags:
 schemes:
 - "https"
 paths:
-  /api/list/{cloud_name}:
+  /api/list/instances/{cloud_name}:
     get:
       tags:
       - "cloud"
-      summary: "Get informations about the selected cloud"
+      summary: "Get instances of the selected cloud"
       description: ""
       operationId: "getCloudByName"
       produces:
