@@ -199,6 +199,52 @@
             </div>
           </div>
           {% endif %}
+          {% if resources %}
+          <div class="container-fluid py-4">
+            <div class="row">
+              <div class="col-12">
+                <div class="card mb-4">
+                  <div class="card-header pb-0">
+                    <h6>Resources list</h6>
+                  </div>
+                  <div class="card-body px-0 pt-0 pb-2">
+                    <div class="table-responsive p-0">
+                      <table class="table align-items-center mb-0">
+                        <thead>
+                          <tr>
+                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Type</th>
+                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Name</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          {%for resource in resources%}
+                            {%  for data in resources[resource] %}
+                            <tr>
+                              <td>
+                                <div class="d-flex px-2 py-1">
+                                  <div>
+                                    <!-- <img src="{{ url_for('static', filename='img/IPC.png') }}" class="avatar avatar-sm me-3" alt="user1"> -->
+                                    <h6 class="mb-0 text-sm">{{ resource }}</h6>
+                                  </div>
+                                  <div class="d-flex flex-column justify-content-center">
+                                    <h6 class="mb-0 text-sm">{{ data }}</h6>
+                                  </div>
+                                </div>
+                              </td>
+                            {% endif %}
+                            <!-- {% if instances[instance]['Status'] == "ACTIVE" %}
+                            
+                            {% endif %} -->
+                          {%endfor%}
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          {% endif %}
 
       </div>
     </div>
