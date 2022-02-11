@@ -82,7 +82,7 @@ def home():
             url = f'{dashbord_url}/api/list/resources/{cloud_name}?api_key=1234'
             result = requests.get(url,verify=True)
             print(result, flush=True, file=sys.stdout)
-            if result == None:
+            if result.content == None:
                 url = f'{dashbord_url}/api/update/resources/{cloud_name}?api_key=1234'
                 update = requests.get(url,verify=True)
                 url = f'{dashbord_url}/api/list/resources/{cloud_name}?api_key=1234'
