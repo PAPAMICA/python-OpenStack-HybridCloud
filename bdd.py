@@ -6,7 +6,6 @@ import openstack_api
 
 def connect_to_db():
     conn = sqlite3.connect('database.db')
-    conn.row_factory = sqlite3.Row
     cursor = conn.cursor()
     return conn, cursor
 
@@ -21,7 +20,7 @@ def create_db_cloud(cloudname):
         return (f"Table {cloudname} has been created")
     except:
         return (f"Table {cloudname} already exist")
-
+ 
 def list_db_table():
     conn, cursor = connect_to_db()
     cursor.execute("SELECT name FROM sqlite_master WHERE type='table';")

@@ -21,6 +21,7 @@ def display_resources_list(cloud_name):
     res = bdd.seek_api_key(api_key)
     if res:
         result = bdd.get_resources_list(cloud_name)
+        result = dict(result)
         print(result, flush=True, file=sys.stdout)
         return result
 
