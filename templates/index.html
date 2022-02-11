@@ -194,22 +194,22 @@
                               <p class="text-xs font-weight-bold mb-0">{{ instances[instance]['Security_groups'] }}</p>
                             </td>
                             <td>
-                              <div class="d-flex px-2 py-1 row2">
+                              <div class="d-flex px-2 py-1 outer">
                                 
                                 <form method="post" action="/">
-                                  <div class="form-group col2">
+                                  <div class="form-group one">
                                     <input type="submit" name="start" value="{{ instance }}"/>
                                     <input type="hidden" name="cloud_name" value="{{ cloud_name }}"/>
                                   </div>
-                                  <div class="form-group col2">
+                                  <div class="form-group one">
                                     <input type="submit" name="reboot" value="{{ instance }}"/>
                                     <input type="hidden" name="cloud_name" value="{{ cloud_name }}"/>
                                   </div>
-                                  <div class="form-group col2">
+                                  <div class="form-group one">
                                     <input type="submit" name="stop" value="{{ instance }}"/>
                                     <input type="hidden" name="cloud_name" value="{{ cloud_name }}"/>
                                   </div>
-                                  <div class="form-group col2">
+                                  <div class="form-group one">
                                     <input type="submit" name="destroy" value="{{ instance }}"/>
                                     <input type="hidden" name="cloud_name" value="{{ cloud_name }}"/>
                                   </div>

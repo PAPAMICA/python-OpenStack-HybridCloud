@@ -433,11 +433,12 @@ button, input[name="destroy"] {
   background-size: 26px;
   margin: auto;
 }
-.row2 {
-  display: flex;
+.outer {
+  display:inline-block;
+  vertical-align:middle;
 }
-.col2 {
-  flex: 1; 
-  padding: 1em;
+.one {
+  width:30px;
+  height:30px;
 }
 
