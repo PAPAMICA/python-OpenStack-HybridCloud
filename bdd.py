@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 import sqlite3
-#import openstack_api
+import openstack_api
 
 def connect_to_db():
     conn = sqlite3.connect('database.db')
@@ -11,27 +11,36 @@ def connect_to_db():
 
 def create_db_cloud(cloudname):
     try:
+        conn, cursor = connect_to_db()
         conn.execute(f'''CREATE TABLE '{cloudname}'
                 (TYPE           TEXT    NOT NULL,
                 DATA           TEXT    NOT NULL);''')
+        conn.close
     except:
         print (f"Table {cloudname} already exist")
 
 def list_db_table():
+    conn, cursor = connect_to_db()
     cursor.execute("SELECT name FROM sqlite_master WHERE type='table';")
+    conn.close
 
 def delete_db_table(table):
+    conn, cursor = connect_to_db()
     cursor.execute(f"DROP TABLE {table}")
+    conn.close
 
 def insert_db_data(cloud_name, prout, data):
+    conn, cursor = connect_to_db()
     for i in data:
         #sql = f'''INSERT INTO {cloud} (TYPE, DATA) VALUES ({type},{i})'''
         sql = f'''INSERT INTO {cloud_name} (TYPE, DATA) VALUES ("{prout}","{i}")'''
         conn.execute(sql)
         conn.commit()
+        conn.close
 
 def readSqliteTable(cloud_name, type):
     try:
+        conn, cursor = connect_to_db()
         sqlite_select_query = f"""SELECT * from {cloud_name}"""
         cursor.execute(sqlite_select_query)
         records = cursor.fetchall()
@@ -41,6 +50,7 @@ def readSqliteTable(cloud_name, type):
                 
             elif (row[0] == type):
                 print(row[1])
+        conn.close
 
     except sqlite3.Error as error:
         print("Failed to read data from sqlite table", error)
