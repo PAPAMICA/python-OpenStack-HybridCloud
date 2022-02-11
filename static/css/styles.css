@@ -394,7 +394,7 @@ span.status-offline {
     flex-direction: column;
   }
   .column-3 {
-    max-width: 100%;
+    width: 100%;
   }
 }
 
