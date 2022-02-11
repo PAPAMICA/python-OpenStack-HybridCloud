@@ -434,7 +434,7 @@ button, input[name="destroy"]{
 }
 button, input[name="destroy"] {
   background:url(/static/img/destroy.png) no-repeat;
-  background-size: 26px;
+  background-size: 25px;
   margin: auto;
 }
 .outer {
@@ -448,8 +448,6 @@ button, input[name="destroy"] {
 }
 
 .two {
-  width:33px;
-  height:33px;
   margin-top: 5px;
 }
 
