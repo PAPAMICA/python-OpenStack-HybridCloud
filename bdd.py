@@ -44,13 +44,8 @@ def readSqliteTable(cloud_name, type):
         sqlite_select_query = f"""SELECT * from {cloud_name}"""
         cursor.execute(sqlite_select_query)
         records = cursor.fetchall()
-        for row in records:
-            if (type == "ALL"):
-                print(f"{row[0]} - {row[1]}")
-                
-            elif (row[0] == type):
-                print(row[1])
         conn.close
+        return records
 
     except sqlite3.Error as error:
         print("Failed to read data from sqlite table", error)
