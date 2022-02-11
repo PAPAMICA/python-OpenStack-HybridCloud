@@ -201,26 +201,30 @@
                                   <col>
                                   <div>
                                     <div class="form-group">
-                                      <input type="submit" src="{{ url_for('static', filename='img/start.png') }}" class="avatar avatar-sm me-3" name="start" value="{{ instance }}" alt="start" />
+                                      <input type="submit" src="{{ url_for('static', filename='img/start.png') }}" class="avatar avatar-sm me-3" alt="start" />
+                                      <input type="hidden" name="start" value="{{ instance }}"/>
                                       <input type="hidden" name="cloud_name" value="{{ cloud_name }}"/>
                                     </div>
                                   </div>
                                 </col>
                                 <col>
                                   <div class="form-group">
-                                    <input type="submit" src="{{ url_for('static', filename='img/reboot.png') }}" class="avatar avatar-sm me-3" name="reboot" value="{{ instance }}" alt="reboot" />
+                                    <input type="submit" src="{{ url_for('static', filename='img/reboot.png') }}" class="avatar avatar-sm me-3" alt="reboot" />
+                                    <input type="hidden" name="reboot" value="{{ instance }}"/>
                                     <input type="hidden" name="cloud_name" value="{{ cloud_name }}"/>
                                   </div>
                                 </col>
                                 <col>
                                   <div class="form-group">
-                                    <input type="submit" src="{{ url_for('static', filename='img/stop.png') }}" class="avatar avatar-sm me-3" name="stop" value="{{ instance }}" alt="stop" />
+                                    <input type="submit" src="{{ url_for('static', filename='img/stop.png') }}" class="avatar avatar-sm me-3" alt="stop" />
+                                    <input type="hidden" name="stop" value="{{ instance }}"/>
                                     <input type="hidden" name="cloud_name" value="{{ cloud_name }}"/>
                                   </div>
                                 </col>
                                 <col>
                                   <div class="form-group">
-                                    <input type="submit" src="{{ url_for('static', filename='img/destroy.png') }}" class="avatar avatar-sm me-3" name="destroy" value="{{ instance }}" alt="destroy" />
+                                    <input type="submit" src="{{ url_for('static', filename='img/destroy.png') }}" class="avatar avatar-sm me-3" alt="destroy" />
+                                    <input type="hidden" name="destroy" value="{{ instance }}"/>
                                     <input type="hidden" name="cloud_name" value="{{ cloud_name }}"/>
                                   </div>
                                 </col>
