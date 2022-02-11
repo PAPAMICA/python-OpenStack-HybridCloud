@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 import sqlite3
-import openstack_api
+#import openstack_api
 
 def connect_to_db():
     conn = sqlite3.connect('database.db')
@@ -59,13 +59,14 @@ def fill_database(cloud_name):
 
 def insert_api_key(key):
     conn, cursor = connect_to_db()
-    query = f"INSERT IGNORE INTO api_keys (key) VALUES '{key}'"
+    query = f"INSERT INTO api_keys (key) VALUES('{key}');"
     cursor.execute(query)
+    conn.commit()
     conn.close()
 
 def seek_api_key(key):
     conn, cursor = connect_to_db()
-    query = f"SELECT key FROM api_keys WHERE key='{key}'"
+    query = f"SELECT key FROM api_keys WHERE key='{key}';"
     result = cursor.execute(query)
     conn.close
     return result.fetchone()
@@ -76,7 +77,13 @@ def seek_api_key(key):
 # fill_database(cloud_name)
 # readSqliteTable(cloud_name, "ALL")
 # delete_db_table(cloud_name)
-insert_api_key("1234")
-key = seek_api_key("1234")
-print(key)
+# conn, cursor = connect_to_db()
+# # #cmd = "CREATE TABLE api_keys(key VARCHAR(100))"
+# # cmd = "SELECT * FROM api_keys;"
+# # res = cursor.execute(cmd)
+# # print(res.fetchone())
+# insert_api_key("1234")
+# key = seek_api_key("1234")
+# print(key)
+# conn.close()
 
