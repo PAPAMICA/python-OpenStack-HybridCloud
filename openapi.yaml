@@ -19,6 +19,8 @@ schemes:
 paths:
   /api/list/instances/{cloud_name}:
     get:
+      security:
+        - key: []
       tags:
       - "cloud"
       summary: "Get instances of the selected cloud"
