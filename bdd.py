@@ -38,7 +38,7 @@ def insert_db_data(cloud_name, prout, data):
         conn.commit()
         conn.close
 
-def readSqliteTable(cloud_name, type):
+def get_resource_list(cloud_name):
     try:
         conn, cursor = connect_to_db()
         sqlite_select_query = f"""SELECT * from {cloud_name}"""

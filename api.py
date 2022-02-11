@@ -4,8 +4,16 @@ import openstack_api
 from flask import Flask, request, render_template, redirect
 import bdd
 
-@app.route("/api/list/<cloud_name>", methods=['GET'])
+@app.route("/api/list/instances/<cloud_name>", methods=['GET'])
 def display_instances_list(cloud_name):
+    api_key = request.args.get('api_key')
+    res = bdd.seek_api_key(api_key)
+    if res:
+        result = bdd.get_resource_list(cloud_name)
+        return result
+
+@app.route("/api/list/resources/<cloud_name>", methods=['GET'])
+def display_resources_list(cloud_name):
     api_key = request.args.get('api_key')
     res = bdd.seek_api_key(api_key)
     if res:
