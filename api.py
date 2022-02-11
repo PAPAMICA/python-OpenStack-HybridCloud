@@ -27,8 +27,8 @@ def update_resources_list(cloud_name):
     api_key = request.args.get('api_key')
     res = bdd.seek_api_key(api_key)
     if res:
-        print(cloud_name, flush=True, file=sys.stdout)
         table = bdd.create_db_cloud(cloud_name)
+        print(table, flush=True, file=sys.stdout)
         result = bdd.fill_database(cloud_name)
         return result
 
