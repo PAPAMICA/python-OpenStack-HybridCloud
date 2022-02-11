@@ -60,7 +60,7 @@ def home():
             #print(result, flush=True, file=sys.stdout)
             time.sleep(1)
             reload_list(cloud_name[0])
-    return render_template("index.html")
+    #return render_template("index.html")
 
 def reload_list(cloud_name):
     url = f'{dashbord_url}/api/list/{cloud_name}'
