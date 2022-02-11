@@ -375,13 +375,16 @@ span.status-offline {
 /* -------- Buton Styles ------------*/
 
 button, input[name="start"]{
-  color: inherit !important;
+  color: #1fe0 !important;
   border: none !important;
   padding: 0 !important;
   font: inherit !important;
   cursor: pointer !important;
   outline: inherit !important;
+  width: 30px;
 }
 button, input[name="start"] {
   background:url(/static/img/start.png) no-repeat;
+  background-size: 26px;
+  margin: auto;
 }
