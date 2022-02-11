@@ -2,11 +2,13 @@ from __main__ import app
 from unittest import result
 import openstack_api
 from flask import Flask, request, render_template, redirect
+import bdd
 
 @app.route("/api/list/<cloud_name>", methods=['GET'])
 def display_instances_list(cloud_name):
     api_key = request.args.get('api_key')
-    if api_key == "BTbKgc6HQCt92d7ym6m":
+    res = bdd.seek_api_key(api_key)
+    if res:
         cloud  = openstack_api.cloud_connection(cloud_name)
         result = openstack_api.get_instances_list(cloud)
         return result
