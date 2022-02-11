@@ -4,6 +4,7 @@ import openstack_api
 from flask import Flask, request, render_template, redirect
 import bdd
 import sys
+import json
 
 @app.route("/api/list/instances/<cloud_name>", methods=['GET'])
 def display_instances_list(cloud_name):
@@ -19,8 +20,10 @@ def display_resources_list(cloud_name):
     api_key = request.args.get('api_key')
     res = bdd.seek_api_key(api_key)
     if res:
-        result = bdd.get_resources_list(cloud_name)
-        print(result, flush=True, file=sys.stdout)
+        data = bdd.get_resources_list(cloud_name)
+        print(data, flush=True, file=sys.stdout)
+        data = data.content
+        result = json.loads(data.decode('utf-8'))
         return result
 
 @app.route("/api/update/resources/<cloud_name>", methods=['GET'])
@@ -31,6 +34,7 @@ def update_resources_list(cloud_name):
         table = bdd.create_db_cloud(cloud_name)
         result = bdd.fill_database(cloud_name)
         print(result, flush=True, file=sys.stdout)
+        return result
 
 @app.route("/api/<cloud_name>/<server_name>", methods=['GET','DELETE'])
 def display_instance_information(cloud_name,server_name):
