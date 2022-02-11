@@ -381,6 +381,7 @@ button, input[name="start"]{
   font: inherit !important;
   cursor: pointer !important;
   outline: inherit !important;
+  box-shadow: inherit;
   width: 30px;
 }
 button, input[name="start"] {
@@ -396,6 +397,7 @@ button, input[name="reboot"]{
   font: inherit !important;
   cursor: pointer !important;
   outline: inherit !important;
+  box-shadow: inherit;
   width: 30px;
 }
 button, input[name="reboot"] {
@@ -411,6 +413,7 @@ button, input[name="stop"]{
   font: inherit !important;
   cursor: pointer !important;
   outline: inherit !important;
+  box-shadow: inherit;
   width: 30px;
 }
 button, input[name="stop"] {
@@ -426,6 +429,7 @@ button, input[name="destroy"]{
   font: inherit !important;
   cursor: pointer !important;
   outline: inherit !important;
+  box-shadow: inherit;
   width: 30px;
 }
 button, input[name="destroy"] {
@@ -438,7 +442,8 @@ button, input[name="destroy"] {
   vertical-align:middle;
 }
 .one {
-  width:30px;
-  height:30px;
+  width:33px;
+  height:33px;
+  margin: 5px;
 }
 
