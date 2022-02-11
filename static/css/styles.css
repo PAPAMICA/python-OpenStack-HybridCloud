@@ -388,3 +388,48 @@ button, input[name="start"] {
   background-size: 26px;
   margin: auto;
 }
+
+button, input[name="reboot"]{
+  color: #1fe0 !important;
+  border: none !important;
+  padding: 0 !important;
+  font: inherit !important;
+  cursor: pointer !important;
+  outline: inherit !important;
+  width: 30px;
+}
+button, input[name="reboot"] {
+  background:url(/static/img/reboot.png) no-repeat;
+  background-size: 26px;
+  margin: auto;
+}
+
+button, input[name="stop"]{
+  color: #1fe0 !important;
+  border: none !important;
+  padding: 0 !important;
+  font: inherit !important;
+  cursor: pointer !important;
+  outline: inherit !important;
+  width: 30px;
+}
+button, input[name="stop"] {
+  background:url(/static/img/stop.png) no-repeat;
+  background-size: 26px;
+  margin: auto;
+}
+
+button, input[name="destroy"]{
+  color: #1fe0 !important;
+  border: none !important;
+  padding: 0 !important;
+  font: inherit !important;
+  cursor: pointer !important;
+  outline: inherit !important;
+  width: 30px;
+}
+button, input[name="destroy"] {
+  background:url(/static/img/destroy.png) no-repeat;
+  background-size: 26px;
+  margin: auto;
+}
