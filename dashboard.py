@@ -4,7 +4,6 @@ import json
 import ast
 from flask import Flask, request, render_template, redirect
 app = Flask(__name__)
-import api
 import sys
 import time
 import bdd
