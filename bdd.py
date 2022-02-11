@@ -16,8 +16,9 @@ def create_db_cloud(cloudname):
                 (TYPE           TEXT    NOT NULL,
                 DATA           TEXT    NOT NULL);''')
         conn.close
+        return (f"Table {cloudname} has been created")
     except:
-        print (f"Table {cloudname} already exist")
+        return (f"Table {cloudname} already exist")
 
 def list_db_table():
     conn, cursor = connect_to_db()
