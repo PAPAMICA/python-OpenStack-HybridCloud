@@ -31,6 +31,28 @@ def home():
             instance_name = request.form.getlist('start')
             cloud_name = request.form.getlist('cloud_name')
             url = f'{dashbord_url}/api/{cloud_name[0]}/{instance_name[0]}/start'
+            result = requests.get(url)
+            #print(result, flush=True, file=sys.stdout)
+            reload_list(cloud_name)
+        elif request.form.get('reboot'):
+            instance_name = request.form.getlist('reboot')
+            cloud_name = request.form.getlist('cloud_name')
+            url = f'{dashbord_url}/api/{cloud_name[0]}/{instance_name[0]}/reboot'
+            result = requests.get(url)
+            #print(result, flush=True, file=sys.stdout)
+            reload_list(cloud_name)
+        elif request.form.get('stop'):
+            instance_name = request.form.getlist('stop')
+            cloud_name = request.form.getlist('cloud_name')
+            url = f'{dashbord_url}/api/{cloud_name[0]}/{instance_name[0]}/stop'
+            result = requests.get(url)
+            #print(result, flush=True, file=sys.stdout)
+            reload_list(cloud_name)
+        elif request.form.get('destroy'):
+            instance_name = request.form.getlist('destroy')
+            cloud_name = request.form.getlist('cloud_name')
+            url = f'{dashbord_url}/api/{cloud_name[0]}/{instance_name[0]}'
+            result = requests.delete(url)
             #print(result, flush=True, file=sys.stdout)
             reload_list(cloud_name)
     return render_template("index.html")
