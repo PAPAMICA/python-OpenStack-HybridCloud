@@ -320,14 +320,12 @@ paths:
         "404":
           description: "not found"
 
-#securityDefinitions:
-  # hybridcloud_auth:
-  #   type: "oauth2"
-  #   authorizationUrl: "https://auth.papamica.com/oauth/"
-  #   flow: "implicit"
-  #   scopes:
-  #     write: "write"
-  #     read: "read "
+securityDefinitions:
+  key:
+    type: apiKey
+    in: url
+    name: api_key
+
 definitions:
   keypair:
     type: "object"
