@@ -14,6 +14,8 @@ def display_instances_list(cloud_name):
         cloud  = openstack_api.cloud_connection(cloud_name)
         result = openstack_api.get_instances_list(cloud)
         return result
+    else:
+        return render_template("403.html")
 
 @app.route("/api/list/resources/<cloud_name>", methods=['GET'])
 def display_resources_list(cloud_name):
