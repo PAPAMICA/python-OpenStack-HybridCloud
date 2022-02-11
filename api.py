@@ -26,7 +26,9 @@ def display_resources_list(cloud_name):
         if result == None:
             update_resources_list(cloud_name)
             display_resources_list(cloud_name)
-        return result
+            return result
+        else:
+            return result
 
 @app.route("/api/update/resources/<cloud_name>", methods=['GET'])
 def update_resources_list(cloud_name):
