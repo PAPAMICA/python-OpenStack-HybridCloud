@@ -81,6 +81,11 @@ def home():
                 cloud_name = "local"
             url = f'{dashbord_url}/api/list/resources/{cloud_name}?api_key=1234'
             result = requests.get(url,verify=True)
+            if result == None:
+                url = f'{dashbord_url}/api/update/resources/{cloud_name}?api_key=1234'
+                update = requests.get(url,verify=True)
+                url = f'{dashbord_url}/api/list/resources/{cloud_name}?api_key=1234'
+                result = requests.get(url,verify=True)
             data = result.content
             data = json.loads(data.decode('utf-8'))
             print(data, flush=True, file=sys.stdout)
