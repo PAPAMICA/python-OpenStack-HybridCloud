@@ -67,8 +67,6 @@ def reload_list(cloud_name):
     result = requests.get(url,verify=True)
     data = result.content
     data = json.loads(data.decode('utf-8'))
-    if data == None:
-        data = {}   
     return render_template("index.html",instances=data, cloud_name=cloud_name)
 
 
