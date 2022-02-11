@@ -200,6 +200,7 @@
           </div>
           {% endif %}
           {% if resources %}
+          {{ resources }}
           <div class="container-fluid py-4">
             <div class="row">
               <div class="col-12">
@@ -218,7 +219,7 @@
                         </thead>
                         <tbody>
                           {%for resource in resources%}
-                            {%  for data in resources[resource] %}
+                            {%for data in resources[resource]%}
                             <tr>
                               <td>
                                 <div class="d-flex px-2 py-1">
@@ -231,10 +232,7 @@
                                   </div>
                                 </div>
                               </td>
-                            {% endif %}
-                            <!-- {% if instances[instance]['Status'] == "ACTIVE" %}
-                            
-                            {% endif %} -->
+                            {%endfor%}
                           {%endfor%}
                         </tbody>
                       </table>
