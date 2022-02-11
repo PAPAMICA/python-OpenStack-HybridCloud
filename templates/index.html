@@ -23,10 +23,11 @@
             <div class="column-3">
               <div class="formbg">
                 <div class="formbg-inner padding-horizontal--20">
-                  <span class="padding-bottom--15"><h2 class="center">List instances</h2></span>
+                  <span class="padding-bottom--15"><h2 class="center">Instances</h2></span>
                   <form id="stripe-login" method="post">
                     <div class="row">
                       <div class="column-3 cote">
+                        <img src="{{ url_for('static', filename='img/local.png') }}" class="logo-cloud" alt="local-cloud">
                         <h3 class="center">LOCAL</h3>
                       </div>
                       <div class="column-3 milieux">
@@ -36,13 +37,13 @@
                         </div>
                       </div>
                       <div class="column-3 cote">
-                        <img src="{{ url_for('static', filename='img/IPC.png') }}" class="logo-cloud" alt="user1">
+                        <img src="{{ url_for('static', filename='img/IPC.png') }}" class="logo-cloud" alt="public-cloud">
                         <h3 class="center">PUBLIC</h3>
                       </div>
                     </div>
                     
-                    <div class="field padding-bottom--24">
-                      <input type="submit" name="submit" value="Confirmer">
+                    <div class="field padding-bottom--24 confirm-list">
+                      <input type="submit" name="submit" value="List instances">
                     </div>
                   </div>
                   </form>
@@ -51,10 +52,11 @@
               <div class="column-3">
                 <div class="formbg">
                   <div class="formbg-inner padding-horizontal--20">
-                    <span class="padding-bottom--15"><h2 class="center">List ressources</h2></span>
+                    <span class="padding-bottom--15"><h2 class="center">Resources</h2></span>
                     <form id="stripe-login" method="post">
                       <div class="row">
                         <div class="column-3 cote">
+                          <img src="{{ url_for('static', filename='img/local.png') }}" class="logo-cloud" alt="local-cloud">
                           <h3 class="center">LOCAL</h3>
                         </div>
                         <div class="column-3 milieux">
@@ -64,12 +66,13 @@
                           </div>
                         </div>
                         <div class="column-3 cote">
+                          <img src="{{ url_for('static', filename='img/IPC.png') }}" class="logo-cloud" alt="public-cloud">
                           <h3 class="center">PUBLIC</h3>
                         </div>
                       </div>
                       
-                      <div class="field padding-bottom--24">
-                        <input type="submit" name="submit" value="Confirmer">
+                      <div class="field padding-bottom--24 confirm-list">
+                        <input type="submit" name="submit" value="List resources">
                       </div>
                     </div>
                     </form>
@@ -82,17 +85,18 @@
                       <form id="stripe-login" method="post">
                         <div class="row">
                           <div class="field padding-bottom--24">
-                            {% if api_key %}
                             <label for="get-apikey">Your API Key</label>
-
-                            <input type="text" name="get-apikey" value="{{ api_key }}" readonly="readonly"/>
+                            {% if api_key %}
+                              <input type="text" name="get-apikey" value="{{ api_key }}" readonly="readonly"/>
+                            {% else %}
+                              <input type="text" name="get-apikey" value="Click on button generate" readonly="readonly"/>
                             {% endif %}
                           </div>
                           <div class="field padding-bottom--24">
                         </div>
                         
-                        <div class="field padding-bottom--24">
-                          <input type="submit" name="get-apikey" value="Confirmer">
+                        <div class="field padding-bottom--24 confirm-key">
+                          <input type="submit" name="get-apikey" value="Generate your API Key">
                         </div>
                       </div>
                       </form>
