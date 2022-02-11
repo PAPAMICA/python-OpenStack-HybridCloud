@@ -43,6 +43,8 @@ paths:
 
   /api/{cloud_name}/{server_name}:
     get:
+      security:
+        - key: []
       tags:
       - "cloud"
       summary: "Get informations about an instance"
@@ -68,6 +70,8 @@ paths:
         "404":
           description: "not found"
     delete:
+      security:
+        - key: []
       tags:
       - "cloud"
       summary: "Delete an instance"
@@ -95,6 +99,8 @@ paths:
 
   /api/{cloud_name}/new_keypair:
     post:
+      security:
+        - key: []
       tags:
       - "cloud"
       summary: "Get informations about an instance"
@@ -125,6 +131,8 @@ paths:
 
   /api/{cloud_name}/networks:
     get:
+      security:
+        - key: []
       tags:
       - "cloud"
       summary: "Get cloud networks"
@@ -147,6 +155,8 @@ paths:
 
   /api/{cloud_name}/security_groups:
     get:
+      security:
+        - key: []
       tags:
       - "cloud"
       summary: "Get cloud security groups"
@@ -169,6 +179,8 @@ paths:
 
   /api/{cloud_name}/images:
     get:
+      security:
+        - key: []
       tags:
       - "cloud"
       summary: "Get cloud images"
@@ -191,6 +203,8 @@ paths:
 
   /api/{cloud_name}/flavors:
     get:
+      security:
+        - key: []
       tags:
       - "cloud"
       summary: "Get cloud flavors"
@@ -213,6 +227,8 @@ paths:
 
   /api/{cloud_name}/new_instance:
     post:
+      security:
+        - key: []
       tags:
       - "cloud"
       summary: "Create a new instance"
@@ -243,6 +259,8 @@ paths:
 
   /api/{cloud_name}/{server_name}/start:
     get:
+      security:
+        - key: []
       tags:
       - "cloud"
       summary: "Start an instance"
@@ -270,6 +288,8 @@ paths:
 
   /api/{cloud_name}/{server_name}/stop:
     get:
+      security:
+        - key: []
       tags:
       - "cloud"
       summary: "Stop an instance"
@@ -297,6 +317,8 @@ paths:
 
   /api/{cloud_name}/{server_name}/reboot:
     get:
+      security:
+        - key: []
       tags:
       - "cloud"
       summary: "Reboot an instance"
@@ -324,6 +346,8 @@ paths:
 
 securityDefinitions:
   key:
+    security:
+        - key: []
     type: apiKey
     in: query
     name: api_key
