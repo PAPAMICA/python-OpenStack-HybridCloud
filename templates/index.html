@@ -212,6 +212,7 @@
                       <table class="table align-items-center mb-0">
                         <thead>
                           <tr>
+                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Cloud</th>
                             <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Type</th>
                             <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Name</th>
                           </tr>
@@ -221,11 +222,44 @@
                                 {%for data in resources[resource]%}
                                 <tr>
                               <td>
+                                 {% if cloud_name == "Infomaniak" %}
+                                <div>
+                                  <img src="{{ url_for('static', filename='img/IPC.png') }}" class="avatar avatar-sm me-3" alt="Public">
+                                </div>
+                                {% else %}
+                                <div>
+                                  <img src="{{ url_for('static', filename='img/local.png') }}" class="avatar avatar-sm me-3" alt="Local">
+                                </div>
+                                {% endif %}
+                              </td>
+
+                              <td>
                                 <div class="d-flex px-2 py-1">
-                                  <div>
-                                    <!-- <img src="{{ url_for('static', filename='img/IPC.png') }}" class="avatar avatar-sm me-3" alt="user1"> -->
+                                  {% if resource == "FLAVOR" %}
+                                 <div>
+                                   <img src="{{ url_for('static', filename='img/flavor.png') }}" class="avatar avatar-sm me-3" alt="Public">
+                                 </div>
+                                 {% elif  resource == "IMAGE" %}
+                                 <div>
+                                   <img src="{{ url_for('static', filename='img/image.png') }}" class="avatar avatar-sm me-3" alt="Local">
+                                 </div>
+                                 {% elif  resource == "NETWORK" %}
+                                 <div>
+                                   <img src="{{ url_for('static', filename='img/network.png') }}" class="avatar avatar-sm me-3" alt="Local">
+                                 </div>
+                                 {% elif  resource == "SECURITY_GROUP" %}
+                                 <div>
+                                   <img src="{{ url_for('static', filename='img/security_group.png') }}" class="avatar avatar-sm me-3" alt="Local">
+                                 </div>
+                                 {% elif  resource == "KEYPAIR" %}
+                                 <div>
+                                   <img src="{{ url_for('static', filename='img/keypair.png') }}" class="avatar avatar-sm me-3" alt="Local">
+                                 </div>
+                                 {% endif %}
+                                  <div class="d-flex flex-column justify-content-center">
                                     <h6 class="mb-0 text-sm">{{ resource }}</h6>
                                   </div>
+                                </div>
                                 </div>
                               </td>
                               <td>
