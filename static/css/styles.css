@@ -463,3 +463,11 @@ button, input[name="destroy"] {
   font-size: 0.875rem;
   margin: auto;
 }
+
+.confirm-list {
+  margin: auto;
+}
+
+.confirm-key {
+  margin: auto;
+}
