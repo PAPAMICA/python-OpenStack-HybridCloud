@@ -5,6 +5,7 @@ from flask import Flask, request, render_template, redirect
 app = Flask(__name__)
 import api
 import sys
+import time
 
 
 dashbord_url = "https://hybridcloud.papamica.com"
@@ -33,6 +34,7 @@ def home():
             url = f'{dashbord_url}/api/{cloud_name[0]}/{instance_name[0]}/start'
             result = requests.get(url)
             #print(result, flush=True, file=sys.stdout)
+            time.sleep(1)
             reload_list(cloud_name[0])
         elif request.form.get('reboot'):
             instance_name = request.form.getlist('reboot')
@@ -40,6 +42,7 @@ def home():
             url = f'{dashbord_url}/api/{cloud_name[0]}/{instance_name[0]}/reboot'
             result = requests.get(url)
             #print(result, flush=True, file=sys.stdout)
+            time.sleep(1)
             reload_list(cloud_name[0])
         elif request.form.get('stop'):
             instance_name = request.form.getlist('stop')
@@ -47,6 +50,7 @@ def home():
             url = f'{dashbord_url}/api/{cloud_name[0]}/{instance_name[0]}/stop'
             result = requests.get(url)
             #print(result, flush=True, file=sys.stdout)
+            time.sleep(1)
             reload_list(cloud_name[0])
         elif request.form.get('destroy'):
             instance_name = request.form.getlist('destroy')
@@ -54,6 +58,7 @@ def home():
             url = f'{dashbord_url}/api/{cloud_name[0]}/{instance_name[0]}'
             result = requests.delete(url)
             #print(result, flush=True, file=sys.stdout)
+            time.sleep(1)
             reload_list(cloud_name[0])
     return render_template("index.html")
 
