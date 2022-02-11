@@ -53,15 +53,19 @@ def get_resources_list(cloud_name):
 
 
 def fill_database(cloud_name):
-    cloud = openstack_api.cloud_connection(cloud_name)
-    data = openstack_api.list_flavors(cloud).values()
-    insert_db_data(cloud_name, "FLAVOR", data)
-    data = openstack_api.list_images(cloud).values()
-    insert_db_data(cloud_name, "IMAGE", data)
-    data = openstack_api.list_networks(cloud).values()
-    insert_db_data(cloud_name, "NETWORK", data)
-    data = openstack_api.list_security_groups(cloud).values()
-    insert_db_data(cloud_name, "SECURITY_GROUP", data)
+    try:
+        cloud = openstack_api.cloud_connection(cloud_name)
+        data = openstack_api.list_flavors(cloud).values()
+        insert_db_data(cloud_name, "FLAVOR", data)
+        data = openstack_api.list_images(cloud).values()
+        insert_db_data(cloud_name, "IMAGE", data)
+        data = openstack_api.list_networks(cloud).values()
+        insert_db_data(cloud_name, "NETWORK", data)
+        data = openstack_api.list_security_groups(cloud).values()
+        insert_db_data(cloud_name, "SECURITY_GROUP", data)
+        return ("SUCCESS")
+    except:
+        return ("ERROR")
 
 def insert_api_key(key):
     conn, cursor = connect_to_db()

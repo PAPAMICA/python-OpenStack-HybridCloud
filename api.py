@@ -20,6 +20,7 @@ def display_resources_list(cloud_name):
     res = bdd.seek_api_key(api_key)
     if res:
         result = bdd.get_resources_list(cloud_name)
+        print(result, flush=True, file=sys.stdout)
         return result
 
 @app.route("/api/update/resources/<cloud_name>", methods=['GET'])
@@ -30,7 +31,6 @@ def update_resources_list(cloud_name):
         table = bdd.create_db_cloud(cloud_name)
         result = bdd.fill_database(cloud_name)
         print(result, flush=True, file=sys.stdout)
-        return result
 
 @app.route("/api/<cloud_name>/<server_name>", methods=['GET','DELETE'])
 def display_instance_information(cloud_name,server_name):
