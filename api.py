@@ -21,7 +21,9 @@ def display_resources_list(cloud_name):
     res = bdd.seek_api_key(api_key)
     if res:
         result = bdd.get_resources_list(cloud_name)
-        print(result, flush=True, file=sys.stdout)
+        if result == None:
+            update_resources_list(cloud_name)
+            display_resources_list(cloud_name)
         return result
 
 @app.route("/api/update/resources/<cloud_name>", methods=['GET'])
