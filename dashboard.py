@@ -83,7 +83,9 @@ def home():
             result = requests.get(url,verify=True)
             data = result
             if data == None:
-                data = {}   
+                url = f'{dashbord_url}/api/update/resources/{cloud_name}?api_key=1234'
+                result = requests.get(url,verify=True)
+                data = result
             print(data, flush=True, file=sys.stdout)
             return render_template("index.html",resources=data, cloud_name=cloud_name)
 
