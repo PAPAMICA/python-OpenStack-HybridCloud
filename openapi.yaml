@@ -325,7 +325,7 @@ paths:
 securityDefinitions:
   key:
     type: apiKey
-    in: url
+    in: query
     name: api_key
 
 definitions:
