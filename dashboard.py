@@ -13,6 +13,7 @@ dashbord_url = "https://hybridcloud.papamica.com"
 @app.route("/", methods=['GET','POST'])
 def home():
     data = dict()
+    cloud_name = str()
     if request.method == 'POST':
         if request.form.get('start'):
             instance_name = request.form.getlist('start')
@@ -59,15 +60,15 @@ def home():
             data = json.loads(data.decode('utf-8'))
             if data == None:
                 data = {}   
-            return render_template("index.html",instances=data, cloud_name=cloud_name)
-    return render_template("index.html")
+            #return render_template("index.html",instances=data, cloud_name=cloud_name)
+    return render_template("index.html",instances=data, cloud_name=cloud_name)
 
 def reload_list(cloud_name):
     url = f'{dashbord_url}/api/list/{cloud_name}'
     result = requests.get(url,verify=True)
     data = result.content
     data = json.loads(data.decode('utf-8'))
-    return render_template("index.html",instances=data, cloud_name=cloud_name)
+    return data
 
 
 # @app.route("/list", methods=['GET','POST'])
