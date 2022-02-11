@@ -59,8 +59,21 @@ def home():
             api_key = ''.join(random.choice(characters) for i in range(18))
             bdd.insert_api_key(api_key)
             return render_template("index.html", api_key=api_key)
+        
+        elif request.form.get('create_instance'):
+            cloud_name = request.form.getlist('cloud')
+            if cloud_name:
+                cloud_name = "Infomaniak"
+            else:
+                cloud_name = "local"
+            url = f'{dashbord_url}/api/list/instances/{cloud_name}?api_key=1234'
+            result = requests.get(url,verify=True)
+            data = result.content
+            data = json.loads(data.decode('utf-8'))
+            if data == None:
+                data = {}   
 
-        elif request.form.get('cloud'):
+        elif request.form.get('list_instance'):
             cloud_name = request.form.getlist('cloud')
             if cloud_name:
                 cloud_name = "Infomaniak"
