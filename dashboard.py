@@ -76,7 +76,7 @@ def home():
     return render_template("index.html",instances=data, cloud_name=cloud_name)
 
 def reload_list(cloud_name):
-    url = f'{dashbord_url}/api/list/{cloud_name}?api_key=1234'
+    url = f'{dashbord_url}/api/list/instances/{cloud_name}?api_key=1234'
     result = requests.get(url,verify=True)
     data = result.content
     data = json.loads(data.decode('utf-8'))
