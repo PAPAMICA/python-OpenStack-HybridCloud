@@ -3,6 +3,7 @@ from unittest import result
 import openstack_api
 from flask import Flask, request, render_template, redirect
 import bdd
+import sys
 
 @app.route("/api/list/instances/<cloud_name>", methods=['GET'])
 def display_instances_list(cloud_name):
@@ -26,6 +27,7 @@ def update_resources_list(cloud_name):
     api_key = request.args.get('api_key')
     res = bdd.seek_api_key(api_key)
     if res:
+        print(cloud_name, flush=True, file=sys.stdout)
         table = bdd.create_db_cloud(cloud_name)
         result = bdd.fill_database(cloud_name)
         return result
