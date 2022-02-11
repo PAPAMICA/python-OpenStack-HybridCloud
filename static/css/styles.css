@@ -362,11 +362,14 @@ span.status-offline {
 
 .cote {
   width: 40%;
+  display: grid;
 }
 
 .milieux {
   width: 20%;
   margin-left: -5%;
+  margin: auto;
+  display: grid;
 }
 
 /* Clear floats after the columns */
@@ -458,4 +461,5 @@ button, input[name="destroy"] {
   width: 55px !important;
   height: 55px !important;
   font-size: 0.875rem;
+  margin: auto;
 }
