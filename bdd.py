@@ -76,7 +76,7 @@ def seek_api_key(key):
 # fill_database(cloud_name)
 # readSqliteTable(cloud_name, "ALL")
 # delete_db_table(cloud_name)
-insert_api_key("1234")
-key = seek_api_key("1234")
-print(key)
+#insert_api_key("1234")
+#key = seek_api_key("1234")
+#print(key)
 
