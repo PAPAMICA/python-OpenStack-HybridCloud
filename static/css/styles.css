@@ -373,10 +373,14 @@ span.status-offline {
 }
 
 /* Clear floats after the columns */
-.row:after {
-  content: "";
-  display: table;
-  clear: both;
+.row {
+  display: flex;
+  flex-direction: row;
+}
+@media (max-width: 1300px) {
+  .row {
+    flex-direction: column;
+  }
 }
 
 /* -------- Buton Styles ------------*/
@@ -465,7 +469,7 @@ button, input[name="destroy"] {
 }
 
 .confirm-list {
-  margin: auto;
+  margin-top: 10px;
 }
 
 .confirm-key {
