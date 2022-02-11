@@ -81,7 +81,7 @@
                       <form id="stripe-login" method="post">
                         <div class="row">
                           <div class="field padding-bottom--24">
-                            {{ api_key }}
+                            {% if api_key %}
                             <label for="get-apikey">Your API Key</label>
 
                             <input type="text" name="get-apikey" value="{{ api_key }}" readonly="readonly"/>
