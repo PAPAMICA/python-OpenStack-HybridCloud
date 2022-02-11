@@ -66,7 +66,7 @@ def home():
                 cloud_name = "Infomaniak"
             else:
                 cloud_name = "local"
-            url = f'{dashbord_url}/api/list/{cloud_name}?api_key=1234'
+            url = f'{dashbord_url}/api/list/instances/{cloud_name}?api_key=1234'
             result = requests.get(url,verify=True)
             data = result.content
             data = json.loads(data.decode('utf-8'))
