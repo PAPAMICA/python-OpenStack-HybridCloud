@@ -95,6 +95,9 @@ a {
 .padding-horizontal--48 {
   padding: 48px;
 }
+.padding-horizontal--20 {
+  padding: 20px;
+}
 .padding-bottom--15 {
   padding-bottom: 15px;
 }
