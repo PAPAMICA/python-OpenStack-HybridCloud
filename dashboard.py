@@ -1,3 +1,4 @@
+from re import A
 import requests
 import json
 import ast
@@ -48,6 +49,12 @@ def home():
             time.sleep(1)
             data = reload_list(cloud_name[0])
 
+
+        elif request.form.get('get-apikey'):
+            print("jsuispasséICI", flush=True, file=sys.stdout)
+            api_key = "BTbKgc6HQCt92d7ym6m"
+            return render_template("index.html", api_key=api_key)
+
         elif request.form.get('cloud'):
             cloud_name = request.form.getlist('cloud')
             if cloud_name:
@@ -61,10 +68,6 @@ def home():
             if data == None:
                 data = {}   
             #return render_template("index.html",instances=data, cloud_name=cloud_name)
-        elif request.form.get('get-apikey'):
-            print("jsuispasséICI", flush=True, file=sys.stdout)
-            api_key = "BTbKgc6HQCt92d7ym6m"
-            return render_template("index.html", api_key=api_key)
     return render_template("index.html",instances=data, cloud_name=cloud_name)
 
 def reload_list(cloud_name):
