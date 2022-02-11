@@ -217,9 +217,9 @@
                           </tr>
                         </thead>
                         <tbody>
-                            <tr>
                               {%for resource in resources%}
                                 {%for data in resources[resource]%}
+                                <tr>
                               <td>
                                 <div class="d-flex px-2 py-1">
                                   <div>
@@ -236,9 +236,9 @@
                                   </div>
                                 </div>
                               </td>
+                            </tr>
                               {%endfor%}
                             {%endfor%}
-                            </tr>
                         </tbody>
                       </table>
                     </div>
