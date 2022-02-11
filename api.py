@@ -22,7 +22,6 @@ def display_resources_list(cloud_name):
     if res:
         data = bdd.get_resources_list(cloud_name)
         print(data, flush=True, file=sys.stdout)
-        data = data.content
         result = json.loads(data.decode('utf-8'))
         return result
 
