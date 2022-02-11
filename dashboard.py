@@ -22,7 +22,7 @@ def home():
             result = requests.get(url)
             #print(result, flush=True, file=sys.stdout)
             time.sleep(1)
-            reload_list(cloud_name[0])
+            data = reload_list(cloud_name[0])
         elif request.form.get('reboot'):
             instance_name = request.form.getlist('reboot')
             cloud_name = request.form.getlist('cloud_name')
@@ -30,7 +30,7 @@ def home():
             result = requests.get(url)
             #print(result, flush=True, file=sys.stdout)
             time.sleep(1)
-            reload_list(cloud_name[0])
+            data = reload_list(cloud_name[0])
         elif request.form.get('stop'):
             instance_name = request.form.getlist('stop')
             cloud_name = request.form.getlist('cloud_name')
@@ -38,7 +38,7 @@ def home():
             result = requests.get(url)
             #print(result, flush=True, file=sys.stdout)
             time.sleep(1)
-            reload_list(cloud_name[0])
+            data = reload_list(cloud_name[0])
         elif request.form.get('destroy'):
             instance_name = request.form.getlist('destroy')
             cloud_name = request.form.getlist('cloud_name')
@@ -46,7 +46,7 @@ def home():
             result = requests.delete(url)
             #print(result, flush=True, file=sys.stdout)
             time.sleep(1)
-            reload_list(cloud_name[0])
+            data = reload_list(cloud_name[0])
 
         elif request.form.get('cloud'):
             cloud_name = request.form.getlist('cloud')
