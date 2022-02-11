@@ -9,6 +9,7 @@ def display_instances_list(cloud_name):
     api_key = request.args.get('api_key')
     res = bdd.seek_api_key(api_key)
     if res:
+        cloud  = openstack_api.cloud_connection(cloud_name)
         result = openstack_api.get_instances_list(cloud_name)
         return result
 
@@ -17,8 +18,7 @@ def display_resources_list(cloud_name):
     api_key = request.args.get('api_key')
     res = bdd.seek_api_key(api_key)
     if res:
-        cloud  = openstack_api.cloud_connection(cloud_name)
-        result = openstack_api.get_instances_list(cloud)
+        result = bdd.get_resources_list(cloud_name)
         return result
 
 @app.route("/api/<cloud_name>/<server_name>", methods=['GET','DELETE'])
