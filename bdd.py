@@ -59,7 +59,7 @@ def fill_database(cloud_name):
 
 def insert_api_key(key):
     conn, cursor = connect_to_db()
-    query = f"INSERT OR IGNORE INTO api_keys (key) VALUES('{key}');"
+    query = f"INSERT INTO api_keys (key) VALUES('{key}');"
     cursor.execute(query)
     conn.commit()
     conn.close()
@@ -78,12 +78,12 @@ def seek_api_key(key):
 # readSqliteTable(cloud_name, "ALL")
 # delete_db_table(cloud_name)
 # conn, cursor = connect_to_db()
-# # #cmd = "CREATE TABLE api_keys(key VARCHAR(100))"
-# # cmd = "SELECT * FROM api_keys;"
-# # res = cursor.execute(cmd)
-# # print(res.fetchone())
-# # insert_api_key("1234")
-# key = seek_api_key("1234")
-# print(key)
+# #cmd = "CREATE TABLE api_keys(key VARCHAR(100))"
+# cmd = "SELECT * FROM api_keys;"
+# res = cursor.execute(cmd)
+# # # # print(res.fetchone())
+# # # # insert_api_key("1234")
+# #key = seek_api_key("BTbKgc6HQCt92d7ym6m")
+# print(res.fetchall())
 # conn.close()
 
