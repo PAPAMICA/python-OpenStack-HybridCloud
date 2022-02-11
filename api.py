@@ -21,6 +21,14 @@ def display_resources_list(cloud_name):
         result = bdd.get_resources_list(cloud_name)
         return result
 
+@app.route("/api/update/resources/<cloud_name>", methods=['GET'])
+def update_resources_list(cloud_name):
+    api_key = request.args.get('api_key')
+    res = bdd.seek_api_key(api_key)
+    if res:
+        result = bdd.fill_database(cloud_name)
+        return result
+
 @app.route("/api/<cloud_name>/<server_name>", methods=['GET','DELETE'])
 def display_instance_information(cloud_name,server_name):
     api_key = request.args.get('api_key')
