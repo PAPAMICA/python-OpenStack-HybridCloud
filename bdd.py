@@ -57,11 +57,11 @@ def fill_database(cloud_name):
     data = openstack_api.list_security_groups(cloud).values()
     insert_db_data(cloud_name, "SECURITY_GROUP", data)
 
-def insert_api_key(key):
-    conn, cursor = connect_to_db()
-    query = f"INSERT IGNORE INTO api_keys (key) VALUES '{key}'"
-    cursor.execute(query)
-    conn.close()
+#def insert_api_key(key):
+#    conn, cursor = connect_to_db()
+#    query = f"INSERT IGNORE INTO api_keys (key) VALUES '{key}'"
+#    cursor.execute(query)
+#    conn.close()
 
 def seek_api_key(key):
     conn, cursor = connect_to_db()
