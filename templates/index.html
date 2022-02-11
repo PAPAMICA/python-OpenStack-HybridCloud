@@ -81,7 +81,6 @@
                       <form id="stripe-login" method="post">
                         <div class="row">
                           <div class="field padding-bottom--24">
-
                             {% if api_key %}
                             <label for="cloud">Your API Key</label>
                             <input type="text" value="{{ api_key }}" readonly="readonly"/>
@@ -91,6 +90,7 @@
                         </div>
                         
                         <div class="field padding-bottom--24">
+                          <input type="hidden" name="get-apikey"/>
                           <input type="submit" name="submit" value="Confirmer">
                         </div>
                       </div>
