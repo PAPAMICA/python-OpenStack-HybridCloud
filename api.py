@@ -28,8 +28,8 @@ def update_resources_list(cloud_name):
     res = bdd.seek_api_key(api_key)
     if res:
         table = bdd.create_db_cloud(cloud_name)
-        print(table, flush=True, file=sys.stdout)
         result = bdd.fill_database(cloud_name)
+        print(result, flush=True, file=sys.stdout)
         return result
 
 @app.route("/api/<cloud_name>/<server_name>", methods=['GET','DELETE'])
