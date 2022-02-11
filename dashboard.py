@@ -62,6 +62,7 @@ def home():
                 data = {}   
             #return render_template("index.html",instances=data, cloud_name=cloud_name)
         elif request.form.get('get-apikey'):
+            print("jsuispasséICI", flush=True, file=sys.stdout)
             api_key = "BTbKgc6HQCt92d7ym6m"
             return render_template("index.html", api_key=api_key)
     return render_template("index.html",instances=data, cloud_name=cloud_name)
