@@ -94,6 +94,21 @@ def home():
             print(data, flush=True, file=sys.stdout)
             return render_template("index.html",resources=data, cloud_name=cloud_name)
 
+        elif request.form.get('update_resources'):
+            cloud_name = request.form.getlist('cloud')
+            if cloud_name:
+                cloud_name = "Infomaniak"
+            else:
+                cloud_name = "local"
+            url = f'{dashbord_url}/api/update/resources/{cloud_name}?api_key=1234'
+            result = requests.get(url,verify=True)
+            url = f'{dashbord_url}/api/list/resources/{cloud_name}?api_key=1234'
+            result = requests.get(url,verify=True)
+            data = result.content
+            data = json.loads(data.decode('utf-8'))
+            print(data, flush=True, file=sys.stdout)
+            return render_template("index.html",resources=data, cloud_name=cloud_name)
+
         elif request.form.get('list_instances'):
             cloud_name = request.form.getlist('cloud')
             if cloud_name:
