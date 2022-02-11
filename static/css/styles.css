@@ -367,6 +367,7 @@ span.status-offline {
 
 .milieux {
   width: 20%;
+  max-width: 30%;
   margin-left: -5%;
   margin: auto;
   display: grid;
@@ -380,6 +381,9 @@ span.status-offline {
 @media (max-width: 1300px) {
   .row {
     flex-direction: column;
+  }
+  .column-3 {
+    max-width: 100%;
   }
 }
 
