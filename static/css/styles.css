@@ -377,7 +377,7 @@ span.status-offline {
   display: flex;
   flex-direction: row;
 }
-@media (max-width: 800px) {
+@media (max-width: 1300px) {
   .row {
     flex-direction: column;
   }
