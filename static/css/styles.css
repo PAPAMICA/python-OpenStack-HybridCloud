@@ -111,7 +111,7 @@ a {
 .formbg {
     margin: 0px auto;
     width: 100%;
-    max-width: 448px;
+    min-width: 385px;
     min-height: 300px;
     background: white;
     border-radius: 4px;
@@ -396,7 +396,7 @@ span.status-offline {
   display: flex;
   flex-direction: row;
 }
-@media (max-width: 1300px) {
+@media (max-width: 1600px) {
   .row {
     flex-direction: column;
   }
