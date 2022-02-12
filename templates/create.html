@@ -25,6 +25,8 @@
                 <div class="formbg-inner padding-horizontal--20">
                   <span class="padding-bottom--15"><h2 class="center">Create instances</h2></span>
                   <form id="stripe-login" method="post">
+                    <label for="iname">Instance name:</label>
+                    <input type="text" id="iname" name="iname"> 
                     {%for resource in resources[cloud]%}
                     <label for="{{ resource }}">Choose a {{ resource }}:</label>
                     <select id="{{ resource }}" name="{{ resource }}">
@@ -35,8 +37,9 @@
                     {%endfor%}
                     
                     <div class="field padding-bottom--24 confirm-list row-2">
+                      <input type="hidden" name="cloud_name" value="{{ cloud }}"/>
                       <input class="column-3-2" type="submit" name="list_instances" value="List instances"> 
-                      <input class="column-3-2" type="submit" name="create_instance" value="Create instance">
+                      <input class="column-3-2" type="submit" name="create_instance_2" value="Create instance">
                     </div>
                   </div>
                   </form>
