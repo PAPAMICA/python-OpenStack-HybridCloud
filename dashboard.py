@@ -81,12 +81,12 @@ def home():
             instance_sc = request.form.getlist('SECURITY_GROUP')
             headers = {"Content-Type":"application/json"}
             body = {       
-                        "instance_name":instance_name,
-                        "instance_image":instance_image,
-                        "instance_flavor":instance_flavor,
-                        "instance_network":instance_network,
-                        "instance_keypair": instance_keypair,
-                        "instance_securitygroup":instance_sc
+                        "instance_name":str(instance_name),
+                        "instance_image":str(instance_image),
+                        "instance_flavor":str(instance_flavor),
+                        "instance_network":str(instance_network),
+                        "instance_keypair":str(instance_keypair),
+                        "instance_securitygroup":str(instance_sc)
                     }
             url = f'{dashbord_url}/api/{cloud_name}/new_instance?api_key=1234'
             r = requests.post(url,data=json.dumps(body),headers=headers,verify=True)
