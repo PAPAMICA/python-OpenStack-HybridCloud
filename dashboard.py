@@ -14,13 +14,13 @@ import string
 
 
 dashbord_url = "https://hybridcloud.papamica.com"
+result     = dict()
+cloud_name = str()
+api_key    = str()
+key_name   = str()
 
 @app.route("/", methods=['GET','POST'])
 def home():
-    result     = dict()
-    cloud_name = str()
-    api_key    = str()
-    key_name   = str()
     if request.method == 'POST':
         if request.form.get('start'):
             instance_name = request.form.getlist('start')
