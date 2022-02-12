@@ -96,7 +96,7 @@
                           {% endfor %}
                           {% endif %}
                         
-                    <div class="field padding-bottom--24 confirm-list titi row">
+                    <div class="field padding-bottom--24 confirm-list row">
                       <input class="column-3-2" type="submit" name="refresh-billing" value="Refresh"> 
                     </div>
                       </div>
@@ -248,19 +248,29 @@
                               {% set keycount = resources[cloud]['KEYPAIR'] %}
                               <div class="titi">
                                 {% if cloud == "Infomaniak" %}
-                                <div>
-                                  <img src="{{ url_for('static', filename='img/IPC.png') }}" class="avatar avatar-sm me-3" alt="Public"> <h3>Public Cloud</h3>
+                                <div class="d-flex px-2 py-1">
+                                  <div>
+                                    <img src="{{ url_for('static', filename='img/IPC.png') }}" class="avatar avatar-sm me-3" alt="Public"> 
+                                  </div>
+                                <div class="d-flex flex-column justify-content-center">
+                                  <h3>Public Cloud</h3>
                                 </div>
+                              </div>
                               {% else %}
+                              <div class="d-flex px-2 py-1">
                                 <div>
-                                  <img src="{{ url_for('static', filename='img/local.png') }}" class="avatar avatar-sm me-3" alt="Local"><h3>Local Cloud</h3>
+                                  <img src="{{ url_for('static', filename='img/local.png') }}" class="avatar avatar-sm me-3" alt="Local"> 
                                 </div>
+                              <div class="d-flex flex-column justify-content-center">
+                                <h3>Local Cloud</h3>
+                              </div>
+                            </div>
                               {% endif %}
-                                <h5 class="font-weight-bolder">Flavors in {{ cloud }} : {{ flavorcount|length }}</h5>
-                                <h5 class="font-weight-bolder">Images in {{ cloud }} : {{ imagecount|length }}</h5>
-                                <h5 class="font-weight-bolder">Networks in {{ cloud }} : {{ networkcount|length }}</h5>
-                                <h5 class="font-weight-bolder">Security groups in {{ cloud }} : {{ sccount|length }}</h5>
-                                <h5 class="font-weight-bolder">Keypair in {{ cloud }} : {{ keycount|length }}</h5>
+                                <h6 class="font-weight-bolder">Flavors in {{ cloud }} : {{ flavorcount|length }}</h6>
+                                <h6 class="font-weight-bolder">Images in {{ cloud }} : {{ imagecount|length }}</h6>
+                                <h6 class="font-weight-bolder">Networks in {{ cloud }} : {{ networkcount|length }}</h6>
+                                <h6 class="font-weight-bolder">Security groups in {{ cloud }} : {{ sccount|length }}</h6>
+                                <h6 class="font-weight-bolder">Keypair in {{ cloud }} : {{ keycount|length }}</h6>
                               </div>
 
                               {% endfor %}
