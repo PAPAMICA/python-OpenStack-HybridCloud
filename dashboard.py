@@ -15,10 +15,7 @@ import string
 
 dashbord_url = "https://hybridcloud.papamica.com"
 
-result     = dict()
-cloud_name = str()
-api_key    = str()
-key_name   = str()
+
 @app.route("/", methods=['GET','POST'])
 def home():
     if request.method == 'POST':
