@@ -119,13 +119,16 @@ def home():
                     data = requests.get(url,verify=True)
                     data = data.content
                     data = json.loads(data.decode('utf-8'))
-                    result = result + data
+                    result = result | data
+
             else:
                 cloud_name = (cloud[0])
                 url = f'{dashbord_url}/api/list/instances/{cloud_name}?api_key=1234'
                 data = requests.get(url,verify=True)
                 data = data.content
                 result = json.loads(data.decode('utf-8'))
+            
+            print(result, flush=True, file=sys.stdout)
             #return render_template("index.html",instances=data, cloud_name=cloud_name)
     return render_template("index.html",instances=result, cloud_name=cloud_name)
 
