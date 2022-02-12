@@ -118,12 +118,12 @@ def create_instance(cloud_name):
     res = bdd.seek_api_key(api_key)
     if res:
         data = request.json
-        instance_name    = data['instance_name']
-        instance_image   = data['instance_image']
-        instance_flavor  = data['instance_flavor']
-        instance_network = data['instance_network']
-        instance_keypair = data['instance_keypair']
-        instance_securitygroup = data['instance_securitygroup']
+        instance_name    = str(data['instance_name'])
+        instance_image   = str(data['instance_image'])
+        instance_flavor  = str(data['instance_flavor'])
+        instance_network = str(data['instance_network'])
+        instance_keypair = str(data['instance_keypair'])
+        instance_securitygroup = str(data['instance_securitygroup'])
         cloud  = openstack_api.cloud_connection(cloud_name)
         result = openstack_api.create_instance(cloud, instance_name,instance_image, instance_flavor, instance_network, instance_keypair, instance_securitygroup)
         return result
