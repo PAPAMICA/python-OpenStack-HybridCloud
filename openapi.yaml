@@ -41,6 +41,54 @@ paths:
         "404":
           description: "Cloud not found"
 
+  /api/list/resources/{cloud_name}:
+    get:
+      security:
+        - key: []
+      tags:
+      - "cloud"
+      summary: "list resources of the selected cloud from database"
+      description: ""
+      operationId: "getResByCloud"
+      produces:
+      - "application/json"
+      - "application/xml"
+      parameters:
+      - name: "cloud_name"
+        in: "path"
+        description: "The cloud to get infos"
+        required: true
+        type: "string"
+      responses:
+        "200":
+          description: "successful operation"
+        "404":
+          description: "Cloud not found"
+
+    /api/update/resources/{cloud_name}:
+    get:
+      security:
+        - key: []
+      tags:
+      - "cloud"
+      summary: "update database to get fresh infos about resources"
+      description: ""
+      operationId: "updateResByCloud"
+      produces:
+      - "application/json"
+      - "application/xml"
+      parameters:
+      - name: "cloud_name"
+        in: "path"
+        description: "The cloud to get infos"
+        required: true
+        type: "string"
+      responses:
+        "200":
+          description: "successful operation"
+        "404":
+          description: "Cloud not found"
+
   /api/{cloud_name}/{server_name}:
     get:
       security:
@@ -336,6 +384,30 @@ paths:
       - name: "server_name"
         in: "path"
         description: "The server to reboot"
+        required: true
+        type: "string"
+      responses:
+        "200":
+          description: "successful operation"
+        "404":
+          description: "not found"
+
+    /api/{cloud_name}/keypairs:
+    get:
+      security:
+        - key: []
+      tags:
+      - "cloud"
+      summary: "Get keypairs"
+      description: ""
+      operationId: "getKeypairs"
+      produces:
+      - "application/json"
+      - "application/xml"
+      parameters:
+      - name: "cloud_name"
+        in: "path"
+        description: "The target cloud"
         required: true
         type: "string"
       responses:
