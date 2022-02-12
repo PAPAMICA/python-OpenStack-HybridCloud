@@ -151,7 +151,7 @@ paths:
         - key: []
       tags:
       - "cloud"
-      summary: "Get informations about an instance"
+      summary: "Create new keaypair"
       description: ""
       operationId: "createKeyPair"
       consumes:
