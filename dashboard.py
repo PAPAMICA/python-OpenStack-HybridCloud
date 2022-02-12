@@ -79,7 +79,7 @@ def home():
             instance_keypair = request.form.getlist('KEYPAIR')
             instance_network = request.form.getlist('NETWORK')
             instance_sc = request.form.getlist('SECURITY_GROUP')
-            headers = {"Content-Type}":"application/json"}
+            headers = {"Content-Type":"application/json"}
             body = {       
                         "instance_name":instance_name,
                         "instance_image":instance_image,
