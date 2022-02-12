@@ -245,7 +245,7 @@
                               <p class="mb-1 pt-2 text-bold">Built by developers</p>
                               <h5 class="font-weight-bolder">Soft UI Dashboard</h5>
                           {%for cloud in resources%}
-                              {% set flavorcount = len(resources[cloud]['FLAVOR']) %}
+                              {% set flavorcount = resources[cloud]['FLAVOR']|length %}
 
                               {% endfor %}
                               <h5 class="font-weight-bolder">Il y a {{ flavorcount }} flavors !</h5>
