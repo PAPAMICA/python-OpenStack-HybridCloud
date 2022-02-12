@@ -13,7 +13,7 @@ def display_instances_list(cloud_name):
     if res:
         cloud  = openstack_api.cloud_connection(cloud_name)
         result = openstack_api.get_instances_list(cloud)
-        return result,201
+        return result,200
     else:
         return Response("403 : Access denied",status=403)
 
@@ -26,9 +26,9 @@ def display_resources_list(cloud_name):
         if result == None:
             update_resources_list(cloud_name)
             display_resources_list(cloud_name)
-            return Response(result,status=200)
+            return result,200
         else:
-            return Response(result,status=200)
+            return result,200
     else:
         return Response("403 : Access denied",status=403)
 
@@ -44,7 +44,7 @@ def update_resources_list(cloud_name):
         table = bdd.create_db_cloud(cloud_name)
         result = bdd.fill_database(cloud_name)
         print(result, flush=True, file=sys.stdout)
-        return Response(result,status=200)
+        return result,200
     else:
         return Response("403 : Access denied",status=403)
 
@@ -58,7 +58,7 @@ def display_instance_information(cloud_name,server_name):
             result = openstack_api.get_instance_information(cloud, server_name)
         elif request.method == 'DELETE':
             result = openstack_api.delete_instance(cloud, server_name)
-        return Response(result,status=200)
+        return result,200
     else:
         return Response("403 : Access denied",status=403)
 
@@ -82,7 +82,7 @@ def display_networks(cloud_name):
     if res:
         cloud  = openstack_api.cloud_connection(cloud_name)
         result = openstack_api.list_networks(cloud)
-        return Response(result,status=200)
+        return result,200
     else:
         return Response("403 : Access denied",status=403)
 
@@ -93,7 +93,7 @@ def display_keypairs(cloud_name):
     if res:
         cloud  = openstack_api.cloud_connection(cloud_name)
         result = openstack_api.list_keypairs(cloud)
-        return Response(result,status=200)
+        return result,200
     else:
         return Response("403 : Access denied",status=403)
 
@@ -104,7 +104,7 @@ def display_security_groups(cloud_name):
     if res:
         cloud  = openstack_api.cloud_connection(cloud_name)
         result = openstack_api.list_security_groups(cloud)
-        return Response(result,status=200)
+        return result,200
     else:
         return Response("403 : Access denied",status=403)
 
@@ -115,7 +115,7 @@ def display_images(cloud_name):
     if res:
         cloud  = openstack_api.cloud_connection(cloud_name)
         result = openstack_api.list_images(cloud)
-        return Response(result,status=200)
+        return result,200
     else:
         return Response("403 : Access denied",status=403)
 
@@ -126,7 +126,7 @@ def display_flavors(cloud_name):
     if res:
         cloud  = openstack_api.cloud_connection(cloud_name)
         result = openstack_api.list_flavors(cloud)
-        return Response(result,status=200)
+        return result,200
     else:
         return Response("403 : Access denied",status=403)
 
@@ -155,7 +155,7 @@ def start_instance(cloud_name, server_name):
     if res:
         cloud  = openstack_api.cloud_connection(cloud_name)
         result = openstack_api.start_instance(cloud, server_name)
-        return Response(result,status=200)
+        return result,200
     else:
         return Response("403 : Access denied",status=403)
 
@@ -166,7 +166,7 @@ def stop_instance(cloud_name, server_name):
     if res:
         cloud  = openstack_api.cloud_connection(cloud_name)
         result = openstack_api.stop_instance(cloud, server_name)
-        return Response(result,status=200)
+        return result,200
     else:
         return Response("403 : Access denied",status=403)
 
@@ -177,6 +177,6 @@ def reboot_instance(cloud_name, server_name):
     if res:
         cloud  = openstack_api.cloud_connection(cloud_name)
         result = openstack_api.reboot_instance(cloud, server_name)
-        return Response(result,status=200)
+        return result,200
     else:
         return Response("403 : Access denied",status=403)
