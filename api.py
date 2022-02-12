@@ -187,7 +187,7 @@ def get_billing(cloud_name):
     api_key = request.args.get('api_key')
     res = bdd.seek_api_key(api_key)
     if res:
-        result = get_billing(cloud_name)
+        result = rating_api.get_billing(cloud_name)
         return result,200
     else:
         return Response("403 : Access denied",status=403)
