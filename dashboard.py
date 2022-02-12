@@ -142,7 +142,7 @@ def home():
                 result[cloud_name] = data
             print(result, flush=True, file=sys.stdout)
             #return render_template("index.html",instances=data, cloud_name=cloud_name)
-    return render_template("index.html",instances=result, cloud_name=cloud_name, api_key=api_key, key_name = key_name, resources=result, cloud_name=cloud_name)
+    return render_template("index.html",instances=result, cloud_name=cloud_name, api_key=api_key, key_name = key_name, resources=result)
 
 
 def reload_list(cloud_name):
