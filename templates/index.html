@@ -263,12 +263,12 @@
                           </tr>
                         </thead>
                         <tbody>
-                          {%for cloud_name in resources%}
-                          {%for data in resources[cloud_name]['FLAVOR']%}
+                          {%for cloud in resources%}
+                          {%for data in resources[cloud]['FLAVOR']%}
                                 <tr>
                               <td>
                                 <div class="d-flex px-2 py-1">
-                                 {% if cloud_name == "Infomaniak" %}
+                                 {% if cloud == "Infomaniak" %}
                                   <div>
                                     <img src="{{ url_for('static', filename='img/IPC.png') }}" class="avatar avatar-sm me-3" alt="Public">
                                   </div>
