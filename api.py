@@ -72,6 +72,15 @@ def display_networks(cloud_name):
         result = openstack_api.list_networks(cloud)
         return result
 
+@app.route("/api/<cloud_name>/keypairs", methods=['GET'])
+def display_keypairs(cloud_name):
+    api_key = request.args.get('api_key')
+    res = bdd.seek_api_key(api_key)
+    if res:
+        cloud  = openstack_api.cloud_connection(cloud_name)
+        result = openstack_api.list_keypairs(cloud)
+        return result
+
 @app.route("/api/<cloud_name>/security_groups", methods=['GET'])
 def display_security_groups(cloud_name):
     api_key = request.args.get('api_key')

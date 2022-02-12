@@ -79,6 +79,8 @@ def fill_database(cloud_name):
         insert_db_data(cloud_name, "IMAGE", data)
         data = openstack_api.list_networks(cloud).values()
         insert_db_data(cloud_name, "NETWORK", data)
+        data = openstack_api.list_keypairs(cloud).values()
+        insert_db_data(cloud_name, "KEYPAIR", data)
         data = openstack_api.list_security_groups(cloud).values()
         insert_db_data(cloud_name, "SECURITY_GROUP", data)
         return ("SUCCESS")

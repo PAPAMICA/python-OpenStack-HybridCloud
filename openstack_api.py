@@ -153,6 +153,28 @@ def create_keypair(cloud, keypair_name):
     else:
         return keypair
 
+# List keypairs
+#@app.route("/list_keypairs")
+def list_keypairs(cloud):
+    if arg_dict == 1:
+        result = {}
+    else:
+        result = ""
+    for keypair in cloud.compute.keypairs():
+        if arg_dict == 1:
+            result[keypair.id] = keypair.name
+        elif arg_json == 1:
+            data = {keypair.id: keypair.name}
+            data = json.dumps(data, indent = 4)
+            result = result + data
+        else:
+            if (result == ""):
+                result = network.name
+            else:
+                result = result + ", " + network.name
+
+    return result
+
 # List networks
 #@app.route("/list_networks")
 def list_networks(cloud):
