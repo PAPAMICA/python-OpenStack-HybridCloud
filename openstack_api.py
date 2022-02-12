@@ -169,9 +169,9 @@ def list_keypairs(cloud):
             result = result + data
         else:
             if (result == ""):
-                result = network.name
+                result = keypair.name
             else:
-                result = result + ", " + network.name
+                result = result + ", " + keypair.name
 
     return result
 

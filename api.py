@@ -35,6 +35,7 @@ def update_resources_list(cloud_name):
     api_key = request.args.get('api_key')
     res = bdd.seek_api_key(api_key)
     if res:
+        delete = bdd.delete_db_table(cloud_name)
         table = bdd.create_db_cloud(cloud_name)
         result = bdd.fill_database(cloud_name)
         print(result, flush=True, file=sys.stdout)
