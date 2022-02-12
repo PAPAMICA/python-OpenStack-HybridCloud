@@ -52,7 +52,7 @@ def home():
             url = f'{dashbord_url}/api/{cloud_name[0]}/{instance_name}?api_key=1234'
             result = requests.delete(url)
             #print(result, flush=True, file=sys.stdout)
-            time.sleep(1)
+            time.sleep(3)
             data = reload_list(cloud_name[0])
 
 
