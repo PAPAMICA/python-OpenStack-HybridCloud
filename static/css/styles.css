@@ -397,10 +397,10 @@ span.status-offline {
   flex-direction: row;
 }
 @media (max-width: 1300px) {
-  .row {
+  .row .row-2{
     flex-direction: column;
   }
-  .column-3 {
+  .column-3 .column-4 {
     width: 100%;
   }
 }
@@ -517,4 +517,8 @@ table {
 
 .card {
   height: 520px;
+}
+
+.ten {
+  width: 20%;
 }
