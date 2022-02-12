@@ -115,8 +115,8 @@ def home():
             cloud = request.form.getlist('cloud')
             result = {}   
             for cloud_name in cloud:
-                #url = f'{dashbord_url}/api/list/resources/{cloud_name}?api_key=1234'
-                url = f'{dashbord_url}/api/list/resources/Infomaniak?api_key=1234'
+                url = f'{dashbord_url}/api/list/resources/{cloud_name}?api_key=1234'
+                #url = f'{dashbord_url}/api/list/resources/Infomaniak?api_key=1234'
                 data = requests.get(url,verify=True)
                 data = data.content
                 data = json.loads(data.decode('utf-8'))
@@ -128,11 +128,11 @@ def home():
 
             result = {}   
             for cloud_name in cloud:
-                #url = f'{dashbord_url}/api/update/resources/{cloud_name}?api_key=1234'
-                url = f'{dashbord_url}/api/update/resources/Infomaniak?api_key=1234'
+                url = f'{dashbord_url}/api/update/resources/{cloud_name}?api_key=1234'
+                #url = f'{dashbord_url}/api/update/resources/Infomaniak?api_key=1234'
                 update = requests.get(url,verify=True)
-                #url = f'{dashbord_url}/api/list/resources/{cloud_name}?api_key=1234'
-                url = f'{dashbord_url}/api/list/resources/Infomaniak?api_key=1234'
+                url = f'{dashbord_url}/api/list/resources/{cloud_name}?api_key=1234'
+                #url = f'{dashbord_url}/api/list/resources/Infomaniak?api_key=1234'
                 data = requests.get(url,verify=True)
                 data = data.content
                 data = json.loads(data.decode('utf-8'))
@@ -144,8 +144,8 @@ def home():
             cloud = request.form.getlist('cloud')
             result = {}   
             for cloud_name in cloud:
-                #url = f'{dashbord_url}/api/list/instances/{cloud_name}?api_key=1234'
-                url = f'{dashbord_url}/api/list/instances/Infomaniak?api_key=1234'
+                url = f'{dashbord_url}/api/list/instances/{cloud_name}?api_key=1234'
+                #url = f'{dashbord_url}/api/list/instances/Infomaniak?api_key=1234'
                 data = requests.get(url,verify=True)
                 print(data, flush=True, file=sys.stdout)
                 data = data.content
