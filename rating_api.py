@@ -1,11 +1,9 @@
 import subprocess
 import os
 
-def get_billing():
+def get_billing(cloud_name):
 
-    
-    file = "../plex-public-cloud/openrc"
-    #file = f'/openrc/{cloud_name}'
+    file = f'/openrc/{cloud_name}'
     with open(file) as f:
         lines = f.readlines()
         for line in lines:

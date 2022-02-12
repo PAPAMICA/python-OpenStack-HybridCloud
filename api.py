@@ -1,6 +1,7 @@
 from __main__ import app
 from unittest import result
 import openstack_api
+import rating_api
 from flask import Flask, Response, request, render_template, redirect, jsonify
 import bdd
 import sys
@@ -177,6 +178,16 @@ def reboot_instance(cloud_name, server_name):
     if res:
         cloud  = openstack_api.cloud_connection(cloud_name)
         result = openstack_api.reboot_instance(cloud, server_name)
+        return result,200
+    else:
+        return Response("403 : Access denied",status=403)
+
+@app.route("/api/<cloud_name>/billing", methods=['GET'])
+def get_billing(cloud_name):
+    api_key = request.args.get('api_key')
+    res = bdd.seek_api_key(api_key)
+    if res:
+        result = get_billing(cloud_name)
         return result,200
     else:
         return Response("403 : Access denied",status=403)
