@@ -502,7 +502,6 @@ tbody {
   display: block;
   height: 400px;
   overflow: auto;
-  width: calc( 100% - 1em );
 }
 thead, tbody tr {
   display: table;
@@ -518,8 +517,4 @@ table {
 
 .card {
   height: 520px;
-}
-
-.ten {
-  width: 10%;
 }
