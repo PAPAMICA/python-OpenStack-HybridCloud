@@ -40,21 +40,28 @@ keypair_name = ""
 # Connect to Openstack
 def cloud_connection(cloud_name):
     try:
-        source = exec(open(f'/openrc/{cloud_name}').read())
-        print(f"RESULTAT DE LA COMMANDE SOURCE : {source} et ceci est un test : {os.getenv('OS_USERNAME')}")
+        file = f'/openrc/{cloud_name}'
+        with open(file) as f:
+            line = f.readline()
+            while line:
+                line = f.readline()
+                line=line.split()
+                if len(line) > 1:
+                    word=line[1].split('=')
+                    globals()[word[0]] = word[1]
         return openstack.connect(
-            auth_url=os.getenv('OS_AUTH_URL'),
-            project_name=os.getenv('OS_PROJECT_NAME'),
-            username=os.getenv('OS_USERNAME'),
-            password=os.getenv('OS_PASSWORD'),
-            region_name=os.getenv('OS_REGION_NAME'),
+            auth_url=OS_AUTH_URL,
+            project_name=OS_PROJECT_NAME,
+            username=OS_USERNAME,
+            password=OS_PASSWORD,
+            region_name=OS_REGION_NAME,
             user_domain_name="default",
             project_domain_name="default",
             app_name='examples',
             app_version='1.0',
         )
     except:
-        print("ERROR OPENSTACK CONNECTION")
+        print("ERROR OPENSTACK CONNECTION")cd 
 
 
 # Get all informations of all instances
