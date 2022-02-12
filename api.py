@@ -1,7 +1,7 @@
 from __main__ import app
 from unittest import result
 import openstack_api
-from flask import Flask, request, render_template, redirect, jsonify
+from flask import Flask, Response, request, render_template, redirect, jsonify
 import bdd
 import sys
 import json
@@ -145,9 +145,9 @@ def create_instance(cloud_name):
         instance_securitygroup = data['instance_securitygroup']
         cloud  = openstack_api.cloud_connection(cloud_name)
         openstack_api.create_instance(cloud, instance_name,instance_image, instance_flavor, instance_network, instance_keypair, instance_securitygroup)
-        return "200 : success"
+        return Response("201 : success", status=201)
     else:
-        return render_template("403.html")
+        return Response("Access denied",status=403) #render_template("403.html")
 
 @app.route("/api/<cloud_name>/<server_name>/start", methods=['GET'])
 def start_instance(cloud_name, server_name):
