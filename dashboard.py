@@ -111,6 +111,7 @@ def home():
 
         elif request.form.get('list_instances'):
             cloud = request.form.getlist('cloud')
+            result = {}   
             if len(cloud) == 2:
                 for cloud_name in cloud:
                     #url = f'{dashbord_url}/api/list/instances/{cloud_name}?api_key=1234'
@@ -125,8 +126,6 @@ def home():
                 data = requests.get(url,verify=True)
                 data = data.content
                 result = json.loads(data.decode('utf-8'))
-            if result == None:
-                result = {}   
             #return render_template("index.html",instances=data, cloud_name=cloud_name)
     return render_template("index.html",instances=result, cloud_name=cloud_name)
 
