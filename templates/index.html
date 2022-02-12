@@ -90,7 +90,7 @@
                       <span class="padding-bottom--15"><h2 class="center">Generate API Key</h2></span>
                       <form id="stripe-login" method="post">
                         <div class="row">
-                          <div class="field padding-bottom--24">
+                          <div class="field">
                             <label for="get-apikey">Your API Key</label>
                             {% if api_key %}
                               <input type="text" name="key_name" value="{{ key_name }}"/>
@@ -100,9 +100,6 @@
                               <input type="text" name="get-apikey" value="Click on button generate" readonly="readonly"/>
                             {% endif %}
                           </div>
-                          <div class="field padding-bottom--24">
-                        </div>
-                        
                         
                     <div class="field padding-bottom--24 confirm-list row-2">
                       <input class="column-3-2" type="submit" name="get-apikey" value="Generate">
