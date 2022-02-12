@@ -48,6 +48,7 @@ def home():
             instance_name = request.form['destroy']
             cloud_name = request.form.getlist('cloud_name')
             url = f'{dashbord_url}/api/{cloud_name[0]}/{instance_name}'
+            time.sleep(1)
             result = requests.delete(url)
             print(f"LA VARIABLE QUE TU CHERCHE EST ICI : {url}", flush=True, file=sys.stdout)
             #print(result, flush=True, file=sys.stdout)
