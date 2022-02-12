@@ -7,6 +7,7 @@ import os
 import re
 import json 
 import argparse
+import subprocess
 #from flask import Flask, request, render_template, redirect
 
 parser = argparse.ArgumentParser()
@@ -38,24 +39,21 @@ keypair_name = ""
 
 # Connect to Openstack
 def cloud_connection(cloud_name):
-    if (cloud_name == "Infomaniak"):
+    try:
+        source = subprocess.getoutput(f'source /openrc/{cloud_name}')
         return openstack.connect(
-            auth_url="https://api.pub1.infomaniak.cloud/identity/v3",
+            auth_url=os.getenv('OS_AUTH_URL'),
             project_name=os.getenv('OS_PROJECT_NAME'),
             username=os.getenv('OS_USERNAME'),
             password=os.getenv('OS_PASSWORD'),
-            region_name="dc3-a",
+            region_name=os.getenv('OS_REGION_NAME'),
             user_domain_name="default",
             project_domain_name="default",
             app_name='examples',
             app_version='1.0',
         )
-    elif (cloud_name == "local"):
-        print("Cloud selected : Local")
-
-    else:
-        print("Cloud selected ERROR")
-        exit()
+    except:
+        print("ERROR OPENSTACK CONNECTION")
 
 
 # Get all informations of all instances

@@ -1,4 +1,3 @@
-from re import X
 import subprocess
 
 def get_billing(cloud_name):

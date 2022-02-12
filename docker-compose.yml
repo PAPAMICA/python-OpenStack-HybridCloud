@@ -5,9 +5,6 @@ services:
     build: .
 #    image: hybridcloud
     container_name: hybridcloud
-    environment:
-      OS_PROJECT_NAME: ''
-      OS_USERNAME: ''
-      OS_PASSWORD: ''
     volumes:
     - /etc/localtime:/etc/localtime
+    - /apps/hybridcloud/openrc:/openrc
