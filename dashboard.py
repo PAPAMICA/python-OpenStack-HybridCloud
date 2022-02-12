@@ -110,17 +110,25 @@ def home():
             return render_template("index.html",resources=data, cloud_name=cloud_name)
 
         elif request.form.get('list_instances'):
-            cloud_name = request.form.getlist('cloud')
-            print(cloud_name, flush=True, file=sys.stdout)
-            url = f'{dashbord_url}/api/list/instances/{cloud_name}?api_key=1234'
-            print(cloud_name, flush=True, file=sys.stdout)
-            result = requests.get(url,verify=True)
-            data = result.content
-            data = json.loads(data.decode('utf-8'))
-            if data == None:
-                data = {}   
+            cloud = request.form.getlist('cloud')
+            if len(cloud) == 2:
+                for cloud_name in cloud:
+                    #url = f'{dashbord_url}/api/list/instances/{cloud_name}?api_key=1234'
+                    url = f'{dashbord_url}/api/list/instances/Infomaniak?api_key=1234'
+                    data = requests.get(url,verify=True)
+                    data = data.content
+                    data = json.loads(data.decode('utf-8'))
+                    result = result + data
+            else:
+                cloud_name = (cloud[0])
+                url = f'{dashbord_url}/api/list/instances/{cloud_name}?api_key=1234'
+                data = requests.get(url,verify=True)
+                data = data.content
+                result = json.loads(data.decode('utf-8'))
+            if result == None:
+                result = {}   
             #return render_template("index.html",instances=data, cloud_name=cloud_name)
-    return render_template("index.html",instances=data, cloud_name=cloud_name)
+    return render_template("index.html",instances=result, cloud_name=cloud_name)
 
 def reload_list(cloud_name):
     url = f'{dashbord_url}/api/list/instances/{cloud_name}?api_key=1234'
