@@ -249,11 +249,11 @@
                               <div class="titi">
                                 {% if cloud == "Infomaniak" %}
                                 <div>
-                                  <img src="{{ url_for('static', filename='img/IPC.png') }}" class="avatar avatar-sm me-3" alt="Public">
+                                  <img src="{{ url_for('static', filename='img/IPC.png') }}" class="avatar avatar-sm me-3" alt="Public"> <h3>Public Cloud</h3>
                                 </div>
                               {% else %}
                                 <div>
-                                  <img src="{{ url_for('static', filename='img/local.png') }}" class="avatar avatar-sm me-3" alt="Local">
+                                  <img src="{{ url_for('static', filename='img/local.png') }}" class="avatar avatar-sm me-3" alt="Local"><h3>Local Cloud</h3>
                                 </div>
                               {% endif %}
                                 <h5 class="font-weight-bolder">Flavors in {{ cloud }} : {{ flavorcount|length }}</h5>
