@@ -234,22 +234,24 @@
                                 {%for data in resources[cloud][resource]%}
                                 <tr>
                               <td>
-                              <div class="d-flex px-2 py-1">
                                  {% if cloud == "Infomaniak" %}
-                                <div>
-                                  <img src="{{ url_for('static', filename='img/IPC.png') }}" class="avatar avatar-sm me-3" alt="Public">
+                                <div class="d-flex px-2 py-1">
+                                  <div>
+                                    <img src="{{ url_for('static', filename='img/IPC.png') }}" class="avatar avatar-sm me-3" alt="Public">
 
-                                  <div class="d-flex flex-column justify-content-center">
-                                    <h6 class="mb-0 text-sm">{{ cloud }}</h6>
+                                    <div class="d-flex flex-column justify-content-center">
+                                      <h6 class="mb-0 text-sm">{{ cloud }}</h6>
+                                    </div>
                                   </div>
                                 </div>
                                 {% else %}
-                                <div>
-                                  <img src="{{ url_for('static', filename='img/local.png') }}" class="avatar avatar-sm me-3" alt="Local">
-                                  <h6 class="mb-0 text-sm">{{ cloud }}</h6>
+                                <div class="d-flex px-2 py-1">
+                                  <div>
+                                    <img src="{{ url_for('static', filename='img/local.png') }}" class="avatar avatar-sm me-3" alt="Local">
+                                    <h6 class="mb-0 text-sm">{{ cloud }}</h6>
+                                  </div>
                                 </div>
                                 {% endif %}
-                              </div>
                               </td>
 
                               <td>
