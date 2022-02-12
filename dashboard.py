@@ -139,6 +139,7 @@ def home():
                 #url = f'{dashbord_url}/api/list/instances/{cloud_name}?api_key=1234'
                 url = f'{dashbord_url}/api/list/instances/Infomaniak?api_key=1234'
                 data = requests.get(url,verify=True)
+                print(data, flush=True, file=sys.stdout)
                 data = data.content
                 data = json.loads(data.decode('utf-8'))
                 result[cloud_name] = data
