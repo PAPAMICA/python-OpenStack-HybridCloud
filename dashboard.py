@@ -12,14 +12,15 @@ import bdd
 import random
 import string
 
+
 dashbord_url = "https://hybridcloud.papamica.com"
 
 @app.route("/", methods=['GET','POST'])
 def home():
-    result     = dict()
+    result = dict()
     cloud_name = str()
-    api_key    = str()
-    key_name   = str()
+    api_key = ""
+    key_name = ""
     if request.method == 'POST':
         if request.form.get('start'):
             instance_name = request.form.getlist('start')
@@ -51,7 +52,7 @@ def home():
             url = f'{dashbord_url}/api/{cloud_name[0]}/{instance_name}?api_key=1234'
             result = requests.delete(url)
             #print(result, flush=True, file=sys.stdout)
-            time.sleep(5)
+            time.sleep(1)
             data = reload_list(cloud_name[0])
 
 
@@ -61,6 +62,7 @@ def home():
             characters = string.ascii_letters + string.digits
             api_key = ''.join(random.choice(characters) for i in range(18))
             bdd.insert_api_key(api_key,key_name)
+            return render_template("index.html", api_key=api_key, key_name = key_name)
         
         elif request.form.get('delete-apikey'):
             key_name = request.form['key_name']
@@ -74,6 +76,7 @@ def home():
             data = data.content
             data = json.loads(data.decode('utf-8'))
             result[cloud_name] = data
+            return render_template("create.html",resources=result, cloud_name=cloud_name)
 
         elif request.form.get('create_instance_2'):
             cloud_name = request.form['cloud_name']
@@ -111,7 +114,7 @@ def home():
                 data = data.content
                 data = json.loads(data.decode('utf-8'))
                 result[cloud_name] = data
-            #return render_template("index.html",resources=result, cloud_name=cloud_name)
+            return render_template("index.html",resources=result, cloud_name=cloud_name)
 
         elif request.form.get('update_resources'):
             cloud = request.form.getlist('cloud')
@@ -127,7 +130,7 @@ def home():
                 data = data.content
                 data = json.loads(data.decode('utf-8'))
                 result[cloud_name] = data
-            #return render_template("index.html",resources=result, cloud_name=cloud_name)
+            return render_template("index.html",resources=result, cloud_name=cloud_name)
 
         elif request.form.get('list_instances'):
             cloud = request.form.getlist('cloud')
@@ -141,7 +144,7 @@ def home():
                 result[cloud_name] = data
             print(result, flush=True, file=sys.stdout)
             #return render_template("index.html",instances=data, cloud_name=cloud_name)
-    return render_template("index.html",instances=result, cloud_name=cloud_name, api_key=api_key, key_name = key_name, resources=result)
+    return render_template("index.html",instances=result, cloud_name=cloud_name)
 
 
 def reload_list(cloud_name):
