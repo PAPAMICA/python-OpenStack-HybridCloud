@@ -278,6 +278,7 @@ def create_instance(cloud, instance_name,instance_image, instance_flavor, instan
         networks=[{"uuid": network.id}], key_name=keypair.name)
 
     server = cloud.compute.wait_for_server(server)
+    print("TEST")
     server = cloud.compute.add_security_group_to_server(server, security_group)
     print(get_instance_information(cloud, instance_name))
 

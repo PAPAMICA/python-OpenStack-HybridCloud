@@ -69,6 +69,21 @@ def home():
             data = json.loads(data.decode('utf-8'))
             result[cloud_name] = data
             return render_template("create.html",resources=result, cloud_name=cloud_name)
+
+        elif request.form.get('create_instance_2'):
+            cloud_name = request.form.getlist('cloud_name')
+            instance_name = request.form.getlist('iname')
+            instance_flavor = request.form.getlist('FLAVOR')
+            instance_image = request.form.getlist('IMAGE')
+            instance_keypair = request.form.getlist('KEYPAIR')
+            instance_network = request.form.getlist('NETWORK')
+            instance_sc = request.form.getlist('SECURITY_GROUP')
+            url = f'{dashbord_url}/api/{cloud_name}/new_instance?api_key=1234&instance_name="{instance_name}"&instance_image="{instance_image}"&instance_flavor="{instance_flavor}"&instance_network="{instance_network}"&instance_keypair="{instance_keypair}"&instance_securitygroup="{instance_sc}"'
+            data = requests.get(url,verify=True)
+            #data = data.content
+            #data = json.loads(data.decode('utf-8'))
+            #result[cloud_name] = data
+            #return render_template("create.html",resources=result, cloud_name=cloud_name)
             
 
         elif request.form.get('list_resources'):
@@ -112,6 +127,7 @@ def home():
             print(result, flush=True, file=sys.stdout)
             #return render_template("index.html",instances=data, cloud_name=cloud_name)
     return render_template("index.html",instances=result, cloud_name=cloud_name)
+
 
 def reload_list(cloud_name):
     url = f'{dashbord_url}/api/list/instances/{cloud_name}?api_key=1234'
