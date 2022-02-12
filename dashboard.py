@@ -136,6 +136,7 @@ def home():
                 data = requests.get(url,verify=True)
                 data = data.content
                 data = json.loads(data.decode('utf-8'))
+                print(data, flush=True, file=sys.stdout)
                 result[cloud_name] = data
             return render_template("index.html",resources=result, cloud_name=cloud_name)
 
