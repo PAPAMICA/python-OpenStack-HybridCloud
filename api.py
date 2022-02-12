@@ -144,8 +144,8 @@ def create_instance(cloud_name):
         instance_keypair = data['instance_keypair']
         instance_securitygroup = data['instance_securitygroup']
         cloud  = openstack_api.cloud_connection(cloud_name)
-        result = openstack_api.create_instance(cloud, instance_name,instance_image, instance_flavor, instance_network, instance_keypair, instance_securitygroup)
-        return result
+        openstack_api.create_instance(cloud, instance_name,instance_image, instance_flavor, instance_network, instance_keypair, instance_securitygroup)
+        return "200 : success"
     else:
         return render_template("403.html")
 
