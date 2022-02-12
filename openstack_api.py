@@ -40,7 +40,7 @@ keypair_name = ""
 # Connect to Openstack
 def cloud_connection(cloud_name):
     try:
-        source = subprocess.getoutput(f'source /openrc/{cloud_name}')
+        source = subprocess.getoutput(f'. /openrc/{cloud_name}')
         print(source)
         return openstack.connect(
             auth_url=os.getenv('OS_AUTH_URL'),
