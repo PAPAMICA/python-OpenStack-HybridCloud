@@ -16,7 +16,7 @@ dashbord_url = "https://hybridcloud.papamica.com"
 
 @app.route("/", methods=['GET','POST'])
 def home():
-    data = dict()
+    result = dict()
     cloud_name = str()
     if request.method == 'POST':
         if request.form.get('start'):
