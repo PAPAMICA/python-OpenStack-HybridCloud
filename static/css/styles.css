@@ -311,6 +311,7 @@ span.status-offline {
 /* -------- Switch Styles ------------*/
 .switch {
   position: relative;
+  margin-left: 33%;
   margin-bottom: 12px;
   
 }
@@ -369,7 +370,7 @@ span.status-offline {
 }
 
 .cote {
-  width: 40%;
+  width: 50%;
   display: grid;
 }
 

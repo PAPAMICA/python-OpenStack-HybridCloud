@@ -111,10 +111,7 @@ def home():
 
         elif request.form.get('list_instances'):
             cloud_name = request.form.getlist('cloud')
-            if cloud_name:
-                cloud_name = "Infomaniak"
-            else:
-                cloud_name = "local"
+            print(cloud_name, flush=True, file=sys.stdout)
             url = f'{dashbord_url}/api/list/instances/{cloud_name}?api_key=1234'
             print(cloud_name, flush=True, file=sys.stdout)
             result = requests.get(url,verify=True)
