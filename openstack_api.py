@@ -41,7 +41,7 @@ keypair_name = ""
 def cloud_connection(cloud_name):
     try:
         source = subprocess.getoutput(f'. /openrc/{cloud_name}')
-        print(source)
+        print(f"RESULTAT DE LA COMMANDE SOURCE : {source}")
         return openstack.connect(
             auth_url=os.getenv('OS_AUTH_URL'),
             project_name=os.getenv('OS_PROJECT_NAME'),
