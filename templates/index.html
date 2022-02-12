@@ -245,10 +245,11 @@
                               <p class="mb-1 pt-2 text-bold">Built by developers</p>
                               <h5 class="font-weight-bolder">Soft UI Dashboard</h5>
                           {%for cloud in resources%}
-                              {% set flavorcount = resources[cloud]['FLAVOR']|length %}
+                              {% set flavorcount = resources[cloud]['FLAVOR'] %}
+
+                              <h5 class="font-weight-bolder">Il y a {{ flavorcount|length }} flavors !</h5>
 
                               {% endfor %}
-                              <h5 class="font-weight-bolder">Il y a {{ resources[cloud]['FLAVOR']|length }} flavors !</h5>
                               <p class="mb-5">From colors, cards, typography to complex elements, you will find the full documentation.</p>
                               <a class="text-body text-sm font-weight-bold mb-0 icon-move-right mt-auto" href="javascript:;"> Read More <i class="fas fa-arrow-right text-sm ms-1" aria-hidden="true"></i> </a> 
                           </div>
