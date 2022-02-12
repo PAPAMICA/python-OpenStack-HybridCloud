@@ -398,6 +398,18 @@ span.status-offline {
 }
 @media (max-width: 1600px) {
   .row {
+    flex-direction: row;
+  }
+  .column-3 {
+    width: 100%;
+  }
+  .column-4 {
+    width: 100%;
+  }
+}
+
+@media (max-width: 800px) {
+  .row {
     flex-direction: column;
   }
   .column-3 {
@@ -528,8 +540,4 @@ table {
 
 .field input {
   margin-bottom: 10px;
-}
-
-.titi {
-  padding-top: 142px;
 }
