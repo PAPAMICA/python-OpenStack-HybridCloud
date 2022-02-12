@@ -246,12 +246,22 @@
                               {% set networkcount = resources[cloud]['NETWORK'] %}
                               {% set sccount = resources[cloud]['SECURITY_GROUP'] %}
                               {% set keycount = resources[cloud]['KEYPAIR'] %}
-
-                              <h5 class="font-weight-bolder">Flavors in {{ cloud }} : {{ flavorcount|length }}</h5>
-                              <h5 class="font-weight-bolder">Images in {{ cloud }} : {{ imagecount|length }}</h5>
-                              <h5 class="font-weight-bolder">Networks in {{ cloud }} : {{ networkcount|length }}</h5>
-                              <h5 class="font-weight-bolder">Security groups in {{ cloud }} : {{ sccount|length }}</h5>
-                              <h5 class="font-weight-bolder">Keypair in {{ cloud }} : {{ keycount|length }}</h5>
+                              <div class="titi">
+                                {% if cloud == "Infomaniak" %}
+                                <div>
+                                  <img src="{{ url_for('static', filename='img/IPC.png') }}" class="avatar avatar-sm me-3" alt="Public">
+                                </div>
+                              {% else %}
+                                <div>
+                                  <img src="{{ url_for('static', filename='img/local.png') }}" class="avatar avatar-sm me-3" alt="Local">
+                                </div>
+                              {% endif %}
+                                <h5 class="font-weight-bolder">Flavors in {{ cloud }} : {{ flavorcount|length }}</h5>
+                                <h5 class="font-weight-bolder">Images in {{ cloud }} : {{ imagecount|length }}</h5>
+                                <h5 class="font-weight-bolder">Networks in {{ cloud }} : {{ networkcount|length }}</h5>
+                                <h5 class="font-weight-bolder">Security groups in {{ cloud }} : {{ sccount|length }}</h5>
+                                <h5 class="font-weight-bolder">Keypair in {{ cloud }} : {{ keycount|length }}</h5>
+                              </div>
 
                               {% endfor %}
                     </div>
