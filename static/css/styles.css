@@ -545,4 +545,8 @@ table {
 
 .titi {
   margin: 20px;
+  margin-bottom: 5px;
+}
+.toto {
+  margin-left: 10px;
 }

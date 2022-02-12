@@ -266,11 +266,13 @@
                               </div>
                             </div>
                               {% endif %}
+                              <div class="toto">
                                 <h6 class="font-weight-bolder">Flavors in {{ cloud }} : {{ flavorcount|length }}</h6>
                                 <h6 class="font-weight-bolder">Images in {{ cloud }} : {{ imagecount|length }}</h6>
                                 <h6 class="font-weight-bolder">Networks in {{ cloud }} : {{ networkcount|length }}</h6>
                                 <h6 class="font-weight-bolder">Security groups in {{ cloud }} : {{ sccount|length }}</h6>
                                 <h6 class="font-weight-bolder">Keypair in {{ cloud }} : {{ keycount|length }}</h6>
+                              </div>
                               </div>
 
                               {% endfor %}
