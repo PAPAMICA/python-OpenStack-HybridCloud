@@ -78,8 +78,15 @@ def home():
             instance_keypair = request.form.getlist('KEYPAIR')
             instance_network = request.form.getlist('NETWORK')
             instance_sc = request.form.getlist('SECURITY_GROUP')
-            url = f'{dashbord_url}/api/{cloud_name}/new_instance?api_key=1234&instance_name="{instance_name}"&instance_image="{instance_image}"&instance_flavor="{instance_flavor}"&instance_network="{instance_network}"&instance_keypair="{instance_keypair}"&instance_securitygroup="{instance_sc}"'
-            data = requests.get(url,verify=True)
+            body = {       "instance_name":instance_name,
+                           "instance_image":instance_image,
+                           "instance_flavor":instance_flavor,
+                           "instance_network":instance_network,
+                      "instance_keypair": instance_keypair,
+                      "instance_securitygroup":instance_sc
+                      }
+            url = f'{dashbord_url}/api/{cloud_name}/new_instance?api_key=1234'
+            data = requests.post(url,data=body,verify=True)
             #data = data.content
             #data = json.loads(data.decode('utf-8'))
             #result[cloud_name] = data
