@@ -23,7 +23,7 @@ def home():
         if request.form.get('start'):
             instance_name = request.form.getlist('start')
             cloud_name = request.form.getlist('cloud_name')
-            url = f'{dashbord_url}/api/{cloud_name[0]}/{instance_name[0]}/start'
+            url = f'{dashbord_url}/api/{cloud_name[0]}/{instance_name[0]}/start?api_key=1234'
             result = requests.get(url)
             #print(result, flush=True, file=sys.stdout)
             time.sleep(2)
@@ -31,7 +31,7 @@ def home():
         elif request.form.get('reboot'):
             instance_name = request.form.getlist('reboot')
             cloud_name = request.form.getlist('cloud_name')
-            url = f'{dashbord_url}/api/{cloud_name[0]}/{instance_name[0]}/reboot'
+            url = f'{dashbord_url}/api/{cloud_name[0]}/{instance_name[0]}/reboot?api_key=1234'
             result = requests.get(url)
             #print(result, flush=True, file=sys.stdout)
             time.sleep(1)
@@ -39,7 +39,7 @@ def home():
         elif request.form.get('stop'):
             instance_name = request.form.getlist('stop')
             cloud_name = request.form.getlist('cloud_name')
-            url = f'{dashbord_url}/api/{cloud_name[0]}/{instance_name[0]}/stop'
+            url = f'{dashbord_url}/api/{cloud_name[0]}/{instance_name[0]}/stop?api_key=1234'
             result = requests.get(url)
             #print(result, flush=True, file=sys.stdout)
             time.sleep(2)
