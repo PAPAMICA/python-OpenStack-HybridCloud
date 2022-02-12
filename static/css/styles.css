@@ -499,7 +499,7 @@ button, input[name="destroy"] {
 
 tbody {
   display: block;
-  height: 50px;
+  height: 4000px;
   overflow: auto;
 }
 thead, tbody tr {
