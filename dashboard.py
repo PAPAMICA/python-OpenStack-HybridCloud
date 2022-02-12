@@ -72,21 +72,21 @@ def home():
             return render_template("create.html",resources=result, cloud_name=cloud_name)
 
         elif request.form.get('create_instance_2'):
-            cloud_name = request.form.getlist('cloud_name')
-            instance_name = request.form.getlist('iname')
-            instance_flavor = request.form.getlist('FLAVOR')
-            instance_image = request.form.getlist('IMAGE')
-            instance_keypair = request.form.getlist('KEYPAIR')
-            instance_network = request.form.getlist('NETWORK')
-            instance_sc = request.form.getlist('SECURITY_GROUP')
+            cloud_name = request.form['cloud_name']
+            instance_name = request.form['iname']
+            instance_flavor = request.form['FLAVOR']
+            instance_image = request.form['IMAGE']
+            instance_keypair = request.form['KEYPAIR']
+            instance_network = request.form['NETWORK']
+            instance_sc = request.form['SECURITY_GROUP']
             headers = {"Content-Type":"application/json"}
             body = {       
-                        "instance_name":str(instance_name),
-                        "instance_image":str(instance_image),
-                        "instance_flavor":str(instance_flavor),
-                        "instance_network":str(instance_network),
-                        "instance_keypair":str(instance_keypair),
-                        "instance_securitygroup":str(instance_sc)
+                        "instance_name":instance_name,
+                        "instance_image":instance_image,
+                        "instance_flavor":instance_flavor,
+                        "instance_network":instance_network,
+                        "instance_keypair":instance_keypair,
+                        "instance_securitygroup":instance_sc
                     }
             url = f'{dashbord_url}/api/{cloud_name}/new_instance?api_key=1234'
             r = requests.post(url,data=json.dumps(body),headers=headers,verify=True)
