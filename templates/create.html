@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+
+
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>HybridCloud</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/template.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+
+<body>
+  <div class="login-root">
+    <div class="box-root flex-flex flex-direction--column" style="min-height: 100vh;flex-grow: 1;">
+      <div class="box-root padding-top--24 flex-flex flex-direction--column" style="flex-grow: 1; z-index: 9;">
+        <div class="box-root padding-top--48 padding-bottom--24 flex-flex flex-justifyContent--center">
+          <h1><a href="https://papamica.com" rel="dofollow">HybridCloud</a></h1>
+        </div>
+        <div class="formbg-outer">
+          <div class="row">
+            <div class="column-3">
+              <div class="formbg">
+                <div class="formbg-inner padding-horizontal--20">
+                  <span class="padding-bottom--15"><h2 class="center">Create instances</h2></span>
+                  <form id="stripe-login" method="post">
+                    <div class="row-2">
+                      <div class="column-3-2 cote">
+                        <img src="{{ url_for('static', filename='img/local.png') }}" class="logo-cloud" alt="local-cloud">
+                        <h3 class="center">LOCAL</h3>
+                        <div class="switch">
+                          <input type="checkbox" name="cloud" id="checkbox1-1" value="Local">
+                          <label for="checkbox1-1"></label>
+                        </div>
+                      </div>
+                      <div class="column-3-2 cote">
+                        <img src="{{ url_for('static', filename='img/IPC.png') }}" class="logo-cloud" alt="public-cloud">
+                        <h3 class="center">PUBLIC</h3>
+                        <div class="switch">
+                          <input type="checkbox" name="cloud" id="checkbox1-2" value="Infomaniak">
+                          <label for="checkbox1-2"></label>
+                        </div>
+                      </div>
+                    </div>
+
+
+                    <label for="flavor">Choose a flavor:</label>
+                    <select id="flavor" name="flavor">
+                      {%for flavor in resources[0]['FLAVOR']%}
+                      <option value="{{ flavor }}">{{ flavor }}</option>
+                      {%endfor%}
+                    </select>
+                    
+                    <div class="field padding-bottom--24 confirm-list row-2">
+                      <input class="column-3-2" type="submit" name="list_instances" value="List instances"> 
+                      <input class="column-3-2" type="submit" name="create_instance" value="Create instance">
+                    </div>
+                  </div>
+                  </form>
+                </div>
+              </div>
+          </div>
+
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>

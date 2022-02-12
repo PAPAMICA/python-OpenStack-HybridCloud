@@ -61,17 +61,15 @@ def home():
             return render_template("index.html", api_key=api_key)
         
         elif request.form.get('create_instance'):
-            cloud_name = request.form.getlist('cloud')
-            if cloud_name:
-                cloud_name = "Infomaniak"
-            else:
-                cloud_name = "local"
-            url = f'{dashbord_url}/api/list/instances/{cloud_name}?api_key=1234'
-            result = requests.get(url,verify=True)
-            data = result.content
+            cloud = request.form.getlist('cloud')
+            cloud_name = cloud[0]
+            url = f'{dashbord_url}/api/list/resources/{cloud_name}?api_key=1234'
+            data = requests.get(url,verify=True)
+            data = data.content
             data = json.loads(data.decode('utf-8'))
-            if data == None:
-                data = {} 
+            result[cloud_name] = data
+            return render_template("create.html",resources=result, cloud_name=cloud_name)
+            
 
         elif request.form.get('list_resources'):
             cloud = request.form.getlist('cloud')
