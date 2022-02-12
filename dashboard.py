@@ -74,6 +74,7 @@ def home():
                 data = {} 
 
         elif request.form.get('list_resources'):
+            cloud = request.form.getlist('cloud')
             result = {}   
             for cloud_name in cloud:
                 #url = f'{dashbord_url}/api/list/resources/{cloud_name}?api_key=1234'
