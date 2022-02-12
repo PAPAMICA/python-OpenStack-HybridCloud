@@ -74,61 +74,42 @@ def home():
                 data = {} 
 
         elif request.form.get('list_resources'):
-            cloud_name = request.form.getlist('cloud')
-            if cloud_name:
-                cloud_name = "Infomaniak"
-            else:
-                cloud_name = "local"
-            url = f'{dashbord_url}/api/list/resources/{cloud_name}?api_key=1234'
-            result = requests.get(url,verify=True)
-            if "!DOCTYPE" in result:
-                url = f'{dashbord_url}/api/update/resources/{cloud_name}?api_key=1234'
-                update = requests.get(url,verify=True)
-                url = f'{dashbord_url}/api/list/resources/{cloud_name}?api_key=1234'
-                result = requests.get(url,verify=True)
-                data = result.content
+            result = {}   
+            for cloud_name in cloud:
+                #url = f'{dashbord_url}/api/list/resources/{cloud_name}?api_key=1234'
+                url = f'{dashbord_url}/api/list/resources/Infomaniak?api_key=1234'
+                data = requests.get(url,verify=True)
+                data = data.content
                 data = json.loads(data.decode('utf-8'))
-            else:
-                data = result.content
-                data = json.loads(data.decode('utf-8'))
-            print(data, flush=True, file=sys.stdout)
-            return render_template("index.html",resources=data, cloud_name=cloud_name)
+                result[cloud_name] = data
+            return render_template("index.html",resources=result, cloud_name=cloud_name)
 
         elif request.form.get('update_resources'):
             cloud_name = request.form.getlist('cloud')
-            if cloud_name:
-                cloud_name = "Infomaniak"
-            else:
-                cloud_name = "local"
-            url = f'{dashbord_url}/api/update/resources/{cloud_name}?api_key=1234'
-            result = requests.get(url,verify=True)
-            url = f'{dashbord_url}/api/list/resources/{cloud_name}?api_key=1234'
-            result = requests.get(url,verify=True)
-            data = result.content
-            data = json.loads(data.decode('utf-8'))
-            print(data, flush=True, file=sys.stdout)
-            return render_template("index.html",resources=data, cloud_name=cloud_name)
+
+            result = {}   
+            for cloud_name in cloud:
+                #url = f'{dashbord_url}/api/update/resources/{cloud_name}?api_key=1234'
+                url = f'{dashbord_url}/api/update/resources/Infomaniak?api_key=1234'
+                update = requests.get(url,verify=True)
+                #url = f'{dashbord_url}/api/list/resources/{cloud_name}?api_key=1234'
+                url = f'{dashbord_url}/api/list/resources/Infomaniak?api_key=1234'
+                data = requests.get(url,verify=True)
+                data = data.content
+                data = json.loads(data.decode('utf-8'))
+                result[cloud_name] = data
+            return render_template("index.html",resources=result, cloud_name=cloud_name)
 
         elif request.form.get('list_instances'):
             cloud = request.form.getlist('cloud')
             result = {}   
-            if len(cloud) == 2:
-                for cloud_name in cloud:
-                    print("ICIIIIIIIIIII", flush=True, file=sys.stdout)
-                    #url = f'{dashbord_url}/api/list/instances/{cloud_name}?api_key=1234'
-                    url = f'{dashbord_url}/api/list/instances/Infomaniak?api_key=1234'
-                    data = requests.get(url,verify=True)
-                    data = data.content
-                    data = json.loads(data.decode('utf-8'))
-                    result[cloud_name] = data
-
-            else:
-                cloud_name = (cloud[0])
-                url = f'{dashbord_url}/api/list/instances/{cloud_name}?api_key=1234'
+            for cloud_name in cloud:
+                #url = f'{dashbord_url}/api/list/instances/{cloud_name}?api_key=1234'
+                url = f'{dashbord_url}/api/list/instances/Infomaniak?api_key=1234'
                 data = requests.get(url,verify=True)
                 data = data.content
-                result = json.loads(data.decode('utf-8'))
-            
+                data = json.loads(data.decode('utf-8'))
+                result[cloud_name] = data
             print(result, flush=True, file=sys.stdout)
             #return render_template("index.html",instances=data, cloud_name=cloud_name)
     return render_template("index.html",instances=result, cloud_name=cloud_name)
