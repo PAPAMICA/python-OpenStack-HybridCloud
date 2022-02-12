@@ -514,3 +514,7 @@ thead {
 table {
   width: 400px;
 }
+
+.card {
+  height: 520px;
+}
