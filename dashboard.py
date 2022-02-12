@@ -120,7 +120,7 @@ def home():
                     data = requests.get(url,verify=True)
                     data = data.content
                     data = json.loads(data.decode('utf-8'))
-                    result = result | data
+                    result[cloud_name] = data
 
             else:
                 cloud_name = (cloud[0])
