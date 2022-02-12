@@ -1,3 +1,4 @@
+from email import header
 from re import A
 import requests
 import json
@@ -78,6 +79,7 @@ def home():
             instance_keypair = request.form.getlist('KEYPAIR')
             instance_network = request.form.getlist('NETWORK')
             instance_sc = request.form.getlist('SECURITY_GROUP')
+            headers = {"Content-Type}":"application/json"}
             body = {       
                         "instance_name":instance_name,
                         "instance_image":instance_image,
@@ -87,7 +89,7 @@ def home():
                         "instance_securitygroup":instance_sc
                     }
             url = f'{dashbord_url}/api/{cloud_name}/new_instance?api_key=1234'
-            data = requests.post(url,data=body,verify=True)
+            data = requests.post(url,data=body,header=headers,verify=True)
             #data = data.content
             #data = json.loads(data.decode('utf-8'))
             #result[cloud_name] = data
