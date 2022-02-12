@@ -56,9 +56,10 @@ def home():
 
         elif request.form.get('get-apikey'):
             print("jsuispasséICI", flush=True, file=sys.stdout)
+            name="test"
             characters = string.ascii_letters + string.digits
             api_key = ''.join(random.choice(characters) for i in range(18))
-            bdd.insert_api_key(api_key)
+            bdd.insert_api_key(api_key,name)
             return render_template("index.html", api_key=api_key)
         
         elif request.form.get('create_instance'):

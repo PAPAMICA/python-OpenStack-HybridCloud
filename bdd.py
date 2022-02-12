@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 
 import sqlite3
+from unicodedata import name
 import openstack_api
 
 def connect_to_db():
@@ -87,9 +88,9 @@ def fill_database(cloud_name):
     except:
         return ("ERROR")
 
-def insert_api_key(key):
+def insert_api_key(key,name):
     conn, cursor = connect_to_db()
-    query = f"INSERT INTO api_keys (key) VALUES('{key}');"
+    query = f"INSERT INTO api_keys (key,name) VALUES('{key}','{name}');"
     cursor.execute(query)
     conn.commit()
     conn.close()
@@ -101,19 +102,17 @@ def seek_api_key(key):
     conn.close
     return result.fetchone()
 
-# create_db_cloud("Infomaniak")
-# list_db_table()
-# cloud_name = 'Infomaniak'
-# fill_database(cloud_name)
-# readSqliteTable(cloud_name, "ALL")
-# delete_db_table(cloud_name)
+def delete_api_key(name):
+    conn, cursor = connect_to_db()
+    query = f"DELETE FROM api_keys WHERE name='{name}'"
+    cursor.execute(query)
+    conn.commit()
+    conn.close()
+
+
 # conn, cursor = connect_to_db()
-# #cmd = "CREATE TABLE api_keys(key VARCHAR(100))"
-# cmd = "SELECT * FROM api_keys;"
+# cmd = "SELECT * FROM api_keys"
 # res = cursor.execute(cmd)
-# # # # print(res.fetchone())
-# # # # insert_api_key("1234")
-# #key = seek_api_key("BTbKgc6HQCt92d7ym6m")
 # print(res.fetchall())
 # conn.close()
 
