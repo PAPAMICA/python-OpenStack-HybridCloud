@@ -39,7 +39,6 @@ keypair_name = ""
 
 # Connect to Openstack
 def cloud_connection(cloud_name):
-    try:
         file = f'/openrc/{cloud_name}'
         with open(file) as f:
             line = f.readline()
@@ -61,8 +60,6 @@ def cloud_connection(cloud_name):
             app_name='examples',
             app_version='1.0',
         )
-    except:
-        print("ERROR OPENSTACK CONNECTION")
 
 
 # Get all informations of all instances
