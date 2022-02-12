@@ -71,7 +71,7 @@ paths:
         - key: []
       tags:
       - "cloud"
-      summary: "update database to get fresh infos about resources"
+      summary: "update resources database"
       description: ""
       operationId: "updateResByCloud"
       produces:
