@@ -49,6 +49,7 @@ def cloud_connection(cloud_name):
                 if len(line) > 1:
                     word=line[1].split('=')
                     globals()[word[0]] = word[1]
+        print(OS_USERNAME)
         return openstack.connect(
             auth_url=OS_AUTH_URL,
             project_name=OS_PROJECT_NAME,
