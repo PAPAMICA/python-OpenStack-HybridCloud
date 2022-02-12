@@ -229,11 +229,12 @@
                           </tr>
                         </thead>
                         <tbody>
-                              {%for resource in resources%}
-                                {%for data in resources[resource]%}
+                            {%for cloud in resources%}
+                            {%for resource in resources[cloud]%}
+                                {%for data in resources[cloud][resource]%}
                                 <tr>
                               <td>
-                                 {% if cloud_name == "Infomaniak" %}
+                                 {% if cloud == "Infomaniak" %}
                                 <div>
                                   <img src="{{ url_for('static', filename='img/IPC.png') }}" class="avatar avatar-sm me-3" alt="Public">
                                 </div>
