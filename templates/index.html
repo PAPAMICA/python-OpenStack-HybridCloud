@@ -93,8 +93,10 @@
                           <div class="field padding-bottom--24">
                             <label for="get-apikey">Your API Key</label>
                             {% if api_key %}
+                              <input type="text" name="key_name" value="{{ key_name }}"/>
                               <input type="text" name="get-apikey" value="{{ api_key }}" readonly="readonly"/>
                             {% else %}
+                              <input type="text" name="key_name" placeholder="Enter a key name"/>
                               <input type="text" name="get-apikey" value="Click on button generate" readonly="readonly"/>
                             {% endif %}
                           </div>
