@@ -61,7 +61,7 @@ def cloud_connection(cloud_name):
             app_version='1.0',
         )
     except:
-        print("ERROR OPENSTACK CONNECTION")cd 
+        print("ERROR OPENSTACK CONNECTION")
 
 
 # Get all informations of all instances
