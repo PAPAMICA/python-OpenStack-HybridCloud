@@ -25,12 +25,14 @@
                 <div class="formbg-inner padding-horizontal--20">
                   <span class="padding-bottom--15"><h2 class="center">Create instances</h2></span>
                   <form id="stripe-login" method="post">
-                    <label for="flavor">Choose a flavor:</label>
-                    <select id="flavor" name="flavor">
-                      {%for flavor in resources[cloud]['FLAVOR']%}
-                      <option value="{{ flavor }}">{{ flavor }}</option>
+                    {%for resource in resources[cloud]%}
+                    <label for="{{ resource }}">Choose a {{ resource }}:</label>
+                    <select id="{{ resource }}" name="{{ resource }}">
+                      {%for data in resources[cloud][resource]%}
+                      <option value="{{ data }}">{{ data }}</option>
                       {%endfor%}
                     </select>
+                    {%endfor%}
                     
                     <div class="field padding-bottom--24 confirm-list row-2">
                       <input class="column-3-2" type="submit" name="list_instances" value="List instances"> 
