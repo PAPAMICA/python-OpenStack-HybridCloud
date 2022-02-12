@@ -103,6 +103,13 @@ def home():
             #result[cloud_name] = data
             #return render_template("create.html",resources=result, cloud_name=cloud_name)
             
+        elif request.form.get('refresh-billing'):
+            result = {}   
+            url = f'{dashbord_url}/api/Infomaniak/billing?api_key=1234'
+            data = requests.get(url,verify=True)
+            data = data.content
+            result = json.loads(data.decode('utf-8'))
+            return render_template("index.html",billing=result)
 
         elif request.form.get('list_resources'):
             cloud = request.form.getlist('cloud')

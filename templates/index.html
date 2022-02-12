@@ -87,23 +87,17 @@
                 <div class="column-3">
                   <div class="formbg">
                     <div class="formbg-inner padding-horizontal--20">
-                      <span class="padding-bottom--15"><h2 class="center">Generate API Key</h2></span>
+                      <span class="padding-bottom--15"><h2 class="center">Billing Public Cloud</h2></span>
                       <form id="stripe-login" method="post">
                         <div class="row">
-                          <div class="field">
-                            <label for="get-apikey">Your API Key</label>
-                            {% if api_key %}
-                              <input type="text" name="key_name" value="{{ key_name }}"/>
-                              <input type="text" name="get-apikey" value="{{ api_key }}" readonly="readonly"/>
-                            {% else %}
-                              <input type="text" name="key_name" placeholder="Enter a key name"/>
-                              <input type="text" name="get-apikey" value="Click on button generate" readonly="readonly"/>
-                            {% endif %}
-                          </div>
+                          {% if billing %}
+                          {%for delai in billing%}
+                          <h5 class="center">{{ delai[0] }} : {{ delai[1] }} EUR</h5>
+                          {% endfor %}
+                          {% endif %}
                         
-                    <div class="field padding-bottom--24 confirm-list row-2">
-                      <input class="column-3-2" type="submit" name="get-apikey" value="Generate">
-                      <input class="column-3-2" type="submit" name="delete-apikey" value="Delete"> 
+                    <div class="field padding-bottom--24 confirm-list row">
+                      <input class="column-3-2" type="submit" name="refresh-billing" value="Refresh"> 
                     </div>
                       </div>
                       </form>
