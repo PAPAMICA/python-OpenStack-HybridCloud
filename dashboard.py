@@ -89,7 +89,8 @@ def home():
                         "instance_securitygroup":instance_sc
                     }
             url = f'{dashbord_url}/api/{cloud_name}/new_instance?api_key=1234'
-            requests.post(url,data=json.dumps(body),headers=headers,verify=True)
+            r = requests.post(url,data=json.dumps(body),headers=headers,verify=True)
+            return r, data, body 
             #data = data.content
             #data = json.loads(data.decode('utf-8'))
             #result[cloud_name] = data
