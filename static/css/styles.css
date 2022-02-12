@@ -403,9 +403,6 @@ span.status-offline {
   .column-3 {
     width: 100%;
   }
-  .row-2{
-    flex-direction: column;
-  }
   .column-4 {
     width: 100%;
   }
