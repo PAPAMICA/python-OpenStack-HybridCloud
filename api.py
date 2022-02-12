@@ -145,7 +145,7 @@ def create_instance(cloud_name):
         instance_securitygroup = data['instance_securitygroup']
         cloud  = openstack_api.cloud_connection(cloud_name)
         openstack_api.create_instance(cloud, instance_name,instance_image, instance_flavor, instance_network, instance_keypair, instance_securitygroup)
-        return Response("201 : success", status=201)
+        return "ok" #Response("201 : success", status=201)
     else:
         return Response("403 : Access denied",status=403)
 
