@@ -263,7 +263,8 @@
                           </tr>
                         </thead>
                         <tbody>
-                                {%for data in resources[cloud_name]['FLAVOR']%}
+                          {%for cloud_name in resources%}
+                          {%for data in resources[cloud_name]['FLAVOR']%}
                                 <tr>
                               <td>
                                 <div class="d-flex px-2 py-1">
@@ -289,6 +290,7 @@
                                 </div>
                               </td>
                             </tr>
+                              {%endfor%}
                               {%endfor%}
                         </tbody>
                       </table>
