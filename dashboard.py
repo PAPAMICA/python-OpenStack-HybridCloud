@@ -12,6 +12,9 @@ import bdd
 import random
 import string
 
+global result 
+result = dict()
+
 
 dashbord_url = "https://hybridcloud.papamica.com"
 
