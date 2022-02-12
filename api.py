@@ -13,7 +13,7 @@ def display_instances_list(cloud_name):
     if res:
         cloud  = openstack_api.cloud_connection(cloud_name)
         result = openstack_api.get_instances_list(cloud)
-        return result, 200
+        return result
     else:
         return Response("403 : Access denied",status=403)
 
