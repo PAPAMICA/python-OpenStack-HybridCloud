@@ -45,9 +45,9 @@ def home():
             time.sleep(2)
             data = reload_list(cloud_name[0])
         elif request.form.get('destroy'):
-            instance_name = request.form.getlist('destroy')
+            instance_name = request.form['destroy']
             cloud_name = request.form.getlist('cloud_name')
-            url = f'{dashbord_url}/api/{cloud_name[0]}/{instance_name[0]}'
+            url = f'{dashbord_url}/api/{cloud_name[0]}/{instance_name}'
             result = requests.delete(url)
             #print(result, flush=True, file=sys.stdout)
             time.sleep(1)
