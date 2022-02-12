@@ -1,3 +1,4 @@
 python-openstackclient
+python-cloudkittyclient 
 flask
 requests
