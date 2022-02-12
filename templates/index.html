@@ -239,15 +239,14 @@
               </div>
 
 
-              {%for cloud in resources%}
-              {%for resource in resources[cloud]%}
+              {%for resource in resources[cloud_name]%}
               {% if resource == "FLAVOR" %}
               <div class="column-4">
                 <div class="card mb-4">
                   <div class="card-header pb-0">
                     <div class="d-flex px-2 py-1">
                      <div>
-                       <img src="{{ url_for('static', filename='img/FLAVOR.png') }}" class="avatar avatar-sm me-3" alt="Local">
+                       <img src="{{ url_for('static', filename='img/flavor.png') }}" class="avatar avatar-sm me-3" alt="Local">
                      </div>
                    <div class="d-flex flex-column justify-content-center">
                      <h6> Flavors List </h6>
@@ -264,11 +263,11 @@
                           </tr>
                         </thead>
                         <tbody>
-                                {%for data in resources[cloud]['FLAVOR']%}
+                                {%for data in resources[cloud_name]['FLAVOR']%}
                                 <tr>
                               <td>
                                 <div class="d-flex px-2 py-1">
-                                 {% if cloud == "Infomaniak" %}
+                                 {% if cloud_name == "Infomaniak" %}
                                   <div>
                                     <img src="{{ url_for('static', filename='img/IPC.png') }}" class="avatar avatar-sm me-3" alt="Public">
                                   </div>
@@ -320,11 +319,11 @@
                           </tr>
                         </thead>
                         <tbody>
-                                {%for data in resources[cloud]['IMAGE']%}
+                                {%for data in resources[cloud_name]['IMAGE']%}
                                 <tr>
                               <td>
                                 <div class="d-flex px-2 py-1">
-                                 {% if cloud == "Infomaniak" %}
+                                 {% if cloud_name == "Infomaniak" %}
                                   <div>
                                     <img src="{{ url_for('static', filename='img/IPC.png') }}" class="avatar avatar-sm me-3" alt="Public">
                                   </div>
@@ -378,11 +377,11 @@
                           </tr>
                         </thead>
                         <tbody>
-                                {%for data in resources[cloud]['NETWORK']%}
+                                {%for data in resources[cloud_name]['NETWORK']%}
                                 <tr>
                               <td>
                                 <div class="d-flex px-2 py-1">
-                                 {% if cloud == "Infomaniak" %}
+                                 {% if cloud_name == "Infomaniak" %}
                                   <div>
                                     <img src="{{ url_for('static', filename='img/IPC.png') }}" class="avatar avatar-sm me-3" alt="Public">
                                   </div>
@@ -434,11 +433,11 @@
                           </tr>
                         </thead>
                         <tbody>
-                                {%for data in resources[cloud]['SECURITY_GROUP']%}
+                                {%for data in resources[cloud_name]['SECURITY_GROUP']%}
                                 <tr>
                               <td>
                                 <div class="d-flex px-2 py-1">
-                                 {% if cloud == "Infomaniak" %}
+                                 {% if cloud_name == "Infomaniak" %}
                                   <div>
                                     <img src="{{ url_for('static', filename='img/IPC.png') }}" class="avatar avatar-sm me-3" alt="Public">
                                   </div>
@@ -490,11 +489,11 @@
                           </tr>
                         </thead>
                         <tbody>
-                                {%for data in resources[cloud]['KEYPAIR']%}
+                                {%for data in resources[cloud_name]['KEYPAIR']%}
                                 <tr>
                               <td>
                                 <div class="d-flex px-2 py-1">
-                                 {% if cloud == "Infomaniak" %}
+                                 {% if cloud_name == "Infomaniak" %}
                                   <div>
                                     <img src="{{ url_for('static', filename='img/IPC.png') }}" class="avatar avatar-sm me-3" alt="Public">
                                   </div>
@@ -524,7 +523,6 @@
                 </div>
               </div>
               {% endif %}
-              {%endfor%}
             {%endfor%}
             </div>
           </div>
