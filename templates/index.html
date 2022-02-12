@@ -237,12 +237,15 @@
                                  {% if cloud == "Infomaniak" %}
                                 <div>
                                   <img src="{{ url_for('static', filename='img/IPC.png') }}" class="avatar avatar-sm me-3" alt="Public">
+                                  <h6 class="mb-0 text-sm">{{ cloud }}</h6>
                                 </div>
                                 {% else %}
                                 <div>
                                   <img src="{{ url_for('static', filename='img/local.png') }}" class="avatar avatar-sm me-3" alt="Local">
+                                  <h6 class="mb-0 text-sm">{{ cloud }}</h6>
                                 </div>
                                 {% endif %}
+
                               </td>
 
                               <td>
