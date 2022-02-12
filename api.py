@@ -118,7 +118,7 @@ def create_instance(cloud_name):
     res = bdd.seek_api_key(api_key)
     if res:
         data = request.json
-        data = jsonify(data)
+        #data = jsonify(data)
         instance_name    = data['instance_name']
         instance_image   = data['instance_image']
         instance_flavor  = data['instance_flavor']
