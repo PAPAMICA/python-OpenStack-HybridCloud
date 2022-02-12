@@ -86,7 +86,7 @@ def home():
             return render_template("index.html",resources=result, cloud_name=cloud_name)
 
         elif request.form.get('update_resources'):
-            cloud_name = request.form.getlist('cloud')
+            cloud = request.form.getlist('cloud')
 
             result = {}   
             for cloud_name in cloud:
