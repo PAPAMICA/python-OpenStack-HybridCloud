@@ -113,8 +113,8 @@ def home():
             cloud = request.form.getlist('cloud')
             result = {}   
             if len(cloud) == 2:
-                print("ICIIIIIIIIIII", flush=True, file=sys.stdout)
                 for cloud_name in cloud:
+                    print("ICIIIIIIIIIII", flush=True, file=sys.stdout)
                     #url = f'{dashbord_url}/api/list/instances/{cloud_name}?api_key=1234'
                     url = f'{dashbord_url}/api/list/instances/Infomaniak?api_key=1234'
                     data = requests.get(url,verify=True)
