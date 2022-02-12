@@ -134,7 +134,8 @@
                           </tr>
                         </thead>
                         <tbody>
-                          {%for instance in instances%}
+                          {%for cloud in instances%}
+                          {%for instance in instances[cloud]%}
                           <tr>
                             <td>
                               <div class="d-flex px-2 py-1">
@@ -146,7 +147,7 @@
                                 </div>
                               </div>
                             </td>
-                            {% if instances[instance]['Status'] == "ACTIVE" %}
+                            {% if instances[cloud][instance]['Status'] == "ACTIVE" %}
                             <td class="align-middle text-center text-sm">
                               <span class="badge badge-sm bg-gradient-success">Online</span>
                             </td>
@@ -156,19 +157,19 @@
                             </td>
                             {% endif %}
                             <td>
-                              <p class="text-xs font-weight-bold mb-0">{{ instances[instance]['IP'] }}</p>
+                              <p class="text-xs font-weight-bold mb-0">{{ instances[cloud][instance]['IP'] }}</p>
                             </td>
                             <td>
-                              <p class="text-xs font-weight-bold mb-0">{{ instances[instance]['Image'] }}</p>
+                              <p class="text-xs font-weight-bold mb-0">{{ instances[cloud][instance]['Image'] }}</p>
                             </td>
                             <td>
-                              <p class="text-xs font-weight-bold mb-0">{{ instances[instance]['Keypair'] }}</p>
+                              <p class="text-xs font-weight-bold mb-0">{{ instances[cloud][instance]['Keypair'] }}</p>
                             </td>
                             <td>
-                              <p class="text-xs font-weight-bold mb-0">{{ instances[instance]['Network'] }}</p>
+                              <p class="text-xs font-weight-bold mb-0">{{ instances[cloud][instance]['Network'] }}</p>
                             </td>
                             <td>
-                              <p class="text-xs font-weight-bold mb-0">{{ instances[instance]['Security_groups'] }}</p>
+                              <p class="text-xs font-weight-bold mb-0">{{ instances[cloud][instance]['Security_groups'] }}</p>
                             </td>
                             <td>
                               <div class="d-flex px-2 py-1 outer">
@@ -194,6 +195,7 @@
                               </div>
                             </td>
                           </tr>
+                          {%endfor%}
                           {%endfor%}
                         </tbody>
                       </table>
