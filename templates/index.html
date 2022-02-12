@@ -92,7 +92,7 @@
                         <div class="row">
                           {% if billing %}
                           {%for delai in billing%}
-                          <h5 class="center">{{ delai[0] }} : {{ delai[1] }} EUR</h5>
+                          <h5 class="center">{{ delai }} : {{ billing[delai] }} EUR</h5>
                           {% endfor %}
                           {% endif %}
                         
