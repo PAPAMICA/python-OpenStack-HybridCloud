@@ -321,11 +321,12 @@
                           </tr>
                         </thead>
                         <tbody>
-                                {%for data in resources[cloud_name]['IMAGE']%}
+                          {%for cloud in resources%}
+                                {%for data in resources[cloud]['IMAGE']%}
                                 <tr>
                               <td>
                                 <div class="d-flex px-2 py-1">
-                                 {% if cloud_name == "Infomaniak" %}
+                                 {% if cloud == "Infomaniak" %}
                                   <div>
                                     <img src="{{ url_for('static', filename='img/IPC.png') }}" class="avatar avatar-sm me-3" alt="Public">
                                   </div>
@@ -348,6 +349,8 @@
                               </td>
                             </tr>
                               {%endfor%}
+                              {%endfor%}
+
                         </tbody>
                       </table>
                     </div>
@@ -379,11 +382,12 @@
                           </tr>
                         </thead>
                         <tbody>
-                                {%for data in resources[cloud_name]['NETWORK']%}
+                          {%for cloud in resources%}
+                                {%for data in resources[cloud]['NETWORK']%}
                                 <tr>
                               <td>
                                 <div class="d-flex px-2 py-1">
-                                 {% if cloud_name == "Infomaniak" %}
+                                 {% if cloud == "Infomaniak" %}
                                   <div>
                                     <img src="{{ url_for('static', filename='img/IPC.png') }}" class="avatar avatar-sm me-3" alt="Public">
                                   </div>
@@ -405,6 +409,7 @@
                                 </div>
                               </td>
                             </tr>
+                              {%endfor%}
                               {%endfor%}
                         </tbody>
                       </table>
@@ -435,11 +440,12 @@
                           </tr>
                         </thead>
                         <tbody>
-                                {%for data in resources[cloud_name]['SECURITY_GROUP']%}
+                          {%for cloud in resources%}
+                                {%for data in resources[cloud]['SECURITY_GROUP']%}
                                 <tr>
                               <td>
                                 <div class="d-flex px-2 py-1">
-                                 {% if cloud_name == "Infomaniak" %}
+                                 {% if cloud == "Infomaniak" %}
                                   <div>
                                     <img src="{{ url_for('static', filename='img/IPC.png') }}" class="avatar avatar-sm me-3" alt="Public">
                                   </div>
@@ -461,6 +467,7 @@
                                 </div>
                               </td>
                             </tr>
+                              {%endfor%}
                               {%endfor%}
                         </tbody>
                       </table>
@@ -491,11 +498,12 @@
                           </tr>
                         </thead>
                         <tbody>
-                                {%for data in resources[cloud_name]['KEYPAIR']%}
+                          {%for cloud in resources%}
+                                {%for data in resources[cloud]['KEYPAIR']%}
                                 <tr>
                               <td>
                                 <div class="d-flex px-2 py-1">
-                                 {% if cloud_name == "Infomaniak" %}
+                                 {% if cloud == "Infomaniak" %}
                                   <div>
                                     <img src="{{ url_for('static', filename='img/IPC.png') }}" class="avatar avatar-sm me-3" alt="Public">
                                   </div>
@@ -517,6 +525,7 @@
                                 </div>
                               </td>
                             </tr>
+                              {%endfor%}
                               {%endfor%}
                         </tbody>
                       </table>
