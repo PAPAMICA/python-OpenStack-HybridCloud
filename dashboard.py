@@ -11,6 +11,7 @@ import time
 import bdd
 import random
 import string
+import rating_api
 
 
 dashbord_url = "https://hybridcloud.papamica.com"
@@ -59,14 +60,14 @@ def home():
         elif request.form.get('list_apikey'):
             result = bdd.list_api_key()
             print(result, flush=True, file=sys.stdout)
-            return render_template("index.html", list_api_key=result)
-            
+            return render_template("index.html", list_api_key=result, billing=billing)
+
         elif request.form.get('get_apikey'):
             key_name = request.form['key_name']
             characters = string.ascii_letters + string.digits
             api_key = ''.join(random.choice(characters) for i in range(18))
             bdd.insert_api_key(api_key,key_name)
-            return render_template("index.html", api_key=api_key, key_name = key_name)
+            return render_template("index.html", api_key=api_key, key_name = key_name, billing=billing)
         
         elif request.form.get('delete_apikey'):
             key_name = request.form['key_name']
@@ -81,7 +82,7 @@ def home():
             data = data.content
             data = json.loads(data.decode('utf-8'))
             result[cloud_name] = data
-            return render_template("create.html",resources=result, cloud_name=cloud_name)
+            return render_template("create.html",resources=result, cloud_name=cloud_name, billing=billing)
 
         elif request.form.get('create_instance_2'):
             cloud_name = request.form['cloud_name']
@@ -109,12 +110,14 @@ def home():
             #return render_template("create.html",resources=result, cloud_name=cloud_name)
             
         elif request.form.get('refresh-billing'):
-            result = {}   
-            url = f'{dashbord_url}/api/Infomaniak/billing?api_key=1234'
-            data = requests.get(url,verify=True)
-            data = data.content
-            result = json.loads(data.decode('utf-8'))
-            return render_template("index.html",billing=result)
+            result = {}  
+            global billing
+            #url = f'{dashbord_url}/api/Infomaniak/billing?api_key=1234'
+            #data = requests.get(url,verify=True)
+            #data = data.content
+            #billing = json.loads(data.decode('utf-8'))
+            billing = rating_api.get_billing("Infomaniak")
+            return render_template("index.html",billing=billing)
 
         elif request.form.get('list_resources'):
             cloud = request.form.getlist('cloud')
@@ -126,7 +129,7 @@ def home():
                 data = data.content
                 data = json.loads(data.decode('utf-8'))
                 result[cloud_name] = data
-            return render_template("index.html",resources=result, cloud_name=cloud_name)
+            return render_template("index.html",resources=result, cloud_name=cloud_name, billing=billing)
 
         elif request.form.get('update_resources'):
             cloud = request.form.getlist('cloud')
@@ -143,7 +146,7 @@ def home():
                 data = json.loads(data.decode('utf-8'))
                 result[cloud_name] = data
             print(result, flush=True, file=sys.stdout)
-            return render_template("index.html",resources=result, cloud_name=cloud_name)
+            return render_template("index.html",resources=result, cloud_name=cloud_name, billing=billing)
 
         elif request.form.get('list_instances'):
             cloud = request.form.getlist('cloud')
@@ -158,7 +161,7 @@ def home():
                 result[cloud_name] = data
             print(result, flush=True, file=sys.stdout)
             #return render_template("index.html",instances=data, cloud_name=cloud_name)
-    return render_template("index.html",instances=result, cloud_name=cloud_name)
+    return render_template("index.html",instances=result, cloud_name=cloud_name, billing=billing)
 
 
 def reload_list(cloud_name):
@@ -183,4 +186,6 @@ if __name__ == "__main__":
     table = bdd.create_db_cloud("Local")
     result = bdd.fill_database("Local")
     print(result, flush=True, file=sys.stdout)
+    billing = rating_api.get_billing("Infomaniak")
+    print(billing, flush=True, file=sys.stdout)
     app.run(host="0.0.0.0", port="8086", debug=True)
