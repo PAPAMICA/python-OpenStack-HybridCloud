@@ -51,7 +51,7 @@ def delete_db_table(table):
 def insert_db_data(cloud_name, type, data):
     conn, cursor = connect_to_db()
     for i in data:
-        sql = f'''INSERT INTO OR IGNORE {cloud_name} (TYPE, DATA) VALUES ("{type}","{i}")'''
+        sql = f'''INSERT OR REPLACE INTO {cloud_name} (TYPE, DATA) VALUES ("{type}","{i}")'''
         conn.execute(sql)
         conn.commit()
         conn.close
@@ -83,9 +83,9 @@ def fill_database(cloud_name):
         insert_db_data(cloud_name, "KEYPAIR", data)
         data = openstack_api.list_security_groups(cloud).values()
         insert_db_data(cloud_name, "SECURITY_GROUP", data)
-        return ("SUCCESS")
+        return (f"[SUCCESS] Fill Database {cloud_name}")
     except:
-        return ("ERROR")
+        return (f"[ERROR] Fill Database {cloud_name}")
 
 def insert_api_key(key,name):
     conn, cursor = connect_to_db()
