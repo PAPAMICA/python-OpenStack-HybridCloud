@@ -74,6 +74,7 @@ def get_resources_list(cloud_name):
 def fill_database(cloud_name):
     try:
         cloud = openstack_api.cloud_connection(cloud_name)
+        print (cloud)
         data = openstack_api.list_flavors(cloud).values()
         print (data)
         insert_db_data(cloud_name, "FLAVOR", data)
