@@ -27,8 +27,8 @@ def home():
     billing = billingG
     if request.method == 'POST':
         if request.form.get('start'):
-            instance_name = request.form.getlist('start')
-            cloud_name = request.form.getlist('cloud_name')
+            instance_name = request.form['start']
+            cloud_name = request.form['cloud_name']
             cloud  = openstack_api.cloud_connection(cloud_name)
             openstack_api.start_instance(cloud, instance_name[0])
             time.sleep(2)
