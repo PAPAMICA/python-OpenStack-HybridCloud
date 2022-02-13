@@ -114,7 +114,7 @@ def list_api_key():
 def delete_api_key(name):
     conn, cursor = connect_to_db()
     print(name)
-    query = f"DELETE FROM api_keys WHERE name like '{name}'"
+    query = f"DELETE FROM api_keys WHERE name='{name}'"
     cursor.execute(query)
     conn.commit()
     conn.close()

@@ -73,8 +73,9 @@ def home():
         
         elif request.form.get('delete_apikey'):
             key_name = request.form.getlist('delete_apikey')
-            test = bdd.delete_api_key(key_name)
-            print(test, flush=True, file=sys.stdout)
+            bdd.delete_api_key(key_name)
+            print(key_name, flush=True, file=sys.stdout)
+            print(type(key_name), flush=True, file=sys.stdout)
             result = bdd.list_api_key()
             return render_template("index.html", list_api_key=result, billing=billing)
         
