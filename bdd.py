@@ -102,6 +102,15 @@ def seek_api_key(key):
     conn.close
     return result.fetchone()
 
+def list_api_key():
+    conn, cursor = connect_to_db()
+    query =  f"""SELECT * from api_keys"""
+    cursor.execute(query)
+    records = cursor.fetchall()
+    conn.close
+    result = result_to_dict(records)
+    return result
+
 def delete_api_key(name):
     conn, cursor = connect_to_db()
     query = f"DELETE FROM api_keys WHERE name='{name}'"

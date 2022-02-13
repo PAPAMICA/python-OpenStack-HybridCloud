@@ -57,7 +57,6 @@ def home():
 
 
         elif request.form.get('get-apikey'):
-            print("jsuispasséICI", flush=True, file=sys.stdout)
             key_name = request.form['key_name']
             characters = string.ascii_letters + string.digits
             api_key = ''.join(random.choice(characters) for i in range(18))
@@ -67,6 +66,10 @@ def home():
         elif request.form.get('delete-apikey'):
             key_name = request.form['key_name']
             bdd.delete_api_key(key_name)
+        
+        elif request.form.get('list-apikey'):
+            result = bdd.list_api_key()
+            return render_template("index.html", list_api_key=result)
         
         elif request.form.get('create_instance'):
             cloud = request.form.getlist('cloud')
