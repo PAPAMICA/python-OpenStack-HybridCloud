@@ -31,14 +31,14 @@ def home():
             cloud_name = request.form['cloud_name']
             cloud  = openstack_api.cloud_connection(cloud_name)
             openstack_api.start_instance(cloud, instance_name)
-            time.sleep(2)
+            time.sleep(5)
             result = reload_list(cloud_name)
         elif request.form.get('reboot'):
             instance_name = request.form['reboot']
             cloud_name = request.form['cloud_name']
             cloud  = openstack_api.cloud_connection(cloud_name)
             result = openstack_api.reboot_instance(cloud, instance_name)
-            time.sleep(1)
+            time.sleep(5)
             result = reload_list(cloud_name)
 
         elif request.form.get('stop'):
@@ -46,7 +46,7 @@ def home():
             cloud_name = request.form['cloud_name']
             cloud  = openstack_api.cloud_connection(cloud_name)
             result = openstack_api.stop_instance(cloud, instance_name)
-            time.sleep(10)
+            time.sleep(5)
             result = reload_list(cloud_name)
 
         elif request.form.get('destroy'):
@@ -54,7 +54,7 @@ def home():
             cloud_name = request.form['cloud_name']
             cloud  = openstack_api.cloud_connection(cloud_name)
             result = openstack_api.delete_instance(cloud, instance_name)
-            time.sleep(3)
+            time.sleep(5)
             result = reload_list(cloud_name)
 
         elif request.form.get('list_apikey'):
