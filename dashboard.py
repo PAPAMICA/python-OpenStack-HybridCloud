@@ -121,12 +121,8 @@ def home():
             cloud = request.form.getlist('cloud')
             result = {}   
             for cloud_name in cloud:
-                url = f'{dashbord_url}/api/list/instances/{cloud_name}?api_key=1234'
-                data = requests.get(url,verify=True)
-                print(data, flush=True, file=sys.stdout)
-                data = data.content
-                data = json.loads(data.decode('utf-8'))
-                result[cloud_name] = data
+                cloud_connect  = openstack_api.cloud_connection(cloud_name)
+                result[cloud_name] = openstack_api.get_instances_list(cloud_connect)
             print(result, flush=True, file=sys.stdout)
     return render_template("index.html",instances=result, cloud_name=cloud_name, billing=billing)
 
