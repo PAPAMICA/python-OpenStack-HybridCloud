@@ -5,6 +5,7 @@ import json
 import ast
 from flask import Flask, request, render_template, redirect
 app = Flask(__name__)
+import api
 import openstack_api
 import sys
 import time
@@ -169,11 +170,11 @@ def reload_list(cloud_name):
 #     return result.content
 
 if __name__ == "__main__":
-    # table = bdd.create_db_cloud("Infomaniak")
-    # result = bdd.fill_database("Infomaniak")
-    # print(result, flush=True, file=sys.stdout)
-    # table = bdd.create_db_cloud("Local")
-    # result = bdd.fill_database("Local")
-    # print(result, flush=True, file=sys.stdout)
-    # billingG = rating_api.get_billing("Infomaniak")
+    table = bdd.create_db_cloud("Infomaniak")
+    result = bdd.fill_database("Infomaniak")
+    print(result, flush=True, file=sys.stdout)
+    table = bdd.create_db_cloud("Local")
+    result = bdd.fill_database("Local")
+    print(result, flush=True, file=sys.stdout)
+    billingG = rating_api.get_billing("Infomaniak")
     app.run(host="0.0.0.0", port="8086", debug=True)
