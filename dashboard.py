@@ -172,6 +172,6 @@ def reload_list(cloud_name):
 #     return result.content
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port="8086", debug=True)
     bdd.fill_database("Infomaniak")
     bdd.fill_database("Local")
+    app.run(host="0.0.0.0", port="8086", debug=True)
