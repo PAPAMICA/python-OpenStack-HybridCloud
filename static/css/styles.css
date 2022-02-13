@@ -569,3 +569,7 @@ table {
 .toto {
   margin-left: 10px;
 }
+.col-12-2{
+  flex: 0 0 auto;
+  width: 25%;
+}
