@@ -2,6 +2,7 @@
 
 
 <html>
+
 <head>
   <meta charset="utf-8">
   <title>HybridCloud</title>
@@ -12,7 +13,7 @@
 <body>
   <div class="login-root">
 
-    
+
     <div class="box-root flex-flex flex-direction--column" style="min-height: 100vh;flex-grow: 1;">
       <div class="box-root padding-top--24 flex-flex flex-direction--column" style="flex-grow: 1; z-index: 9;">
         <div class="box-root padding-top--48 padding-bottom--24 flex-flex flex-justifyContent--center">
@@ -23,11 +24,14 @@
             <div class="column-3">
               <div class="formbg">
                 <div class="formbg-inner padding-horizontal--20">
-                  <span class="padding-bottom--15"><h2 class="center">Instances</h2></span>
+                  <span class="padding-bottom--15">
+                    <h2 class="center">Instances</h2>
+                  </span>
                   <form id="stripe-login" method="post">
                     <div class="row-2">
                       <div class="column-3-2 cote">
-                        <img src="{{ url_for('static', filename='img/local.png') }}" class="logo-cloud" alt="local-cloud">
+                        <img src="{{ url_for('static', filename='img/local.png') }}" class="logo-cloud"
+                          alt="local-cloud">
                         <h3 class="center">LOCAL</h3>
                         <div class="switch">
                           <input type="checkbox" name="cloud" id="checkbox1-1" value="Local">
@@ -35,7 +39,8 @@
                         </div>
                       </div>
                       <div class="column-3-2 cote">
-                        <img src="{{ url_for('static', filename='img/IPC.png') }}" class="logo-cloud" alt="public-cloud">
+                        <img src="{{ url_for('static', filename='img/IPC.png') }}" class="logo-cloud"
+                          alt="public-cloud">
                         <h3 class="center">PUBLIC</h3>
                         <div class="switch">
                           <input type="checkbox" name="cloud" id="checkbox1-2" value="Infomaniak">
@@ -43,129 +48,141 @@
                         </div>
                       </div>
                     </div>
-                    
+
                     <div class="field padding-bottom--24 confirm-list row-2">
-                      <input class="column-3-2" type="submit" name="list_instances" value="List instances"> 
+                      <input class="column-3-2" type="submit" name="list_instances" value="List instances">
                       <input class="column-3-2" type="submit" name="create_instance" value="Create instance">
                     </div>
-                  </form>
                 </div>
+                </form>
               </div>
-              <div class="column-3">
-                <div class="formbg">
-                  <div class="formbg-inner padding-horizontal--20">
-                    <span class="padding-bottom--15"><h2 class="center">Resources</h2></span>
-                    <form id="stripe-login" method="post">
-                      <div class="row-2">
-                        <div class="column-3-2 cote">
-                          <img src="{{ url_for('static', filename='img/local.png') }}" class="logo-cloud" alt="local-cloud">
-                          <h3 class="center">LOCAL</h3>
-                          <div class="switch">
-                            <input type="checkbox" name="cloud" id="checkbox2-1" value="Local">
-                            <label for="checkbox2-1"></label>
-                          </div>
-                        </div>
-                        <div class="column-3-2 cote">
-                          <img src="{{ url_for('static', filename='img/IPC.png') }}" class="logo-cloud" alt="public-cloud">
-                          <h3 class="center">PUBLIC</h3>
-                          <div class="switch">
-                            <input type="checkbox" name="cloud" id="checkbox2-2" value="Infomaniak">
-                            <label for="checkbox2-2"></label>
-                          </div>
-                        </div>
-                      </div>
-                      
-                    <div class="field padding-bottom--24 confirm-list row-2">
-                      <input class="column-3-2" type="submit" name="list_resources" value="List resources"> 
-                      <input class="column-3-2" type="submit" name="update_resources" value="Update resources">
-                    </div>
-                    </form>
-                  </div>
-                </div>
-                <div class="column-3">
-                  <div class="formbg">
-                    <div class="formbg-inner padding-horizontal--20">
-                      <span class="padding-bottom--15"><h2 class="center">Billing Public Cloud</h2></span>
-                      <form id="stripe-login" method="post">
-                        <div class="row">
-                          {% if billing %}
-                          {%for delai in billing%}
-                          <h5 class="center">{{ delai }} : {{ billing[delai] }} EUR</h5>
-                          {% endfor %}
-                          {% endif %}
-                        
-                    <div class="field padding-bottom--24 confirm-list row">
-                      <input class="column-3-2" type="submit" name="refresh-billing" value="Refresh"> 
-                    </div>
-                      </div>
-                      </form>
-                    </div>
-                  </div>
             </div>
             <div class="column-3">
               <div class="formbg">
                 <div class="formbg-inner padding-horizontal--20">
-                  <span class="padding-bottom--15"><h2 class="center">Generate API Key</h2></span>
+                  <span class="padding-bottom--15">
+                    <h2 class="center">Resources</h2>
+                  </span>
+                  <form id="stripe-login" method="post">
+                    <div class="row-2">
+                      <div class="column-3-2 cote">
+                        <img src="{{ url_for('static', filename='img/local.png') }}" class="logo-cloud"
+                          alt="local-cloud">
+                        <h3 class="center">LOCAL</h3>
+                        <div class="switch">
+                          <input type="checkbox" name="cloud" id="checkbox2-1" value="Local">
+                          <label for="checkbox2-1"></label>
+                        </div>
+                      </div>
+                      <div class="column-3-2 cote">
+                        <img src="{{ url_for('static', filename='img/IPC.png') }}" class="logo-cloud"
+                          alt="public-cloud">
+                        <h3 class="center">PUBLIC</h3>
+                        <div class="switch">
+                          <input type="checkbox" name="cloud" id="checkbox2-2" value="Infomaniak">
+                          <label for="checkbox2-2"></label>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="field padding-bottom--24 confirm-list row-2">
+                      <input class="column-3-2" type="submit" name="list_resources" value="List resources">
+                      <input class="column-3-2" type="submit" name="update_resources" value="Update resources">
+                    </div>
+                </div>
+                </form>
+              </div>
+            </div>
+            <div class="column-3">
+              <div class="formbg">
+                <div class="formbg-inner padding-horizontal--20">
+                  <span class="padding-bottom--15">
+                    <h2 class="center">Billing Public Cloud</h2>
+                  </span>
+                  <form id="stripe-login" method="post">
+                    <div class="row">
+                      {% if billing %}
+                      {%for delai in billing%}
+                      <h5 class="center">{{ delai }} : {{ billing[delai] }} EUR</h5>
+                      {% endfor %}
+                      {% endif %}
+
+                      <div class="field padding-bottom--24 confirm-list row">
+                        <input class="column-3-2" type="submit" name="refresh-billing" value="Refresh">
+                      </div>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+            <div class="column-3">
+              <div class="formbg">
+                <div class="formbg-inner padding-horizontal--20">
+                  <span class="padding-bottom--15">
+                    <h2 class="center">Generate API Key</h2>
+                  </span>
                   <form id="stripe-login" method="post">
                     <div class="row">
                       <div class="field">
                         <label for="get-apikey">Your API Key</label>
                         {% if api_key %}
-                          <input type="text" name="key_name" value="{{ key_name }}"/>
-                          <input type="text" name="get-apikey" value="{{ api_key }}" readonly="readonly"/>
+                        <input type="text" name="key_name" value="{{ key_name }}" />
+                        <input type="text" name="get-apikey" value="{{ api_key }}" readonly="readonly" />
                         {% else %}
-                          <input type="text" name="key_name" placeholder="Enter a key name"/>
-                          <input type="text" name="get-apikey" value="Click on button generate" readonly="readonly"/>
+                        <input type="text" name="key_name" placeholder="Enter a key name" />
+                        <input type="text" name="get-apikey" value="Click on button generate" readonly="readonly" />
                         {% endif %}
                       </div>
-                    
-                <div class="field padding-bottom--24 confirm-list row-2">
-                  <input class="column-3-2" type="submit" name="get_apikey" value="Generate">
-                  <input class="column-3-2" type="submit" name="list_apikey" value="List API Keys"> 
-                </div>
-                  </div>
+
+                      <div class="field padding-bottom--24 confirm-list row-2">
+                        <input class="column-3-2" type="submit" name="get_apikey" value="Generate">
+                        <input class="column-3-2" type="submit" name="list_apikey" value="List API Keys">
+                      </div>
+                    </div>
                   </form>
                 </div>
               </div>
-        </div>
+            </div>
           </div>
           {% if instances %}
           <div class="container-fluid py-4">
             <div class="row">
 
               {%for cloud in instances%}
-                {% set online = namespace(value=0) %}
-                {% set offline = namespace(value=0) %}
-                {%for instance in instances[cloud]%}
-                  {%if instances[cloud][instance]['Status'] == "ACTIVE"%}
-                    {% set online.value = online.value + 1 %}
-                  {% else %}
-                    {% set offline.value = offline.value + 1 %}
-                  {% endif %}
-                {% endfor %}
+              {% set online = namespace(value=0) %}
+              {% set offline = namespace(value=0) %}
+              {%for instance in instances[cloud]%}
+              {%if instances[cloud][instance]['Status'] == "ACTIVE"%}
+              {% set online.value = online.value + 1 %}
+              {% else %}
+              {% set offline.value = offline.value + 1 %}
+              {% endif %}
+              {% endfor %}
 
               {% if cloud == "Infomaniak" %}
               <div class="col-12-2">
                 <div class="titi">
                   <div class="d-flex px-2 py-1">
                     <div>
-                      <img src="{{ url_for('static', filename='img/IPC.png') }}" class="avatar avatar-sm me-3" alt="Public"> 
+                      <img src="{{ url_for('static', filename='img/IPC.png') }}" class="avatar avatar-sm me-3"
+                        alt="Public">
                     </div>
-                  <div class="d-flex flex-column justify-content-center">
-                    <h3>Instances Onlines</h3>
+                    <div class="d-flex flex-column justify-content-center">
+                      <h3>Instances Onlines</h3>
+                    </div>
+                  </div>
+                  <div class="toto">
+                    <h6 class="font-weight-bolder">Total : {{ online.value }}</h6>
                   </div>
                 </div>
-                <div class="toto">
-                  <h6 class="font-weight-bolder">Total : {{ online.value }}</h6>
-                </div>
-                </div>
               </div>
-                <div class="col-12-2">
-                  <div class="titi">
-                    <div class="d-flex px-2 py-1">
-                      <div>
-                        <img src="{{ url_for('static', filename='img/IPC.png') }}" class="avatar avatar-sm me-3" alt="Public"> 
-                      </div>
+              <div class="col-12-2">
+                <div class="titi">
+                  <div class="d-flex px-2 py-1">
+                    <div>
+                      <img src="{{ url_for('static', filename='img/IPC.png') }}" class="avatar avatar-sm me-3"
+                        alt="Public">
+                    </div>
                     <div class="d-flex flex-column justify-content-center">
                       <h3>Instances Offlines</h3>
                     </div>
@@ -173,30 +190,32 @@
                   <div class="toto">
                     <h6 class="font-weight-bolder">Total : {{ offline.value }}</h6>
                   </div>
-                  </div>
                 </div>
+              </div>
               {% else %}
               <div class="col-12-2">
                 <div class="titi">
                   <div class="d-flex px-2 py-1">
                     <div>
-                      <img src="{{ url_for('static', filename='img/local.png') }}" class="avatar avatar-sm me-3" alt="Local"> 
+                      <img src="{{ url_for('static', filename='img/local.png') }}" class="avatar avatar-sm me-3"
+                        alt="Local">
                     </div>
-                  <div class="d-flex flex-column justify-content-center">
-                    <h3>Instances Onlines</h3>
+                    <div class="d-flex flex-column justify-content-center">
+                      <h3>Instances Onlines</h3>
+                    </div>
+                  </div>
+                  <div class="toto">
+                    <h6 class="font-weight-bolder">Total : {{ online.value }}</h6>
                   </div>
                 </div>
-                <div class="toto">
-                  <h6 class="font-weight-bolder">Total : {{ online.value }}</h6>
-                </div>
-                </div>
               </div>
-                <div class="col-12-2">
-                  <div class="titi">
-                    <div class="d-flex px-2 py-1">
-                      <div>
-                        <img src="{{ url_for('static', filename='img/local.png') }}" class="avatar avatar-sm me-3" alt="Local"> 
-                      </div>
+              <div class="col-12-2">
+                <div class="titi">
+                  <div class="d-flex px-2 py-1">
+                    <div>
+                      <img src="{{ url_for('static', filename='img/local.png') }}" class="avatar avatar-sm me-3"
+                        alt="Local">
+                    </div>
                     <div class="d-flex flex-column justify-content-center">
                       <h3>Instances Offlines</h3>
                     </div>
@@ -204,104 +223,116 @@
                   <div class="toto">
                     <h6 class="font-weight-bolder">Total : {{ offline.value }}</h6>
                   </div>
-                  </div>
                 </div>
+              </div>
               {% endif %}
-                {%endfor%}
-            <div class="row">
-              <div class="col-12">
-                <div class="card mb-4">
-                  <div class="card-header pb-0">
-                    <h6>Instances list</h6>
-                  </div>
-                  <div class="card-body px-0 pt-0 pb-2">
-                    <div class="table-responsive p-0">
-                      <table class="table align-items-center mb-0">
-                        <thead>
-                          <tr>
-                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Name</th>
-                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Status</th>
-                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">IP</th>
-                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Image</th>
-                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Keypair</th>
-                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Network</th>
-                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Security Group</th>
-                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Actions</th>
-                          </tr>
-                        </thead>
-                        <tbody>
+              {%endfor%}
+              <div class="row">
+                <div class="col-12">
+                  <div class="card mb-4">
+                    <div class="card-header pb-0">
+                      <h6>Instances list</h6>
+                    </div>
+                    <div class="card-body px-0 pt-0 pb-2">
+                      <div class="table-responsive p-0">
+                        <table class="table align-items-center mb-0">
+                          <thead>
+                            <tr>
+                              <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Name</th>
+                              <th
+                                class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                Status</th>
+                              <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">IP
+                              </th>
+                              <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Image
+                              </th>
+                              <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
+                                Keypair</th>
+                              <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
+                                Network</th>
+                              <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
+                                Security Group</th>
+                              <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
+                                Actions</th>
+                            </tr>
+                          </thead>
+                          <tbody>
 
-                          {%for cloud in instances%}
+                            {%for cloud in instances%}
                             {%for instance in instances[cloud]%}
-                                
 
-                          <tr>
-                            <td>
-                              <div class="d-flex px-2 py-1">
-                                <div>
-                                  {% if cloud == "Infomaniak" %}
-                                  <img src="{{ url_for('static', filename='img/IPC.png') }}" class="avatar avatar-sm me-3" alt="user1">
-                                  {% else %}
-                                  <img src="{{ url_for('static', filename='img/local.png') }}" class="avatar avatar-sm me-3" alt="user1">
-                                  {% endif %}
+
+                            <tr>
+                              <td>
+                                <div class="d-flex px-2 py-1">
+                                  <div>
+                                    {% if cloud == "Infomaniak" %}
+                                    <img src="{{ url_for('static', filename='img/IPC.png') }}"
+                                      class="avatar avatar-sm me-3" alt="user1">
+                                    {% else %}
+                                    <img src="{{ url_for('static', filename='img/local.png') }}"
+                                      class="avatar avatar-sm me-3" alt="user1">
+                                    {% endif %}
+                                  </div>
+                                  <div class="d-flex flex-column justify-content-center">
+                                    <h6 class="mb-0 text-sm">{{ instance }}</h6>
+                                  </div>
                                 </div>
-                                <div class="d-flex flex-column justify-content-center">
-                                  <h6 class="mb-0 text-sm">{{ instance }}</h6>
+                              </td>
+                              {% if instances[cloud][instance]['Status'] == "ACTIVE" %}
+                              <td class="align-middle text-center text-sm">
+                                <span class="badge badge-sm bg-gradient-success">Online</span>
+                              </td>
+                              {% else %}
+                              <td class="align-middle text-center text-sm">
+                                <span class="badge badge-sm bg-gradient-secondary">Offline</span>
+                              </td>
+                              {% endif %}
+                              <td>
+                                <p class="text-xs font-weight-bold mb-0">{{ instances[cloud][instance]['IP'] }}</p>
+                              </td>
+                              <td>
+                                <p class="text-xs font-weight-bold mb-0">{{ instances[cloud][instance]['Image'] }}</p>
+                              </td>
+                              <td>
+                                <p class="text-xs font-weight-bold mb-0">{{ instances[cloud][instance]['Keypair'] }}</p>
+                              </td>
+                              <td>
+                                <p class="text-xs font-weight-bold mb-0">{{ instances[cloud][instance]['Network'] }}</p>
+                              </td>
+                              <td>
+                                <p class="text-xs font-weight-bold mb-0">{{
+                                  instances[cloud][instance]['Security_groups'] }}</p>
+                              </td>
+                              <td>
+                                <div class="d-flex px-2 py-1 outer">
+
+                                  <form class="d-flex two" method="post" action="/">
+                                    <div class="form-group one">
+                                      <input type="submit" name="start" value="{{ instance }}" />
+                                      <input type="hidden" name="cloud_name" value="{{ cloud_name }}" />
+                                    </div>
+                                    <div class="form-group one">
+                                      <input type="submit" name="reboot" value="{{ instance }}" />
+                                      <input type="hidden" name="cloud_name" value="{{ cloud_name }}" />
+                                    </div>
+                                    <div class="form-group one">
+                                      <input type="submit" name="stop" value="{{ instance }}" />
+                                      <input type="hidden" name="cloud_name" value="{{ cloud_name }}" />
+                                    </div>
+                                    <div class="form-group one">
+                                      <input type="submit" name="destroy" value="{{ instance }}" />
+                                      <input type="hidden" name="cloud_name" value="{{ cloud_name }}" />
+                                    </div>
+                                  </form>
                                 </div>
-                              </div>
-                            </td>
-                            {% if instances[cloud][instance]['Status'] == "ACTIVE" %}
-                            <td class="align-middle text-center text-sm">
-                              <span class="badge badge-sm bg-gradient-success">Online</span>
-                            </td>
-                            {% else %}
-                            <td class="align-middle text-center text-sm">
-                              <span class="badge badge-sm bg-gradient-secondary">Offline</span>
-                            </td>
-                            {% endif %}
-                            <td>
-                              <p class="text-xs font-weight-bold mb-0">{{ instances[cloud][instance]['IP'] }}</p>
-                            </td>
-                            <td>
-                              <p class="text-xs font-weight-bold mb-0">{{ instances[cloud][instance]['Image'] }}</p>
-                            </td>
-                            <td>
-                              <p class="text-xs font-weight-bold mb-0">{{ instances[cloud][instance]['Keypair'] }}</p>
-                            </td>
-                            <td>
-                              <p class="text-xs font-weight-bold mb-0">{{ instances[cloud][instance]['Network'] }}</p>
-                            </td>
-                            <td>
-                              <p class="text-xs font-weight-bold mb-0">{{ instances[cloud][instance]['Security_groups'] }}</p>
-                            </td>
-                            <td>
-                              <div class="d-flex px-2 py-1 outer">
-                                
-                                <form class="d-flex two" method="post" action="/">
-                                  <div class="form-group one">
-                                    <input type="submit" name="start" value="{{ instance }}"/>
-                                    <input type="hidden" name="cloud_name" value="{{ cloud_name }}"/>
-                                  </div>
-                                  <div class="form-group one">
-                                    <input type="submit" name="reboot" value="{{ instance }}"/>
-                                    <input type="hidden" name="cloud_name" value="{{ cloud_name }}"/>
-                                  </div>
-                                  <div class="form-group one">
-                                    <input type="submit" name="stop" value="{{ instance }}"/>
-                                    <input type="hidden" name="cloud_name" value="{{ cloud_name }}"/>
-                                  </div>
-                                  <div class="form-group one">
-                                    <input type="submit" name="destroy" value="{{ instance }}"/>
-                                    <input type="hidden" name="cloud_name" value="{{ cloud_name }}"/>
-                                  </div>
-                              </form>
-                              </div>
-                            </td>
-                          </tr>
-                          {%endfor%}
-                          {%endfor%}
-                        </tbody>
-                      </table>
+                              </td>
+                            </tr>
+                            {%endfor%}
+                            {%endfor%}
+                          </tbody>
+                        </table>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -317,42 +348,44 @@
                 <div class="card">
                   <div class="card-body p-3">
                     <div class="row">
-                          {%for cloud in resources%}
-                              {% set flavorcount = resources[cloud]['FLAVOR'] %}
-                              {% set imagecount = resources[cloud]['IMAGE'] %}
-                              {% set networkcount = resources[cloud]['NETWORK'] %}
-                              {% set sccount = resources[cloud]['SECURITY_GROUP'] %}
-                              {% set keycount = resources[cloud]['KEYPAIR'] %}
-                              <div class="titi">
-                                {% if cloud == "Infomaniak" %}
-                                <div class="d-flex px-2 py-1">
-                                  <div>
-                                    <img src="{{ url_for('static', filename='img/IPC.png') }}" class="avatar avatar-sm me-3" alt="Public"> 
-                                  </div>
-                                <div class="d-flex flex-column justify-content-center">
-                                  <h3>Public Cloud</h3>
-                                </div>
-                              </div>
-                              {% else %}
-                              <div class="d-flex px-2 py-1">
-                                <div>
-                                  <img src="{{ url_for('static', filename='img/local.png') }}" class="avatar avatar-sm me-3" alt="Local"> 
-                                </div>
-                              <div class="d-flex flex-column justify-content-center">
-                                <h3>Local Cloud</h3>
-                              </div>
-                            </div>
-                              {% endif %}
-                              <div class="toto">
-                                <h6 class="font-weight-bolder">Flavors in {{ cloud }} : {{ flavorcount|length }}</h6>
-                                <h6 class="font-weight-bolder">Images in {{ cloud }} : {{ imagecount|length }}</h6>
-                                <h6 class="font-weight-bolder">Networks in {{ cloud }} : {{ networkcount|length }}</h6>
-                                <h6 class="font-weight-bolder">Security groups in {{ cloud }} : {{ sccount|length }}</h6>
-                                <h6 class="font-weight-bolder">Keypair in {{ cloud }} : {{ keycount|length }}</h6>
-                              </div>
-                              </div>
+                      {%for cloud in resources%}
+                      {% set flavorcount = resources[cloud]['FLAVOR'] %}
+                      {% set imagecount = resources[cloud]['IMAGE'] %}
+                      {% set networkcount = resources[cloud]['NETWORK'] %}
+                      {% set sccount = resources[cloud]['SECURITY_GROUP'] %}
+                      {% set keycount = resources[cloud]['KEYPAIR'] %}
+                      <div class="titi">
+                        {% if cloud == "Infomaniak" %}
+                        <div class="d-flex px-2 py-1">
+                          <div>
+                            <img src="{{ url_for('static', filename='img/IPC.png') }}" class="avatar avatar-sm me-3"
+                              alt="Public">
+                          </div>
+                          <div class="d-flex flex-column justify-content-center">
+                            <h3>Public Cloud</h3>
+                          </div>
+                        </div>
+                        {% else %}
+                        <div class="d-flex px-2 py-1">
+                          <div>
+                            <img src="{{ url_for('static', filename='img/local.png') }}" class="avatar avatar-sm me-3"
+                              alt="Local">
+                          </div>
+                          <div class="d-flex flex-column justify-content-center">
+                            <h3>Local Cloud</h3>
+                          </div>
+                        </div>
+                        {% endif %}
+                        <div class="toto">
+                          <h6 class="font-weight-bolder">Flavors in {{ cloud }} : {{ flavorcount|length }}</h6>
+                          <h6 class="font-weight-bolder">Images in {{ cloud }} : {{ imagecount|length }}</h6>
+                          <h6 class="font-weight-bolder">Networks in {{ cloud }} : {{ networkcount|length }}</h6>
+                          <h6 class="font-weight-bolder">Security groups in {{ cloud }} : {{ sccount|length }}</h6>
+                          <h6 class="font-weight-bolder">Keypair in {{ cloud }} : {{ keycount|length }}</h6>
+                        </div>
+                      </div>
 
-                              {% endfor %}
+                      {% endfor %}
                     </div>
                   </div>
                 </div>
@@ -365,112 +398,119 @@
                 <div class="card mb-4">
                   <div class="card-header pb-0">
                     <div class="d-flex px-2 py-1">
-                     <div>
-                       <img src="{{ url_for('static', filename='img/flavor.png') }}" class="avatar avatar-sm me-3" alt="Local">
-                     </div>
-                   <div class="d-flex flex-column justify-content-center">
-                     <h6> Flavors List </h6>
-                   </div>
-                 </div>
+                      <div>
+                        <img src="{{ url_for('static', filename='img/flavor.png') }}" class="avatar avatar-sm me-3"
+                          alt="Local">
+                      </div>
+                      <div class="d-flex flex-column justify-content-center">
+                        <h6> Flavors List </h6>
+                      </div>
+                    </div>
                   </div>
                   <div class="card-body px-0 pt-0 pb-2">
                     <div class="table-responsive p-0">
                       <table class="table align-items-center mb-0">
                         <thead>
                           <tr>
-                            <th class="ten text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Cloud</th>
+                            <th class="ten text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Cloud
+                            </th>
                             <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Name</th>
                           </tr>
                         </thead>
                         <tbody>
                           {%for cloud in resources%}
                           {%for data in resources[cloud]['FLAVOR']%}
-                                <tr>
-                              <td class="ten">
-                                <div class="d-flex px-2 py-1">
-                                 {% if cloud == "Infomaniak" %}
-                                  <div>
-                                    <img src="{{ url_for('static', filename='img/IPC.png') }}" class="avatar avatar-sm me-3" alt="Public">
-                                  </div>
+                          <tr>
+                            <td class="ten">
+                              <div class="d-flex px-2 py-1">
+                                {% if cloud == "Infomaniak" %}
+                                <div>
+                                  <img src="{{ url_for('static', filename='img/IPC.png') }}"
+                                    class="avatar avatar-sm me-3" alt="Public">
+                                </div>
                                 {% else %}
-                                  <div>
-                                    <img src="{{ url_for('static', filename='img/local.png') }}" class="avatar avatar-sm me-3" alt="Local">
-                                  </div>
+                                <div>
+                                  <img src="{{ url_for('static', filename='img/local.png') }}"
+                                    class="avatar avatar-sm me-3" alt="Local">
+                                </div>
                                 {% endif %}
                                 <div class="d-flex flex-column justify-content-center">
                                 </div>
                               </div>
-                              </td>
-                              <td>
-                                <div class="d-flex px-2 py-1">
-                                  <div>
-                                    <!-- <img src="{{ url_for('static', filename='img/IPC.png') }}" class="avatar avatar-sm me-3" alt="user1"> -->
-                                    <h6 class="mb-0 text-sm">{{ data }}</h6>
-                                  </div>
+                            </td>
+                            <td>
+                              <div class="d-flex px-2 py-1">
+                                <div>
+                                  <!-- <img src="{{ url_for('static', filename='img/IPC.png') }}" class="avatar avatar-sm me-3" alt="user1"> -->
+                                  <h6 class="mb-0 text-sm">{{ data }}</h6>
                                 </div>
-                              </td>
-                            </tr>
-                              {%endfor%}
-                              {%endfor%}
+                              </div>
+                            </td>
+                          </tr>
+                          {%endfor%}
+                          {%endfor%}
                         </tbody>
                       </table>
                     </div>
                   </div>
                 </div>
               </div>
-            </div>
-              {% elif  resource == "IMAGE" %}
+              {% elif resource == "IMAGE" %}
               <div class="column-4">
                 <div class="card mb-4">
                   <div class="card-header pb-0">
                     <div class="d-flex px-2 py-1">
-                     <div>
-                       <img src="{{ url_for('static', filename='img/image.png') }}" class="avatar avatar-sm me-3" alt="Local">
-                     </div>
-                   <div class="d-flex flex-column justify-content-center">
-                     <h6> Images List </h6>
-                   </div>
-                 </div>
+                      <div>
+                        <img src="{{ url_for('static', filename='img/image.png') }}" class="avatar avatar-sm me-3"
+                          alt="Local">
+                      </div>
+                      <div class="d-flex flex-column justify-content-center">
+                        <h6> Images List </h6>
+                      </div>
+                    </div>
                   </div>
                   <div class="card-body px-0 pt-0 pb-2">
                     <div class="table-responsive p-0">
                       <table class="table align-items-center mb-0">
                         <thead>
                           <tr>
-                            <th class="ten text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Cloud</th>
+                            <th class="ten text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Cloud
+                            </th>
                             <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Name</th>
                           </tr>
                         </thead>
                         <tbody>
                           {%for cloud in resources%}
-                                {%for data in resources[cloud]['IMAGE']%}
-                                <tr>
-                              <td class="ten">
-                                <div class="d-flex px-2 py-1">
-                                 {% if cloud == "Infomaniak" %}
-                                  <div>
-                                    <img src="{{ url_for('static', filename='img/IPC.png') }}" class="avatar avatar-sm me-3" alt="Public">
-                                  </div>
+                          {%for data in resources[cloud]['IMAGE']%}
+                          <tr>
+                            <td class="ten">
+                              <div class="d-flex px-2 py-1">
+                                {% if cloud == "Infomaniak" %}
+                                <div>
+                                  <img src="{{ url_for('static', filename='img/IPC.png') }}"
+                                    class="avatar avatar-sm me-3" alt="Public">
+                                </div>
                                 {% else %}
-                                  <div>
-                                    <img src="{{ url_for('static', filename='img/local.png') }}" class="avatar avatar-sm me-3" alt="Local">
-                                  </div>
+                                <div>
+                                  <img src="{{ url_for('static', filename='img/local.png') }}"
+                                    class="avatar avatar-sm me-3" alt="Local">
+                                </div>
                                 {% endif %}
                                 <div class="d-flex flex-column justify-content-center">
                                 </div>
                               </div>
-                              </td>
-                              <td>
-                                <div class="d-flex px-2 py-1">
-                                  <div>
-                                    <!-- <img src="{{ url_for('static', filename='img/IPC.png') }}" class="avatar avatar-sm me-3" alt="user1"> -->
-                                    <h6 class="mb-0 text-sm">{{ data }}</h6>
-                                  </div>
+                            </td>
+                            <td>
+                              <div class="d-flex px-2 py-1">
+                                <div>
+                                  <!-- <img src="{{ url_for('static', filename='img/IPC.png') }}" class="avatar avatar-sm me-3" alt="user1"> -->
+                                  <h6 class="mb-0 text-sm">{{ data }}</h6>
                                 </div>
-                              </td>
-                            </tr>
-                              {%endfor%}
-                              {%endfor%}
+                              </div>
+                            </td>
+                          </tr>
+                          {%endfor%}
+                          {%endfor%}
 
                         </tbody>
                       </table>
@@ -478,176 +518,188 @@
                   </div>
                 </div>
               </div>
-              </div>
+            </div>
             <div class="row">
-              {% elif  resource == "NETWORK" %}
+              {% elif resource == "NETWORK" %}
               <div class="column-4">
                 <div class="card mb-4">
                   <div class="card-header pb-0">
                     <div class="d-flex px-2 py-1">
-                     <div>
-                       <img src="{{ url_for('static', filename='img/network.png') }}" class="avatar avatar-sm me-3" alt="Local">
-                     </div>
-                   <div class="d-flex flex-column justify-content-center">
-                     <h6> Networks List </h6>
-                   </div>
-                 </div>
+                      <div>
+                        <img src="{{ url_for('static', filename='img/network.png') }}" class="avatar avatar-sm me-3"
+                          alt="Local">
+                      </div>
+                      <div class="d-flex flex-column justify-content-center">
+                        <h6> Networks List </h6>
+                      </div>
+                    </div>
                   </div>
                   <div class="card-body px-0 pt-0 pb-2">
                     <div class="table-responsive p-0">
                       <table class="table align-items-center mb-0">
                         <thead>
                           <tr>
-                            <th class="ten text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Cloud</th>
+                            <th class="ten text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Cloud
+                            </th>
                             <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Name</th>
                           </tr>
                         </thead>
                         <tbody>
                           {%for cloud in resources%}
-                                {%for data in resources[cloud]['NETWORK']%}
-                                <tr>
-                                  <td class="ten">
-                                <div class="d-flex px-2 py-1">
-                                 {% if cloud == "Infomaniak" %}
-                                  <div>
-                                    <img src="{{ url_for('static', filename='img/IPC.png') }}" class="avatar avatar-sm me-3" alt="Public">
-                                  </div>
+                          {%for data in resources[cloud]['NETWORK']%}
+                          <tr>
+                            <td class="ten">
+                              <div class="d-flex px-2 py-1">
+                                {% if cloud == "Infomaniak" %}
+                                <div>
+                                  <img src="{{ url_for('static', filename='img/IPC.png') }}"
+                                    class="avatar avatar-sm me-3" alt="Public">
+                                </div>
                                 {% else %}
-                                  <div>
-                                    <img src="{{ url_for('static', filename='img/local.png') }}" class="avatar avatar-sm me-3" alt="Local">
-                                  </div>
+                                <div>
+                                  <img src="{{ url_for('static', filename='img/local.png') }}"
+                                    class="avatar avatar-sm me-3" alt="Local">
+                                </div>
                                 {% endif %}
                                 <div class="d-flex flex-column justify-content-center">
                                 </div>
                               </div>
-                              </td>
-                              <td>
-                                <div class="d-flex px-2 py-1">
-                                  <div>
-                                    <!-- <img src="{{ url_for('static', filename='img/IPC.png') }}" class="avatar avatar-sm me-3" alt="user1"> -->
-                                    <h6 class="mb-0 text-sm">{{ data }}</h6>
-                                  </div>
+                            </td>
+                            <td>
+                              <div class="d-flex px-2 py-1">
+                                <div>
+                                  <!-- <img src="{{ url_for('static', filename='img/IPC.png') }}" class="avatar avatar-sm me-3" alt="user1"> -->
+                                  <h6 class="mb-0 text-sm">{{ data }}</h6>
                                 </div>
-                              </td>
-                            </tr>
-                              {%endfor%}
-                              {%endfor%}
+                              </div>
+                            </td>
+                          </tr>
+                          {%endfor%}
+                          {%endfor%}
                         </tbody>
                       </table>
                     </div>
                   </div>
                 </div>
               </div>
-              {% elif  resource == "SECURITY_GROUP" %}
+              {% elif resource == "SECURITY_GROUP" %}
               <div class="column-4">
                 <div class="card mb-4">
                   <div class="card-header pb-0">
                     <div class="d-flex px-2 py-1">
-                     <div>
-                       <img src="{{ url_for('static', filename='img/security_group.png') }}" class="avatar avatar-sm me-3" alt="Local">
-                     </div>
-                   <div class="d-flex flex-column justify-content-center">
-                     <h6> Security groups List </h6>
-                   </div>
-                 </div>
+                      <div>
+                        <img src="{{ url_for('static', filename='img/security_group.png') }}"
+                          class="avatar avatar-sm me-3" alt="Local">
+                      </div>
+                      <div class="d-flex flex-column justify-content-center">
+                        <h6> Security groups List </h6>
+                      </div>
+                    </div>
                   </div>
                   <div class="card-body px-0 pt-0 pb-2">
                     <div class="table-responsive p-0">
                       <table class="table align-items-center mb-0">
                         <thead>
                           <tr>
-                            <th class="ten text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Cloud</th>
+                            <th class="ten text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Cloud
+                            </th>
                             <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Name</th>
                           </tr>
                         </thead>
                         <tbody>
                           {%for cloud in resources%}
-                                {%for data in resources[cloud]['SECURITY_GROUP']%}
-                                <tr>
-                                  <td class="ten">
-                                <div class="d-flex px-2 py-1">
-                                 {% if cloud == "Infomaniak" %}
-                                  <div>
-                                    <img src="{{ url_for('static', filename='img/IPC.png') }}" class="avatar avatar-sm me-3" alt="Public">
-                                  </div>
+                          {%for data in resources[cloud]['SECURITY_GROUP']%}
+                          <tr>
+                            <td class="ten">
+                              <div class="d-flex px-2 py-1">
+                                {% if cloud == "Infomaniak" %}
+                                <div>
+                                  <img src="{{ url_for('static', filename='img/IPC.png') }}"
+                                    class="avatar avatar-sm me-3" alt="Public">
+                                </div>
                                 {% else %}
-                                  <div>
-                                    <img src="{{ url_for('static', filename='img/local.png') }}" class="avatar avatar-sm me-3" alt="Local">
-                                  </div>
+                                <div>
+                                  <img src="{{ url_for('static', filename='img/local.png') }}"
+                                    class="avatar avatar-sm me-3" alt="Local">
+                                </div>
                                 {% endif %}
                                 <div class="d-flex flex-column justify-content-center">
                                 </div>
                               </div>
-                              </td>
-                              <td>
-                                <div class="d-flex px-2 py-1">
-                                  <div>
-                                    <!-- <img src="{{ url_for('static', filename='img/IPC.png') }}" class="avatar avatar-sm me-3" alt="user1"> -->
-                                    <h6 class="mb-0 text-sm">{{ data }}</h6>
-                                  </div>
+                            </td>
+                            <td>
+                              <div class="d-flex px-2 py-1">
+                                <div>
+                                  <!-- <img src="{{ url_for('static', filename='img/IPC.png') }}" class="avatar avatar-sm me-3" alt="user1"> -->
+                                  <h6 class="mb-0 text-sm">{{ data }}</h6>
                                 </div>
-                              </td>
-                            </tr>
-                              {%endfor%}
-                              {%endfor%}
+                              </div>
+                            </td>
+                          </tr>
+                          {%endfor%}
+                          {%endfor%}
                         </tbody>
                       </table>
                     </div>
                   </div>
                 </div>
               </div>
-              {% elif  resource == "KEYPAIR" %}
+              {% elif resource == "KEYPAIR" %}
               <div class="column-4">
                 <div class="card mb-4">
                   <div class="card-header pb-0">
                     <div class="d-flex px-2 py-1">
-                     <div>
-                       <img src="{{ url_for('static', filename='img/keypair.png') }}" class="avatar avatar-sm me-3" alt="Local">
-                     </div>
-                   <div class="d-flex flex-column justify-content-center">
-                     <h6> Keypairs List </h6>
-                   </div>
-                 </div>
+                      <div>
+                        <img src="{{ url_for('static', filename='img/keypair.png') }}" class="avatar avatar-sm me-3"
+                          alt="Local">
+                      </div>
+                      <div class="d-flex flex-column justify-content-center">
+                        <h6> Keypairs List </h6>
+                      </div>
+                    </div>
                   </div>
                   <div class="card-body px-0 pt-0 pb-2">
                     <div class="table-responsive p-0">
                       <table class="table align-items-center mb-0">
                         <thead>
                           <tr>
-                            <th class="ten text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Cloud</th>
+                            <th class="ten text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Cloud
+                            </th>
                             <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Name</th>
                           </tr>
                         </thead>
                         <tbody>
                           {%for cloud in resources%}
-                                {%for data in resources[cloud]['KEYPAIR']%}
-                                <tr>
-                                  <td class="ten">
-                                <div class="d-flex px-2 py-1">
-                                 {% if cloud == "Infomaniak" %}
-                                  <div>
-                                    <img src="{{ url_for('static', filename='img/IPC.png') }}" class="avatar avatar-sm me-3" alt="Public">
-                                  </div>
+                          {%for data in resources[cloud]['KEYPAIR']%}
+                          <tr>
+                            <td class="ten">
+                              <div class="d-flex px-2 py-1">
+                                {% if cloud == "Infomaniak" %}
+                                <div>
+                                  <img src="{{ url_for('static', filename='img/IPC.png') }}"
+                                    class="avatar avatar-sm me-3" alt="Public">
+                                </div>
                                 {% else %}
-                                  <div>
-                                    <img src="{{ url_for('static', filename='img/local.png') }}" class="avatar avatar-sm me-3" alt="Local">
-                                  </div>
+                                <div>
+                                  <img src="{{ url_for('static', filename='img/local.png') }}"
+                                    class="avatar avatar-sm me-3" alt="Local">
+                                </div>
                                 {% endif %}
                                 <div class="d-flex flex-column justify-content-center">
                                 </div>
                               </div>
-                              </td>
-                              <td>
-                                <div class="d-flex px-2 py-1">
-                                  <div>
-                                    <!-- <img src="{{ url_for('static', filename='img/IPC.png') }}" class="avatar avatar-sm me-3" alt="user1"> -->
-                                    <h6 class="mb-0 text-sm">{{ data }}</h6>
-                                  </div>
+                            </td>
+                            <td>
+                              <div class="d-flex px-2 py-1">
+                                <div>
+                                  <!-- <img src="{{ url_for('static', filename='img/IPC.png') }}" class="avatar avatar-sm me-3" alt="user1"> -->
+                                  <h6 class="mb-0 text-sm">{{ data }}</h6>
                                 </div>
-                              </td>
-                            </tr>
-                              {%endfor%}
-                              {%endfor%}
+                              </div>
+                            </td>
+                          </tr>
+                          {%endfor%}
+                          {%endfor%}
                         </tbody>
                       </table>
                     </div>
@@ -655,9 +707,8 @@
                 </div>
               </div>
               {% endif %}
-            {%endfor%}
+              {%endfor%}
             </div>
-          </div>
           </div>
           {% endif %}
           {% if list_api_key %}
@@ -669,11 +720,12 @@
                 <div class="card">
                   <div class="card-body p-3">
                     <div class="row">
-                        <div class="titi">
-                          <div class="d-flex px-2 py-1">
-                            <div>
-                              <img src="{{ url_for('static', filename='img/apikey.png') }}" class="avatar avatar-sm me-3" alt="Public"> 
-                            </div>
+                      <div class="titi">
+                        <div class="d-flex px-2 py-1">
+                          <div>
+                            <img src="{{ url_for('static', filename='img/apikey.png') }}" class="avatar avatar-sm me-3"
+                              alt="Public">
+                          </div>
                           <div class="d-flex flex-column justify-content-center">
                             <h3>API Key</h3>
                           </div>
@@ -681,7 +733,7 @@
                         <div class="toto">
                           <h6 class="font-weight-bolder">Total API Key : {{ list_api_key|length }}</h6>
                         </div>
-                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -690,13 +742,14 @@
                 <div class="card mb-4">
                   <div class="card-header pb-0">
                     <div class="d-flex px-2 py-1">
-                     <div>
-                       <img src="{{ url_for('static', filename='img/apikey.png') }}" class="avatar avatar-sm me-3" alt="Local">
-                     </div>
-                   <div class="d-flex flex-column justify-content-center">
-                     <h6> API Key List </h6>
-                   </div>
-                 </div>
+                      <div>
+                        <img src="{{ url_for('static', filename='img/apikey.png') }}" class="avatar avatar-sm me-3"
+                          alt="Local">
+                      </div>
+                      <div class="d-flex flex-column justify-content-center">
+                        <h6> API Key List </h6>
+                      </div>
+                    </div>
                   </div>
                   <div class="card-body px-0 pt-0 pb-2">
                     <div class="table-responsive p-0">
@@ -704,58 +757,57 @@
                         <thead>
                           <tr>
                             <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Name</th>
-                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">API Key</th>
-                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Action</th>
+                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">API Key
+                            </th>
+                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Action
+                            </th>
                           </tr>
                         </thead>
                         <tbody>
                           {%for key in list_api_key %}
                           {% for key_name in list_api_key[key] %}
-                                <tr>
-                                  <td>
-                                    <div class="d-flex px-2 py-1">
-                                      <div>
-                                        <h6 class="mb-0 text-sm">{{ key_name }}</h6>
-                                      </div>
-                                    </div>
-                                  </td>
-                                  <td>
-                                    <div class="d-flex px-2 py-1">
-                                      <div>
-                                        <h6 class="mb-0 text-sm">{{ key }}</h6>
-                                      </div>
-                                    </div>
-                                  </td>
-                                  <td>
-                                    <div class="d-flex px-2 py-1 outer">
-                                      <form class="d-flex two" method="post" action="/">
-                                        <div class="form-group one">
-                                          <input type="submit" name="delete_apikey" value="{{ key_name }}"/>
-                                        </div>
-                                    </form>
-                                    </div>
-                                  </td>
-                            </tr>
+                          <tr>
+                            <td>
+                              <div class="d-flex px-2 py-1">
+                                <div>
+                                  <h6 class="mb-0 text-sm">{{ key_name }}</h6>
+                                </div>
+                              </div>
+                            </td>
+                            <td>
+                              <div class="d-flex px-2 py-1">
+                                <div>
+                                  <h6 class="mb-0 text-sm">{{ key }}</h6>
+                                </div>
+                              </div>
+                            </td>
+                            <td>
+                              <div class="d-flex px-2 py-1 outer">
+                                <form class="d-flex two" method="post" action="/">
+                                  <div class="form-group one">
+                                    <input type="submit" name="delete_apikey" value="{{ key_name }}" />
+                                  </div>
+                                </form>
+                              </div>
+                            </td>
+                          </tr>
 
-                            {% endfor %} 
-                          {% endfor %} 
+                          {% endfor %}
+                          {% endfor %}
                         </tbody>
                       </table>
                     </div>
                   </div>
                 </div>
               </div>
-              
+
             </div>
-          </div>
           </div>
           {% endif %}
 
 
+        </div>
       </div>
-    </div>
-  </div>
-  </div>
 </body>
 
 </html>
