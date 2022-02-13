@@ -111,13 +111,12 @@ def home():
             
         elif request.form.get('refresh-billing'):
             result = {}  
-            global billing
             #url = f'{dashbord_url}/api/Infomaniak/billing?api_key=1234'
             #data = requests.get(url,verify=True)
             #data = data.content
             #billing = json.loads(data.decode('utf-8'))
             billing = rating_api.get_billing("Infomaniak")
-            return render_template("index.html",billing=billing)
+            return render_template("index.html",billing=billing), billing
 
         elif request.form.get('list_resources'):
             cloud = request.form.getlist('cloud')
