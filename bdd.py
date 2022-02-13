@@ -3,7 +3,7 @@
 
 import sqlite3
 from unicodedata import name
-import openstack_api
+#import openstack_api
 
 def connect_to_db():
     conn = sqlite3.connect('database.db')
@@ -119,10 +119,11 @@ def delete_api_key(name):
     conn.commit()
     conn.close()
 
-
-# conn, cursor = connect_to_db()
-# cmd = "SELECT * FROM api_keys"
-# res = cursor.execute(cmd)
-# print(res.fetchall())
-# conn.close()
+# insert_api_key("1234","test")
+#delete_api_key("test")
+conn, cursor = connect_to_db()
+cmd = "SELECT * FROM api_keys"
+res = cursor.execute(cmd)
+print(res.fetchall())
+conn.close()
 
