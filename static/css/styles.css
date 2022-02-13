@@ -481,11 +481,30 @@ button, input[name="destroy"]{
   box-shadow: inherit;
   width: 30px;
 }
+
 button, input[name="destroy"] {
   background:url(/static/img/destroy.png) no-repeat;
   background-size: 25px;
   margin: auto;
 }
+
+button, input[name="delete_apikey"] {
+  background:url(/static/img/destroy.png) no-repeat;
+  background-size: 25px;
+  margin: auto;
+}
+
+button, input[name="delete_apikey"]{
+  color: #1fe0 !important;
+  border: none !important;
+  padding: 0 !important;
+  font: inherit !important;
+  cursor: pointer !important;
+  outline: inherit !important;
+  box-shadow: inherit;
+  width: 30px;
+}
+
 .outer {
   display:inline-block;
   vertical-align:middle;

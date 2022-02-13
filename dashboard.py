@@ -188,5 +188,4 @@ if __name__ == "__main__":
     result = bdd.fill_database("Local")
     print(result, flush=True, file=sys.stdout)
     billingG = rating_api.get_billing("Infomaniak")
-    print(billingG, flush=True, file=sys.stdout)
     app.run(host="0.0.0.0", port="8086", debug=True)

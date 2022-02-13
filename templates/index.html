@@ -627,15 +627,17 @@
                           <tr>
                             <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Name</th>
                             <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">API Key</th>
+                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Action</th>
                           </tr>
                         </thead>
                         <tbody>
                           {%for key in list_api_key %}
+                          {% for key_name in list_api_key[key] %}
                                 <tr>
                                   <td>
                                     <div class="d-flex px-2 py-1">
                                       <div>
-                                        <h6 class="mb-0 text-sm">{{ list_api_key[key] }}</h6>
+                                        <h6 class="mb-0 text-sm">{{ key_name }}</h6>
                                       </div>
                                     </div>
                                   </td>
@@ -646,8 +648,18 @@
                                       </div>
                                     </div>
                                   </td>
+                                  <td>
+                                    <div class="d-flex px-2 py-1 outer">
+                                      <form class="d-flex two" method="post" action="/">
+                                        <div class="form-group one">
+                                          <input type="submit" name="delete_apikey" value="{{ key_name }}"/>
+                                        </div>
+                                    </form>
+                                    </div>
+                                  </td>
                             </tr>
 
+                            {% endfor %} 
                           {% endfor %} 
                         </tbody>
                       </table>
