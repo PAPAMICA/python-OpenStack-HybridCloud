@@ -83,9 +83,9 @@ def fill_database(cloud_name):
         insert_db_data(cloud_name, "KEYPAIR", data)
         data = openstack_api.list_security_groups(cloud).values()
         insert_db_data(cloud_name, "SECURITY_GROUP", data)
-        return ("SUCCESS")
+        return (f"[SUCCESS] Fill Database {cloud_name}")
     except:
-        return ("ERROR")
+        return (f"[ERROR] Fill Database {cloud_name}")
 
 def insert_api_key(key,name):
     conn, cursor = connect_to_db()
