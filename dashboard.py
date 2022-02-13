@@ -69,6 +69,7 @@ def home():
         
         elif request.form.get('list-apikey'):
             result = bdd.list_api_key()
+            print(result, flush=True, file=sys.stdout)
             return render_template("index.html", list_api_key=result)
         
         elif request.form.get('create_instance'):
