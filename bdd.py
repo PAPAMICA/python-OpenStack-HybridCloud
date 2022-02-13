@@ -51,7 +51,7 @@ def delete_db_table(table):
 def insert_db_data(cloud_name, type, data):
     conn, cursor = connect_to_db()
     for i in data:
-        sql = f'''INSERT INTO OR REPLACE {cloud_name} (TYPE, DATA) VALUES ("{type}","{i}")'''
+        sql = f'''INSERT OR REPLACE INTO {cloud_name} (TYPE, DATA) VALUES ("{type}","{i}")'''
         conn.execute(sql)
         conn.commit()
         conn.close
