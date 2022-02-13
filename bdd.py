@@ -3,7 +3,8 @@
 
 import sqlite3
 from unicodedata import name
-#import openstack_api
+import openstack_api
+import sys
 
 def connect_to_db():
     conn = sqlite3.connect('database.db')
@@ -74,7 +75,9 @@ def get_resources_list(cloud_name):
 def fill_database(cloud_name):
     try:
         cloud = openstack_api.cloud_connection(cloud_name)
+        print(cloud, flush=True, file=sys.stdout)
         data = openstack_api.list_flavors(cloud).values()
+        print(data, flush=True, file=sys.stdout)
         insert_db_data(cloud_name, "FLAVOR", data)
         data = openstack_api.list_images(cloud).values()
         insert_db_data(cloud_name, "IMAGE", data)
@@ -86,7 +89,7 @@ def fill_database(cloud_name):
         insert_db_data(cloud_name, "SECURITY_GROUP", data)
         return ("SUCCESS")
     except:
-        return ("ERROR")
+        return ("ERROR fill database")
 
 def insert_api_key(key,name):
     conn, cursor = connect_to_db()

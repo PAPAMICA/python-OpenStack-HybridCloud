@@ -35,6 +35,7 @@ OS_REGION_NAME = ""
 def cloud_connection(cloud_name):
     try:
         file = f'/openrc/{cloud_name}'
+        #file = '/Users/papamica/kDrive/ProjetsPerso/plex-public-cloud/openrc'
         with open(file) as f:
             lines = f.readlines()
             for line in lines:
@@ -42,6 +43,7 @@ def cloud_connection(cloud_name):
                 if len(line) > 1:
                     word=line[1].split('=')
                     globals()[word[0]] = word[1]
+        #print(OS_AUTH_URL)
         return openstack.connect(
             auth_url=OS_AUTH_URL,
             project_name=OS_PROJECT_NAME,
@@ -331,3 +333,6 @@ def delete_instance(cloud, server_name):
     except:
         return f"[ERROR] Can't delete instance {server_name} !"
 
+#cloud = cloud_connection("Infomaniak")
+#print(cloud)
+#print(list_networks(cloud))
