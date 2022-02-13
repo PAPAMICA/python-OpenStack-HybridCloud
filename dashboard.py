@@ -103,7 +103,7 @@ def home():
             cloud = request.form.getlist('cloud')
             result = {}   
             for cloud_name in cloud:
-                result = bdd.get_resources_list(cloud_name)
+                result[cloud_name] = bdd.get_resources_list(cloud_name)
             return render_template("index.html",resources=result, cloud_name=cloud_name, billing=billing)
 
         elif request.form.get('update_resources'):
@@ -113,7 +113,7 @@ def home():
                 bdd.delete_db_table(cloud_name)
                 bdd.create_db_cloud(cloud_name)
                 bdd.fill_database(cloud_name)
-                result = bdd.get_resources_list(cloud_name)
+                result[cloud_name] = bdd.get_resources_list(cloud_name)
             print(result, flush=True, file=sys.stdout)
             return render_template("index.html",resources=result, cloud_name=cloud_name, billing=billing)
 
