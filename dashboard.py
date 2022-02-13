@@ -46,7 +46,7 @@ def home():
             cloud_name = request.form['cloud_name']
             cloud  = openstack_api.cloud_connection(cloud_name)
             result = openstack_api.stop_instance(cloud, instance_name)
-            time.sleep(2)
+            time.sleep(10)
             result = reload_list(cloud_name)
 
         elif request.form.get('destroy'):
