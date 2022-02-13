@@ -32,14 +32,14 @@ def home():
             cloud  = openstack_api.cloud_connection(cloud_name)
             openstack_api.start_instance(cloud, instance_name)
             time.sleep(2)
-            data = reload_list(cloud_name)
+            result = reload_list(cloud_name)
         elif request.form.get('reboot'):
             instance_name = request.form['reboot']
             cloud_name = request.form['cloud_name']
             cloud  = openstack_api.cloud_connection(cloud_name)
             result = openstack_api.reboot_instance(cloud, instance_name)
             time.sleep(1)
-            data = reload_list(cloud_name)
+            result = reload_list(cloud_name)
 
         elif request.form.get('stop'):
             instance_name = request.form['stop']
@@ -47,7 +47,7 @@ def home():
             cloud  = openstack_api.cloud_connection(cloud_name)
             result = openstack_api.stop_instance(cloud, instance_name)
             time.sleep(2)
-            data = reload_list(cloud_name)
+            result = reload_list(cloud_name)
 
         elif request.form.get('destroy'):
             instance_name = request.form['destroy']
@@ -55,8 +55,7 @@ def home():
             cloud  = openstack_api.cloud_connection(cloud_name)
             result = openstack_api.delete_instance(cloud, instance_name)
             time.sleep(3)
-            data = reload_list(cloud_name)
-
+            result = reload_list(cloud_name)
 
         elif request.form.get('list_apikey'):
             result = bdd.list_api_key()
@@ -128,11 +127,9 @@ def home():
 
 
 def reload_list(cloud_name):
-    url = f'{dashbord_url}/api/list/instances/{cloud_name}?api_key=1234'
-    result = requests.get(url,verify=True)
-    data = result.content
-    data = json.loads(data.decode('utf-8'))
-    return data
+    cloud_connect  = openstack_api.cloud_connection(cloud_name)
+    result = openstack_api.get_instances_list(cloud_connect)
+    return result
 
 if __name__ == "__main__":
     table = bdd.create_db_cloud("Infomaniak")
