@@ -86,7 +86,7 @@ def fill_database(cloud_name):
         insert_db_data(cloud_name, "SECURITY_GROUP", data)
         return ("SUCCESS")
     except:
-        return (cloud_name)
+        return ("ERROR fill database")
 
 def insert_api_key(key,name):
     conn, cursor = connect_to_db()

@@ -185,6 +185,7 @@ def reload_list(cloud_name):
 
 if __name__ == "__main__":
     table = bdd.create_db_cloud("Infomaniak")
+    print(table, flush=True, file=sys.stdout)
     result = bdd.fill_database("Infomaniak")
     print(result, flush=True, file=sys.stdout)
     table = bdd.create_db_cloud("Local")
