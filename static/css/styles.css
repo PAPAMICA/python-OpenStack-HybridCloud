@@ -407,6 +407,10 @@ span.status-offline {
   .column-4 {
     width: 100%;
   }
+  .col-12-2{
+    flex: 0 0 auto;
+    width: 50%;
+  }
 }
 
 @media (max-width: 800px) {
@@ -417,6 +421,10 @@ span.status-offline {
     width: 100%;
   }
   .column-4 {
+    width: 100%;
+  }
+  .col-12-2{
+    flex: 0 0 auto;
     width: 100%;
   }
 }
@@ -568,4 +576,8 @@ table {
 }
 .toto {
   margin-left: 10px;
+}
+.col-12-2{
+  flex: 0 0 auto;
+  width: 25%;
 }
