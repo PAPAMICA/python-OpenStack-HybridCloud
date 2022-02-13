@@ -185,7 +185,6 @@ if __name__ == "__main__":
     table = bdd.create_db_cloud("Local")
     result = bdd.fill_database("Local")
     print(result, flush=True, file=sys.stdout)
-    global billing
     billing = rating_api.get_billing("Infomaniak")
     print(billing, flush=True, file=sys.stdout)
-    app.run(host="0.0.0.0", port="8086", debug=True)
+    app.run(host="0.0.0.0", port="8086", debug=True, billing=billing)
