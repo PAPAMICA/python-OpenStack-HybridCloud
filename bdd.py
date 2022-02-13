@@ -48,11 +48,10 @@ def delete_db_table(table):
     cursor.execute(f"DROP TABLE {table}")
     conn.close
 
-def insert_db_data(cloud_name, prout, data):
+def insert_db_data(cloud_name, type, data):
     conn, cursor = connect_to_db()
     for i in data:
-        #sql = f'''INSERT INTO {cloud} (TYPE, DATA) VALUES ({type},{i})'''
-        sql = f'''INSERT INTO {cloud_name} (TYPE, DATA) VALUES ("{prout}","{i}")'''
+        sql = f'''INSERT INTO {cloud_name} (TYPE, DATA) VALUES ("{type}","{i}")'''
         conn.execute(sql)
         conn.commit()
         conn.close
@@ -119,10 +118,4 @@ def delete_api_key(name):
     conn.commit()
     conn.close()
 
-
-# conn, cursor = connect_to_db()
-# cmd = "SELECT * FROM api_keys"
-# res = cursor.execute(cmd)
-# print(res.fetchall())
-# conn.close()
 
