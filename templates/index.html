@@ -594,7 +594,7 @@
                         <div class="titi">
                           <div class="d-flex px-2 py-1">
                             <div>
-                              <img src="{{ url_for('static', filename='img/IPC.png') }}" class="avatar avatar-sm me-3" alt="Public"> 
+                              <img src="{{ url_for('static', filename='img/apikey.png') }}" class="avatar avatar-sm me-3" alt="Public"> 
                             </div>
                           <div class="d-flex flex-column justify-content-center">
                             <h3>API Key</h3>
@@ -613,7 +613,7 @@
                   <div class="card-header pb-0">
                     <div class="d-flex px-2 py-1">
                      <div>
-                       <img src="{{ url_for('static', filename='img/flavor.png') }}" class="avatar avatar-sm me-3" alt="Local">
+                       <img src="{{ url_for('static', filename='img/apikey.png') }}" class="avatar avatar-sm me-3" alt="Local">
                      </div>
                    <div class="d-flex flex-column justify-content-center">
                      <h6> API Key List </h6>
@@ -625,7 +625,7 @@
                       <table class="table align-items-center mb-0">
                         <thead>
                           <tr>
-                            <th class="ten text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Name</th>
+                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Name</th>
                             <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">API Key</th>
                           </tr>
                         </thead>
@@ -635,7 +635,7 @@
                                   <td>
                                     <div class="d-flex px-2 py-1">
                                       <div>
-                                        <h6 class="mb-0 text-sm">{{ key }}</h6>
+                                        <h6 class="mb-0 text-sm">{{ list_api_key[key] }}</h6>
                                       </div>
                                     </div>
                                   </td>
