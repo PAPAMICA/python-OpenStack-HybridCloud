@@ -72,7 +72,7 @@ def home():
             return render_template("index.html", api_key=api_key, key_name = key_name, billing=billing)
         
         elif request.form.get('delete_apikey'):
-            key_name = request.form['key_name']
+            key_name = request.form.getlist('key_name')
             bdd.delete_api_key(key_name)
         
         
