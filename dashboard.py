@@ -32,7 +32,7 @@ def home():
             cloud  = openstack_api.cloud_connection(cloud_name)
             openstack_api.start_instance(cloud, instance_name)
             time.sleep(2)
-            data = reload_list(cloud_name[0])
+            data = reload_list(cloud_name)
         elif request.form.get('reboot'):
             instance_name = request.form.getlist('reboot')
             cloud_name = request.form.getlist('cloud_name')
