@@ -24,29 +24,32 @@ def home():
     api_key = ""
     key_name = ""
     billing = billingG
-    cloud  = openstack_api.cloud_connection(cloud_name)
     if request.method == 'POST':
         if request.form.get('start'):
             instance_name = request.form.getlist('start')
             cloud_name = request.form.getlist('cloud_name')
+            cloud  = openstack_api.cloud_connection(cloud_name)
             openstack_api.start_instance(cloud, instance_name[0])
             time.sleep(2)
             data = reload_list(cloud_name[0])
         elif request.form.get('reboot'):
             instance_name = request.form.getlist('reboot')
             cloud_name = request.form.getlist('cloud_name')
+            cloud  = openstack_api.cloud_connection(cloud_name)
             result = openstack_api.reboot_instance(cloud, instance_name[0])
             time.sleep(1)
             data = reload_list(cloud_name[0])
         elif request.form.get('stop'):
             instance_name = request.form.getlist('stop')
             cloud_name = request.form.getlist('cloud_name')
+            cloud  = openstack_api.cloud_connection(cloud_name)
             result = openstack_api.stop_instance(cloud, instance_name[0])
             time.sleep(2)
             data = reload_list(cloud_name[0])
         elif request.form.get('destroy'):
             instance_name = request.form['destroy']
             cloud_name = request.form.getlist('cloud_name')
+            cloud  = openstack_api.cloud_connection(cloud_name)
             result = openstack_api.delete_instance(cloud, instance_name)
             time.sleep(3)
             data = reload_list(cloud_name[0])
@@ -89,6 +92,7 @@ def home():
             instance_keypair = request.form['KEYPAIR']
             instance_network = request.form['NETWORK']
             instance_sc = request.form['SECURITY_GROUP']
+            cloud  = openstack_api.cloud_connection(cloud_name)
             openstack_api.create_instance(cloud, instance_name,instance_image, instance_flavor, instance_network, instance_keypair, instance_sc) 
             #data = data.content
             #data = json.loads(data.decode('utf-8'))
