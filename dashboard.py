@@ -127,6 +127,7 @@ def home():
 
 
 def reload_list(cloud_name):
+    result = dict()
     cloud_connect  = openstack_api.cloud_connection(cloud_name)
     result[cloud_name] = openstack_api.get_instances_list(cloud_connect)
     return result
