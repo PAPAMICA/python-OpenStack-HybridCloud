@@ -5,6 +5,7 @@ services:
     build: .
 #    image: hybridcloud
     container_name: hybridcloud
+    restart: always
     volumes:
     - /etc/localtime:/etc/localtime
     - /apps/hybridcloud/openrc:/openrc
