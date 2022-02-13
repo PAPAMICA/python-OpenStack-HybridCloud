@@ -34,28 +34,28 @@ def home():
             time.sleep(2)
             data = reload_list(cloud_name)
         elif request.form.get('reboot'):
-            instance_name = request.form.getlist('reboot')
-            cloud_name = request.form.getlist('cloud_name')
+            instance_name = request.form['reboot']
+            cloud_name = request.form['cloud_name']
             cloud  = openstack_api.cloud_connection(cloud_name)
-            result = openstack_api.reboot_instance(cloud, instance_name[0])
+            result = openstack_api.reboot_instance(cloud, instance_name)
             time.sleep(1)
-            data = reload_list(cloud_name[0])
+            data = reload_list(cloud_name)
 
         elif request.form.get('stop'):
-            instance_name = request.form.getlist('stop')
-            cloud_name = request.form.getlist('cloud_name')
+            instance_name = request.form['stop']
+            cloud_name = request.form['cloud_name']
             cloud  = openstack_api.cloud_connection(cloud_name)
-            result = openstack_api.stop_instance(cloud, instance_name[0])
+            result = openstack_api.stop_instance(cloud, instance_name)
             time.sleep(2)
-            data = reload_list(cloud_name[0])
+            data = reload_list(cloud_name)
 
         elif request.form.get('destroy'):
             instance_name = request.form['destroy']
-            cloud_name = request.form.getlist('cloud_name')
+            cloud_name = request.form['cloud_name']
             cloud  = openstack_api.cloud_connection(cloud_name)
             result = openstack_api.delete_instance(cloud, instance_name)
             time.sleep(3)
-            data = reload_list(cloud_name[0])
+            data = reload_list(cloud_name)
 
 
         elif request.form.get('list_apikey'):
@@ -80,12 +80,8 @@ def home():
         elif request.form.get('create_instance'):
             cloud = request.form.getlist('cloud')
             cloud_name = cloud[0]
-            url = f'{dashbord_url}/api/list/resources/{cloud_name}?api_key=1234'
-            data = requests.get(url,verify=True)
-            data = data.content
-            data = json.loads(data.decode('utf-8'))
-            result[cloud_name] = data
-            return render_template("create.html",resources=result, cloud_name=cloud_name, billing=billing)
+            result = bdd.get_resources_list(cloud_name)
+            return render_template("create.html",resources=result, cloud_name=cloud_name)
 
         elif request.form.get('create_instance_2'):
             cloud_name = request.form['cloud_name']
