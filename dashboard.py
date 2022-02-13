@@ -15,7 +15,7 @@ import rating_api
 
 
 dashbord_url = "https://hybridcloud.papamica.com"
-global billing
+global billingG
 
 @app.route("/", methods=['GET','POST'])
 def home():
@@ -23,6 +23,7 @@ def home():
     cloud_name = str()
     api_key = ""
     key_name = ""
+    billing = billingG
     if request.method == 'POST':
         if request.form.get('start'):
             instance_name = request.form.getlist('start')
@@ -186,6 +187,6 @@ if __name__ == "__main__":
     table = bdd.create_db_cloud("Local")
     result = bdd.fill_database("Local")
     print(result, flush=True, file=sys.stdout)
-    billing = rating_api.get_billing("Infomaniak")
-    print(billing, flush=True, file=sys.stdout)
+    billingG = rating_api.get_billing("Infomaniak")
+    print(billingG, flush=True, file=sys.stdout)
     app.run(host="0.0.0.0", port="8086", debug=True)
