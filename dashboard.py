@@ -112,7 +112,8 @@ def home():
             for cloud_name in cloud:
                 bdd.delete_db_table(cloud_name)
                 bdd.create_db_cloud(cloud_name)
-                result = bdd.fill_database(cloud_name)
+                bdd.fill_database(cloud_name)
+                result = bdd.get_resources_list(cloud_name)
             print(result, flush=True, file=sys.stdout)
             return render_template("index.html",resources=result, cloud_name=cloud_name, billing=billing)
 
