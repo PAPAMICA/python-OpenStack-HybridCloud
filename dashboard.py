@@ -5,7 +5,7 @@ import json
 import ast
 from flask import Flask, request, render_template, redirect
 app = Flask(__name__)
-import api
+import openstack_api
 import sys
 import time
 import bdd
@@ -24,37 +24,30 @@ def home():
     api_key = ""
     key_name = ""
     billing = billingG
+    cloud  = openstack_api.cloud_connection(cloud_name)
     if request.method == 'POST':
         if request.form.get('start'):
             instance_name = request.form.getlist('start')
             cloud_name = request.form.getlist('cloud_name')
-            url = f'{dashbord_url}/api/{cloud_name[0]}/{instance_name[0]}/start?api_key=1234'
-            result = requests.get(url)
-            #print(result, flush=True, file=sys.stdout)
+            openstack_api.start_instance(cloud, instance_name[0])
             time.sleep(2)
             data = reload_list(cloud_name[0])
         elif request.form.get('reboot'):
             instance_name = request.form.getlist('reboot')
             cloud_name = request.form.getlist('cloud_name')
-            url = f'{dashbord_url}/api/{cloud_name[0]}/{instance_name[0]}/reboot?api_key=1234'
-            result = requests.get(url)
-            #print(result, flush=True, file=sys.stdout)
+            result = openstack_api.reboot_instance(cloud, instance_name[0])
             time.sleep(1)
             data = reload_list(cloud_name[0])
         elif request.form.get('stop'):
             instance_name = request.form.getlist('stop')
             cloud_name = request.form.getlist('cloud_name')
-            url = f'{dashbord_url}/api/{cloud_name[0]}/{instance_name[0]}/stop?api_key=1234'
-            result = requests.get(url)
-            #print(result, flush=True, file=sys.stdout)
+            result = openstack_api.stop_instance(cloud, instance_name[0])
             time.sleep(2)
             data = reload_list(cloud_name[0])
         elif request.form.get('destroy'):
             instance_name = request.form['destroy']
             cloud_name = request.form.getlist('cloud_name')
-            url = f'{dashbord_url}/api/{cloud_name[0]}/{instance_name}?api_key=1234'
-            result = requests.delete(url)
-            #print(result, flush=True, file=sys.stdout)
+            result = openstack_api.delete_instance(cloud, instance_name)
             time.sleep(3)
             data = reload_list(cloud_name[0])
 
@@ -96,18 +89,7 @@ def home():
             instance_keypair = request.form['KEYPAIR']
             instance_network = request.form['NETWORK']
             instance_sc = request.form['SECURITY_GROUP']
-            headers = {"Content-Type":"application/json"}
-            body = {       
-                        "instance_name":instance_name,
-                        "instance_image":instance_image,
-                        "instance_flavor":instance_flavor,
-                        "instance_network":instance_network,
-                        "instance_keypair":instance_keypair,
-                        "instance_securitygroup":instance_sc
-                    }
-            url = f'{dashbord_url}/api/{cloud_name}/new_instance?api_key=1234'
-            r = requests.post(url,data=json.dumps(body),headers=headers,verify=True)
-            print(r, json.dumps(body)) 
+            openstack_api.create_instance(cloud, instance_name,instance_image, instance_flavor, instance_network, instance_keypair, instance_sc) 
             #data = data.content
             #data = json.loads(data.decode('utf-8'))
             #result[cloud_name] = data
