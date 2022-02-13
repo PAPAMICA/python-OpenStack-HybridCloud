@@ -33,6 +33,7 @@ def home():
             openstack_api.start_instance(cloud, instance_name)
             time.sleep(2)
             data = reload_list(cloud_name[0])
+
         elif request.form.get('reboot'):
             instance_name = request.form.getlist('reboot')
             cloud_name = request.form.getlist('cloud_name')
@@ -40,6 +41,7 @@ def home():
             result = openstack_api.reboot_instance(cloud, instance_name[0])
             time.sleep(1)
             data = reload_list(cloud_name[0])
+
         elif request.form.get('stop'):
             instance_name = request.form.getlist('stop')
             cloud_name = request.form.getlist('cloud_name')
@@ -47,6 +49,7 @@ def home():
             result = openstack_api.stop_instance(cloud, instance_name[0])
             time.sleep(2)
             data = reload_list(cloud_name[0])
+
         elif request.form.get('destroy'):
             instance_name = request.form['destroy']
             cloud_name = request.form.getlist('cloud_name')
@@ -95,17 +98,9 @@ def home():
             instance_sc = request.form['SECURITY_GROUP']
             cloud  = openstack_api.cloud_connection(cloud_name)
             openstack_api.create_instance(cloud, instance_name,instance_image, instance_flavor, instance_network, instance_keypair, instance_sc) 
-            #data = data.content
-            #data = json.loads(data.decode('utf-8'))
-            #result[cloud_name] = data
-            #return render_template("create.html",resources=result, cloud_name=cloud_name)
             
         elif request.form.get('refresh-billing'):
             result = {}  
-            #url = f'{dashbord_url}/api/Infomaniak/billing?api_key=1234'
-            #data = requests.get(url,verify=True)
-            #data = data.content
-            #billing = json.loads(data.decode('utf-8'))
             billing = rating_api.get_billing("Infomaniak")
             return render_template("index.html",billing=billing), billing
 
@@ -114,7 +109,6 @@ def home():
             result = {}   
             for cloud_name in cloud:
                 url = f'{dashbord_url}/api/list/resources/{cloud_name}?api_key=1234'
-                #url = f'{dashbord_url}/api/list/resources/Infomaniak?api_key=1234'
                 data = requests.get(url,verify=True)
                 data = data.content
                 data = json.loads(data.decode('utf-8'))
@@ -126,11 +120,10 @@ def home():
 
             result = {}   
             for cloud_name in cloud:
+                bdd.delete_db_table(cloud_name)
                 url = f'{dashbord_url}/api/update/resources/{cloud_name}?api_key=1234'
-                #url = f'{dashbord_url}/api/update/resources/Infomaniak?api_key=1234'
                 update = requests.get(url,verify=True)
                 url = f'{dashbord_url}/api/list/resources/{cloud_name}?api_key=1234'
-                #url = f'{dashbord_url}/api/list/resources/Infomaniak?api_key=1234'
                 data = requests.get(url,verify=True)
                 data = data.content
                 data = json.loads(data.decode('utf-8'))
@@ -143,14 +136,12 @@ def home():
             result = {}   
             for cloud_name in cloud:
                 url = f'{dashbord_url}/api/list/instances/{cloud_name}?api_key=1234'
-                #url = f'{dashbord_url}/api/list/instances/Infomaniak?api_key=1234'
                 data = requests.get(url,verify=True)
                 print(data, flush=True, file=sys.stdout)
                 data = data.content
                 data = json.loads(data.decode('utf-8'))
                 result[cloud_name] = data
             print(result, flush=True, file=sys.stdout)
-            #return render_template("index.html",instances=data, cloud_name=cloud_name)
     return render_template("index.html",instances=result, cloud_name=cloud_name, billing=billing)
 
 
@@ -160,14 +151,6 @@ def reload_list(cloud_name):
     data = result.content
     data = json.loads(data.decode('utf-8'))
     return data
-
-
-# @app.route("/list", methods=['GET','POST'])
-# def web_list_instances():
-#     cloud_name = request.form["cloud"]
-#     url = f'{dashbord_url}/api/list/{cloud_name}'
-#     result = requests.get(url,verify=True)
-#     return result.content
 
 if __name__ == "__main__":
     table = bdd.create_db_cloud("Infomaniak")
