@@ -103,16 +103,11 @@ def home():
             cloud = request.form.getlist('cloud')
             result = {}   
             for cloud_name in cloud:
-                url = f'{dashbord_url}/api/list/resources/{cloud_name}?api_key=1234'
-                data = requests.get(url,verify=True)
-                data = data.content
-                data = json.loads(data.decode('utf-8'))
-                result[cloud_name] = data
+                result = bdd.get_resources_list(cloud_name)
             return render_template("index.html",resources=result, cloud_name=cloud_name, billing=billing)
 
         elif request.form.get('update_resources'):
             cloud = request.form.getlist('cloud')
-
             result = {}   
             for cloud_name in cloud:
                 bdd.delete_db_table(cloud_name)
