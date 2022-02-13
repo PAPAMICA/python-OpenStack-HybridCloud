@@ -152,11 +152,9 @@ def reload_list(cloud_name):
     return data
 
 if __name__ == "__main__":
-    bdd.delete_db_table("Infomaniak")
     table = bdd.create_db_cloud("Infomaniak")
     result = bdd.fill_database("Infomaniak")
     print(result, flush=True, file=sys.stdout)
-    bdd.delete_db_table("Local")
     table = bdd.create_db_cloud("Local")
     result = bdd.fill_database("Local")
     print(result, flush=True, file=sys.stdout)
