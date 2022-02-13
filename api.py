@@ -13,7 +13,7 @@ def display_instances_list(cloud_name):
     res = bdd.seek_api_key(api_key)
     if res:
         cloud  = openstack_api.cloud_connection(cloud_name)
-        result = openstack_api.get_instances_list(cloud)
+        result = openstack_api.get_instances_list(cloud, cloud_name)
         return result,200
     else:
         return Response("403 : Access denied",status=403)
@@ -56,7 +56,7 @@ def display_instance_information(cloud_name,server_name):
     if res:
         cloud  = openstack_api.cloud_connection(cloud_name)
         if request.method == 'GET':
-            result = openstack_api.get_instance_information(cloud, server_name)
+            result = openstack_api.get_instance_information(cloud, server_name, cloud_name)
         elif request.method == 'DELETE':
             result = openstack_api.delete_instance(cloud, server_name)
         return result,200
@@ -144,7 +144,7 @@ def create_instance(cloud_name):
         instance_keypair = data['instance_keypair']
         instance_securitygroup = data['instance_securitygroup']
         cloud  = openstack_api.cloud_connection(cloud_name)
-        openstack_api.create_instance(cloud, instance_name,instance_image, instance_flavor, instance_network, instance_keypair, instance_securitygroup)
+        openstack_api.create_instance(cloud, instance_name,instance_image, instance_flavor, instance_network, instance_keypair, instance_securitygroup, cloud_name)
         return Response("201 : success", status=201)
     else:
         return Response("403 : Access denied",status=403)

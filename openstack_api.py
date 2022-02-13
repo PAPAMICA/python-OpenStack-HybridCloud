@@ -1,15 +1,14 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
+# Import dependencies
 import openstack
 import openstack.exceptions
-import os
 import re
 import json 
 import argparse
-import subprocess
-#from flask import Flask, request, render_template, redirect
 
+# Arguments
 parser = argparse.ArgumentParser()
 parser.add_argument("--json", help="Output as json", action="store_true")
 parser.add_argument("--dict", help="Output as dict", action="store_true")
@@ -19,24 +18,13 @@ if args.json:
 else:
     arg_json = 0
 
+arg_dict = 1
 if args.dict:
     arg_dict = 1
 else:
     arg_dict = 0
 
-arg_dict = 1
-# Instance
-instance_name = "test-name"
-instance_image = "Debian 11.2 bullseye"
-instance_flavor = "a1-ram2-disk20-perf1"
-instance_network= "ext-net1"
-instance_securitygroup = "ALLL"
-instance_keypair = "Yubikey"
-
-# Others
-cloud_name = "Infomaniak"
-keypair_name = ""
-
+# Variables for OpenStack connexion
 OS_AUTH_URL = "" 
 OS_PROJECT_NAME = ""
 OS_USERNAME = ""
@@ -45,6 +33,7 @@ OS_REGION_NAME = ""
 
 # Connect to Openstack
 def cloud_connection(cloud_name):
+    try:
         file = f'/openrc/{cloud_name}'
         with open(file) as f:
             lines = f.readlines()
@@ -64,47 +53,49 @@ def cloud_connection(cloud_name):
             app_name='examples',
             app_version='1.0',
         )
+    except:
+        return f"[ERROR] Can't connect to {cloud_name} !"
 
 
 # Get all informations of all instances
-#@app.route("/list", methods=['GET','POST'])
-
-def get_instances_list(cloud):
-    if arg_dict == 1:
-        result = {}
-    else:
-        result = ""
-    for server in cloud.compute.servers():
-        #print(server)
-        secgroup = ""
-        for i in server.security_groups:
-            if (secgroup == ""):
-                secgroup = i['name']
-            else:
-                secgroup = secgroup + ", " + i['name']
-        image = cloud.compute.find_image(server.image.id)
-        IPv4 = re.search(r'([0-9]{1,3}\.){3}[0-9]{1,3}', str(server.addresses))
-        data = {'instance': server.name}
-        data['Cloud'] = cloud_name
-        data['Status'] = server.status
-        data['IP'] = IPv4.group()
-        data['Keypair'] = server.key_name
-        data['Image'] = image.name
-        data['Flavor'] = server.flavor['original_name']
-        data['Network'] = next(iter(server.addresses))
-        data['Security_groups'] = secgroup
+def get_instances_list(cloud, cloud_name):
+    try:
         if arg_dict == 1:
-            result[server.name] = data
-        elif arg_json == 1:
-            data = json.dumps(data, indent = 4)
-            result = result + data
+            result = {}
         else:
-            result = str(result) + f"{server.name}: \n  Cloud: {cloud_name}\n  Status: {server.status}\n  IP: {IPv4.group()}\n  Keypair: {server.key_name} \n  Image: {image.name}\n  Network: {next(iter(server.addresses))} \n  Flavor: {server.flavor['original_name']} \n  Security_groups: {secgroup} \n "
-    return result    
+            result = ""
+        for server in cloud.compute.servers():
+            #print(server)
+            secgroup = ""
+            for i in server.security_groups:
+                if (secgroup == ""):
+                    secgroup = i['name']
+                else:
+                    secgroup = secgroup + ", " + i['name']
+            image = cloud.compute.find_image(server.image.id)
+            IPv4 = re.search(r'([0-9]{1,3}\.){3}[0-9]{1,3}', str(server.addresses))
+            data = {'instance': server.name}
+            data['Cloud'] = cloud_name
+            data['Status'] = server.status
+            data['IP'] = IPv4.group()
+            data['Keypair'] = server.key_name
+            data['Image'] = image.name
+            data['Flavor'] = server.flavor['original_name']
+            data['Network'] = next(iter(server.addresses))
+            data['Security_groups'] = secgroup
+            if arg_dict == 1:
+                result[server.name] = data
+            elif arg_json == 1:
+                data = json.dumps(data, indent = 4)
+                result = result + data
+            else:
+                result = str(result) + f"{server.name}: \n  Cloud: {cloud_name}\n  Status: {server.status}\n  IP: {IPv4.group()}\n  Keypair: {server.key_name} \n  Image: {image.name}\n  Network: {next(iter(server.addresses))} \n  Flavor: {server.flavor['original_name']} \n  Security_groups: {secgroup} \n "
+        return result    
+    except:
+        return f"[ERROR] Can't list instances !"
 
 # Find and display information about one instance
-#@app.route("/get_instance_information")
-def get_instance_information(cloud, server_name):
+def get_instance_information(cloud, server_name, cloud_name):
     try:
         if arg_dict == 1:
             result = {}
@@ -142,156 +133,169 @@ def get_instance_information(cloud, server_name):
 
 
 # Create Keypair
-#@app.route("/create_keypair")
 def create_keypair(cloud, keypair_name):
-    keypair = cloud.compute.find_keypair(keypair_name)
+    try:
+        keypair = cloud.compute.find_keypair(keypair_name)
 
-    if not keypair:
-        keypair = cloud.compute.create_keypair(name=keypair_name)
-        if arg_dict == 1:
-            data = {'Private Key': keypair.private_key}
-            return data
-        elif arg_json == 1:
-            data = {'Private Key': keypair.private_key}
-            data = json.dumps(data, indent = 4)
-            return data
+        if not keypair:
+            keypair = cloud.compute.create_keypair(name=keypair_name)
+            if arg_dict == 1:
+                data = {'Private Key': keypair.private_key}
+                return data
+            elif arg_json == 1:
+                data = {'Private Key': keypair.private_key}
+                data = json.dumps(data, indent = 4)
+                return data
+            else:
+                print (keypair.private_key)
+                return keypair
         else:
-            print (keypair.private_key)
             return keypair
-    else:
-        return keypair
+    except:
+        return f"[ERROR] Can't create keypair {keypair_name} !"
 
 # List keypairs
-#@app.route("/list_keypairs")
 def list_keypairs(cloud):
-    if arg_dict == 1:
-        result = {}
-    else:
-        result = ""
-    for keypair in cloud.compute.keypairs():
+    try:
         if arg_dict == 1:
-            result[keypair.id] = keypair.name
-        elif arg_json == 1:
-            data = {keypair.id: keypair.name}
-            data = json.dumps(data, indent = 4)
-            result = result + data
+            result = {}
         else:
-            if (result == ""):
-                result = keypair.name
+            result = ""
+        for keypair in cloud.compute.keypairs():
+            if arg_dict == 1:
+                result[keypair.id] = keypair.name
+            elif arg_json == 1:
+                data = {keypair.id: keypair.name}
+                data = json.dumps(data, indent = 4)
+                result = result + data
             else:
-                result = result + ", " + keypair.name
+                if (result == ""):
+                    result = keypair.name
+                else:
+                    result = result + ", " + keypair.name
 
-    return result
+        return result
+    except:
+        return f"[ERROR] Can't list keypairs !"
 
 # List networks
-#@app.route("/list_networks")
 def list_networks(cloud):
-    if arg_dict == 1:
-        result = {}
-    else:
-        result = ""
-    for network in cloud.network.networks():
+    try:
         if arg_dict == 1:
-            result[network.id] = network.name
-        elif arg_json == 1:
-            data = {network.id: network.name}
-            data = json.dumps(data, indent = 4)
-            result = result + data
+            result = {}
         else:
-            if (result == ""):
-                result = network.name
+            result = ""
+        for network in cloud.network.networks():
+            if arg_dict == 1:
+                result[network.id] = network.name
+            elif arg_json == 1:
+                data = {network.id: network.name}
+                data = json.dumps(data, indent = 4)
+                result = result + data
             else:
-                result = result + ", " + network.name
+                if (result == ""):
+                    result = network.name
+                else:
+                    result = result + ", " + network.name
 
-    return result
+        return result
+    except:
+        return f"[ERROR] Can't list networks !"
 
 # List security groups
-#@app.route("/list_security_groups")
 def list_security_groups(cloud):
-    if arg_dict == 1:
-        result = {}
-    else:
-        result = ""
-    for sc in cloud.network.security_groups():
+    try:
         if arg_dict == 1:
-            result[sc.id] = sc.name
-        elif arg_json == 1:
-            data = {sc.id: sc.name}
-            data = json.dumps(data, indent = 4)
-            result = result + data
+            result = {}
         else:
-            if (result == ""):
-                result = sc.name
+            result = ""
+        for sc in cloud.network.security_groups():
+            if arg_dict == 1:
+                result[sc.id] = sc.name
+            elif arg_json == 1:
+                data = {sc.id: sc.name}
+                data = json.dumps(data, indent = 4)
+                result = result + data
             else:
-                result = result + ", " + sc.name
+                if (result == ""):
+                    result = sc.name
+                else:
+                    result = result + ", " + sc.name
 
-    return result
+        return result
+    except:
+        return f"[ERROR] Can't list security groups !"
 
 # List images
-#@app.route("/list_images")
 def list_images(cloud):
-    if arg_dict == 1:
-        result = {}
-    else:
-        result = ""
-    for image in cloud.compute.images():
+    try:
         if arg_dict == 1:
-            result[image.id] = image.name
-        elif arg_json == 1:
-            data = {image.id: image.name}
-            data = json.dumps(data, indent = 4)
-            result = result + data
+            result = {}
         else:
-            if (result == ""):
-                result = image.name
+            result = ""
+        for image in cloud.compute.images():
+            if arg_dict == 1:
+                result[image.id] = image.name
+            elif arg_json == 1:
+                data = {image.id: image.name}
+                data = json.dumps(data, indent = 4)
+                result = result + data
             else:
-                result = result + ", " + image.name
+                if (result == ""):
+                    result = image.name
+                else:
+                    result = result + ", " + image.name
 
-    return result
+        return result
+    except:
+        return f"[ERROR] Can't list images !"
 
 
 # List flavors
-#@app.route("/list_flavors")
 def list_flavors(cloud):
-    if arg_dict == 1:
-        result = {}
-    else:
-        result = ""
-    for flavor in cloud.compute.flavors():
+    try:
         if arg_dict == 1:
-            result[flavor.id] = flavor.name
-        elif arg_json == 1:
-            data = {flavor.id: flavor.name}
-            data = json.dumps(data, indent = 4)
-            result = result + data
+            result = {}
         else:
-            if (result == ""):
-                result = flavor.name
+            result = ""
+        for flavor in cloud.compute.flavors():
+            if arg_dict == 1:
+                result[flavor.id] = flavor.name
+            elif arg_json == 1:
+                data = {flavor.id: flavor.name}
+                data = json.dumps(data, indent = 4)
+                result = result + data
             else:
-                result = result + ", " + flavor.name
+                if (result == ""):
+                    result = flavor.name
+                else:
+                    result = result + ", " + flavor.name
 
-    return result
+        return result
+    except:
+        return f"[ERROR] Can't list flavors !"
 
 # Create instance
-#@app.route("/create_server")
-def create_instance(cloud, instance_name,instance_image, instance_flavor, instance_network, instance_keypair, instance_securitygroup):
-    image = cloud.compute.find_image(instance_image)
-    flavor = cloud.compute.find_flavor(instance_flavor)
-    network = cloud.network.find_network(instance_network)
-    keypair = cloud.compute.find_keypair(instance_keypair)
-    security_group = cloud.network.find_security_group(instance_securitygroup)
+def create_instance(cloud, instance_name,instance_image, instance_flavor, instance_network, instance_keypair, instance_securitygroup, cloud_name):
+    try:
+        image = cloud.compute.find_image(instance_image)
+        flavor = cloud.compute.find_flavor(instance_flavor)
+        network = cloud.network.find_network(instance_network)
+        keypair = cloud.compute.find_keypair(instance_keypair)
+        security_group = cloud.network.find_security_group(instance_securitygroup)
 
-    server = cloud.compute.create_server(
-        name=instance_name, image_id=image.id, flavor_id=flavor.id,
-        networks=[{"uuid": network.id}], key_name=keypair.name)
+        server = cloud.compute.create_server(
+            name=instance_name, image_id=image.id, flavor_id=flavor.id,
+            networks=[{"uuid": network.id}], key_name=keypair.name)
 
-    server = cloud.compute.wait_for_server(server)
-    server = cloud.compute.add_security_group_to_server(server, security_group)
-    get_instance_information(cloud, instance_name)
-
+        server = cloud.compute.wait_for_server(server)
+        server = cloud.compute.add_security_group_to_server(server, security_group)
+        get_instance_information(cloud, instance_name, cloud_name)
+    except:
+        return f"[ERROR] Can't create instance {instance_name} !"
+    
 
 # Start instance
-#@app.route("/start_instance")
 def start_instance(cloud, server_name):
     try:
         server = cloud.compute.find_server(server_name)
@@ -301,7 +305,6 @@ def start_instance(cloud, server_name):
         return f"[ERROR] Can't start instance {server_name} !"
 
 # Stop instance
-#@app.route("/stop_instance")
 def stop_instance(cloud, server_name):
     try:
         server = cloud.compute.find_server(server_name)
@@ -311,7 +314,6 @@ def stop_instance(cloud, server_name):
         return f"[ERROR] Can't stop instance {server_name} !"
 
 # Reboot instance
-#@app.route("/reboot_instance")
 def reboot_instance(cloud, server_name):
     try:
         server = cloud.compute.find_server(server_name)
@@ -321,7 +323,6 @@ def reboot_instance(cloud, server_name):
         return f"[ERROR] Can't reboot instance {server_name} !"
 
 # Delete instance
-#@app.route("/delete_instance")
 def delete_instance(cloud, server_name):
     try:
         server = cloud.compute.find_server(server_name)
@@ -330,18 +331,3 @@ def delete_instance(cloud, server_name):
     except:
         return f"[ERROR] Can't delete instance {server_name} !"
 
-
-#cloud = cloud_connection(cloud_name)
-#result = get_instances_list(cloud)
-#get_instances_list(cloud)
-#get_instance_information(cloud, server_name)
-#create_keypair(cloud, keypair_name)
-#list_networks(cloud)
-#list_security_groups(cloud)
-#list_images(cloud)
-#print(list_flavors(cloud))
-#create_instance(cloud, instance_name,instance_image, instance_flavor, instance_network, instance_keypair, instance_securitygroup)
-#stop_instance(cloud, server_name)
-#start_instance(cloud, server_name)
-#reboot_instance(cloud, server_name)
-#delete_instance(cloud, server_name)
