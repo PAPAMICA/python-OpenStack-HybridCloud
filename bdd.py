@@ -4,7 +4,6 @@
 import sqlite3
 from unicodedata import name
 import openstack_api
-import sys
 
 def connect_to_db():
     conn = sqlite3.connect('database.db')
@@ -75,9 +74,7 @@ def get_resources_list(cloud_name):
 def fill_database(cloud_name):
     try:
         cloud = openstack_api.cloud_connection(cloud_name)
-        print(cloud, flush=True, file=sys.stdout)
         data = openstack_api.list_flavors(cloud).values()
-        print(data, flush=True, file=sys.stdout)
         insert_db_data(cloud_name, "FLAVOR", data)
         data = openstack_api.list_images(cloud).values()
         insert_db_data(cloud_name, "IMAGE", data)
@@ -89,7 +86,7 @@ def fill_database(cloud_name):
         insert_db_data(cloud_name, "SECURITY_GROUP", data)
         return ("SUCCESS")
     except:
-        return ("ERROR fill database")
+        return ("ERROR")
 
 def insert_api_key(key,name):
     conn, cursor = connect_to_db()
@@ -117,16 +114,15 @@ def list_api_key():
 def delete_api_key(name):
     conn, cursor = connect_to_db()
     print(name)
-    query = f"DELETE FROM api_keys WHERE name='{name}'"
+    query = f"DELETE FROM api_keys WHERE name like '{name}'"
     cursor.execute(query)
     conn.commit()
     conn.close()
 
-# insert_api_key("1234","test")
-#delete_api_key("test")
-conn, cursor = connect_to_db()
-cmd = "SELECT * FROM api_keys"
-res = cursor.execute(cmd)
-print(res.fetchall())
-conn.close()
+
+# conn, cursor = connect_to_db()
+# cmd = "SELECT * FROM api_keys"
+# res = cursor.execute(cmd)
+# print(res.fetchall())
+# conn.close()
 
