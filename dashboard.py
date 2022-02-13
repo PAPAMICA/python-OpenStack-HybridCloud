@@ -56,6 +56,11 @@ def home():
             data = reload_list(cloud_name[0])
 
 
+        elif request.form.get('list_apikey'):
+            result = bdd.list_api_key()
+            print(result, flush=True, file=sys.stdout)
+            return render_template("index.html", list_api_key=result)
+            
         elif request.form.get('get_apikey'):
             key_name = request.form['key_name']
             characters = string.ascii_letters + string.digits
@@ -67,10 +72,6 @@ def home():
             key_name = request.form['key_name']
             bdd.delete_api_key(key_name)
         
-        elif request.form.get('list_apikey'):
-            result = bdd.list_api_key()
-            print(result, flush=True, file=sys.stdout)
-            return render_template("index.html", list_api_key=result)
         
         elif request.form.get('create_instance'):
             cloud = request.form.getlist('cloud')
