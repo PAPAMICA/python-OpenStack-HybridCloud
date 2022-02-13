@@ -75,6 +75,7 @@ def fill_database(cloud_name):
     try:
         cloud = openstack_api.cloud_connection(cloud_name)
         data = openstack_api.list_flavors(cloud).values()
+        print (data)
         insert_db_data(cloud_name, "FLAVOR", data)
         data = openstack_api.list_images(cloud).values()
         insert_db_data(cloud_name, "IMAGE", data)
