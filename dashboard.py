@@ -96,10 +96,10 @@ def home():
             openstack_api.create_instance(cloud, instance_name,instance_image, instance_flavor, instance_network, instance_keypair, instance_sc) 
 
         elif request.form.get('deploy_app'):
-            cloud = ['Infomaniak', 'Local']
+            clouds = ['Infomaniak', 'Local']
             templates = heat_api.list_template()
             print(templates, flush=True, file=sys.stdout)
-            return render_template("deploy_app.html",cloud=cloud, templates=templates)
+            return render_template("deploy_app.html",clouds=clouds, templates=templates)
 
         elif request.form.get('deploy_app_2'):
             cloud_name = request.form['cloud_name']
