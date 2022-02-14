@@ -35,7 +35,7 @@ def connect_heat(cloud_name):
 def list_template():
     try:
         result = list()
-        folder = os.listdir("heat_templates")
+        folder = os.listdir("/heat_templates")
         for file in folder:
             result.append(file)
         return result
