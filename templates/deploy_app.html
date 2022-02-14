@@ -44,9 +44,9 @@
                           </div>
                         </div>
                         {% endif %}
-                  <span class="padding-bottom--15"><h2 class="center">Create instances</h2></span>
+                  <span class="padding-bottom--15"><h2 class="center">Deploy application</h2></span>
                   <form id="stripe-login" method="post">
-                    <label for="iname">Instance name:</label>
+                    <label for="iname">Application name:</label>
                     <input type="text" id="iname" name="iname"> 
                     {%for resource in resources[cloud]%}
                     <label for="{{ resource }}">Choose a {{ resource }}:</label>
