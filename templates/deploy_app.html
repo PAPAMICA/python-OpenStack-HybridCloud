@@ -97,7 +97,16 @@
                           {% endif %}
                     <span class="padding-bottom--15"><h2 class="center">Deploy application</h2></span>
                     <div>
-                      {{ result }}
+
+                      {% for data in result %}
+                      {% if data == "outputs" %}
+                        {% for output in result[data] %}
+
+                        <h6> {{ output['description'] }}: </h6> {{ output['output_value'] }}
+
+                      {% endfor %}
+                      {% endif %}
+                      {% endfor %}
                     </div>
                   </div>
                 </div>
