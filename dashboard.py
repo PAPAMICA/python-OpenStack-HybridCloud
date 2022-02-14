@@ -98,7 +98,6 @@ def home():
         elif request.form.get('deploy_app'):
             clouds = ['Infomaniak', 'Local']
             templates = heat_api.list_template()
-            print(templates, flush=True, file=sys.stdout)
             return render_template("deploy_app.html",clouds=clouds, templates=templates)
 
         elif request.form.get('deploy_app_2'):
