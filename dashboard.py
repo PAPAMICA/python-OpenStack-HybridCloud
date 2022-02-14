@@ -104,7 +104,9 @@ def home():
             cloud_name = request.form['cloud_name']
             app_name = request.form['aname']
             template = request.form['template']
+            print(cloud_name, flush=True, file=sys.stdout)
             result = heat_api.deploy_app(cloud_name, template, app_name)
+            print(result, flush=True, file=sys.stdout)
             return render_template("deploy_app.html",result=result, cloud_name=cloud_name)
             
         elif request.form.get('refresh-billing'):
