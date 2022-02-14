@@ -46,14 +46,21 @@ def list_template():
 
 def deploy_app(cloud_name, template, app_name):
     try:
-        connect_heat(cloud_name)
+
+        try:
+            connect_heat(cloud_name)
+        except:
+            print (f"[ERROR] NIQUE SA RACE 1!")
         result = dict()
         try:
             data = subprocess.getoutput(f'openstack stack create --wait -t heat_templates/{template} {app_name} 1> /dev/null && openstack stack show {app_name} -f json')
         except:
-            print (f"[ERROR] NIQUE SA RACE !")
-        result = json.loads(data)
-        return result
+            print (f"[ERROR] NIQUE SA RACE 2!")
+        try:
+            result = json.loads(data)
+            return result
+        except:
+            print (f"[ERROR] NIQUE SA RACE 3!")
     except:
         print (f"[ERROR] Can't deploy {app_name} !")
 
