@@ -22,11 +22,17 @@
         <div class="formbg-outer confirm-list field">
           <div class="row">
             <form id="quick-action" method="post">
-              <input class="column-3-3" type="submit" name="create_instance" value="Dashboard Private Cloud">
-              <input class="column-3-3" type="submit" name="create_instance" value="Dashboard Public Cloud">
+              <a href="http://www.google.com/">
+                <input class="column-3-3" type="button" value="Dashboard Private Cloud">
+              </a>
+              <a href="https://api.pub1.infomaniak.cloud/horizon/auth/login/">
+                <input class="column-3-3" type="submit"  value="Dashboard Public Cloud">
+              </a>
               <input class="column-3-3" type="submit" name="create_instance" value="Create Instance">
-              <input class="column-3-3" type="submit" name="create_instance" value="Deploy Application">
-              <input class="column-3-3" type="submit" name="create_instance" value="Logout">
+              <input class="column-3-3" type="submit" name="deploy_app" value="Deploy Application">
+              <a href="https://api.pub1.infomaniak.cloud/horizon/auth/login/">
+                <input class="column-3-3" type="submit" name="create_instance" value="Logout">
+              </a>
             </form>
           </div>
           <div class="row">
