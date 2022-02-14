@@ -99,6 +99,13 @@ def home():
             cloud = ['Infomaniak', 'Local']
             templates = heat_api.list_template()
             return render_template("deploy_app.html",cloud=cloud, templates=templates)
+
+        elif request.form.get('deploy_app_2'):
+            cloud_name = request.form['cloud_name']
+            app_name = request.form['aname']
+            template = request.form['template']
+            result = heat_api.deploy_app(cloud_name, template, app_name)
+            return render_template("deploy_app.html",cloud=cloud, templates=templates)
             
         elif request.form.get('refresh-billing'):
             result = {}  
