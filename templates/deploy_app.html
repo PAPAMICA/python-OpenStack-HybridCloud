@@ -18,7 +18,7 @@
         </div>
         <div class="formbg-outer">
           <div class="row">
-            {%for cloud in resources%}
+            {%for cloud in clouds%}
             
             <div class="column-3">
               <div class="formbg">
@@ -48,19 +48,17 @@
                   <form id="stripe-login" method="post">
                     <label for="iname">Application name:</label>
                     <input type="text" id="iname" name="iname"> 
-                    {%for resource in resources[cloud]%}
-                    <label for="{{ resource }}">Choose a {{ resource }}:</label>
-                    <select id="{{ resource }}" name="{{ resource }}">
-                      {%for data in resources[cloud][resource]%}
-                      <option value="{{ data }}">{{ data }}</option>
+                    <label for="template">Choose a template:</label>
+                    <select id="template" name="template">
+                      {%for template in templates%}
+                      <option value="{{ template }}">{{ template }}</option>
                       {%endfor%}
                     </select>
-                    {%endfor%}
                     
                     <div class="field padding-bottom--24 confirm-list row-2">
-                      <input type="hidden" name="cloud_name" value="{{ cloud_name }}"/>
-                      <input class="column-3-2" type="submit" name="list_instances" value="List instances"> 
-                      <input class="column-3-2" type="submit" name="create_instance_2" value="Create instance">
+                      <input type="hidden" name="cloud_name" value="{{ cloud }}"/>
+                      <input class="column-3-2" type="submit" name="list_applications" value="List applications"> 
+                      <input class="column-3-2" type="submit" name="deploy_app_2" value="Deploy application">
                     </div>
                   </div>
                   </form>

@@ -13,6 +13,7 @@ import bdd
 import random
 import string
 import rating_api
+import heat_api
 
 
 dashbord_url = "https://hybridcloud.papamica.com"
@@ -96,10 +97,8 @@ def home():
 
         elif request.form.get('deploy_app'):
             cloud = ['Infomaniak', 'Local']
-            result = {}   
-            for cloud_name in cloud:
-                result[cloud_name] = bdd.get_resources_list(cloud_name)
-            return render_template("deploy_app.html",resources=result, cloud_name=cloud_name)
+            templates = heat_api.list_template()
+            return render_template("deploy_app.html",cloud=cloud, templates=templates)
             
         elif request.form.get('refresh-billing'):
             result = {}  
