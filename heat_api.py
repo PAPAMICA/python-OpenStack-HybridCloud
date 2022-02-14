@@ -46,9 +46,7 @@ def list_template():
 
 def deploy_app(cloud_name, template, app_name):
     try:
-        print (f"{cloud_name} - {template} - {app_name}")
         connect_heat(cloud_name)
-        print (f"{OS_USERNAME}")
         result = dict()
         data = subprocess.getoutput(f'openstack stack create --wait -t heat_templates/{template} {app_name} 1> /dev/null && openstack stack show {app_name} -f json')
         result = json.loads(data)
@@ -60,7 +58,10 @@ def get_info(cloud_name, app_name):
     try:
         connect_heat(cloud_name)
         result = dict()
-        data = subprocess.getoutput(f'openstack stack show {app_name} -f json')
+        try:
+            data = subprocess.getoutput(f'openstack stack show {app_name} -f json')
+        except:
+            print (f"[ERROR] NIQUE SA RACE !")
         result = json.loads(data)
         return result
     except:
