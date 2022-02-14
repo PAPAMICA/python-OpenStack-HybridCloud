@@ -18,7 +18,6 @@
         </div>
         <div class="formbg-outer">
           <div class="row">
-            {% if templates %}
             {%for cloud in resources%}
             
             <div class="column-3">
@@ -68,57 +67,6 @@
                 </div>
               </div>
               {%endfor%}
-              {% endif %}
-
-              {% if result %}
-              {{ result }}
-              <div class="column-3">
-                <div class="formbg">
-                  <div class="formbg-inner padding-horizontal--20">
-                    {% if cloud == "Infomaniak" %}
-                          <div class="d-flex px-2 py-1" style="align-items: center;justify-content: center;">
-                            <div>
-                              <img src="{{ url_for('static', filename='img/IPC.png') }}" class="avatar avatar-sm me-3"
-                                alt="Public">
-                            </div>
-                            <div class="d-flex flex-column justify-content-center">
-                              <h3>Public Cloud</h3>
-                            </div>
-                          </div>
-                          {% else %}
-                          <div class="d-flex px-2 py-1" style="align-items: center;justify-content: center;">
-                            <div>
-                              <img src="{{ url_for('static', filename='img/local.png') }}" class="avatar avatar-sm me-3"
-                                alt="Private" >
-                            </div>
-                            <div class="d-flex flex-column justify-content-center">
-                              <h3>Private Cloud</h3>
-                            </div>
-                          </div>
-                          {% endif %}
-                    <span class="padding-bottom--15"><h2 class="center">Create instances</h2></span>
-                    <form id="stripe-login" method="post">
-                      <label for="iname">Instance name:</label>
-                      <input type="text" id="iname" name="iname"> 
-                      {%for resource in resources[cloud]%}
-                      <label for="{{ resource }}">Choose a {{ resource }}:</label>
-                      <select id="{{ resource }}" name="{{ resource }}">
-                        {%for data in resources[cloud][resource]%}
-                        <option value="{{ data }}">{{ data }}</option>
-                        {%endfor%}
-                      </select>
-                      {%endfor%}
-                      
-                      <div class="field padding-bottom--24 confirm-list row-2">
-                        <input type="hidden" name="cloud_name" value="{{ cloud_name }}"/>
-                        <input class="column-3-2" type="submit" name="list_instances" value="List instances"> 
-                        <input class="column-3-2" type="submit" name="create_instance_2" value="Create instance">
-                      </div>
-                    </div>
-                    </form>
-                  </div>
-                </div>
-                {% endif %}
           </div>
 
       </div>
