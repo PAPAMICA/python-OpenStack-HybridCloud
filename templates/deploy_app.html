@@ -18,6 +18,7 @@
         </div>
         <div class="formbg-outer">
           <div class="row">
+            {% if templates %}
             {%for cloud in clouds%}
             
             <div class="column-3">
@@ -57,14 +58,50 @@
                     
                     <div class="field padding-bottom--24 confirm-list row-2">
                       <input type="hidden" name="cloud_name" value="{{ cloud }}"/>
-                      <input class="column-3-2" type="submit" name="list_applications" value="List applications"> 
                       <input class="column-3-2" type="submit" name="deploy_app_2" value="Deploy application">
+                      <input class="column-3-2" type="submit" name="list_applications" value="List applications"> 
                     </div>
                   </div>
                   </form>
                 </div>
               </div>
               {%endfor%}
+              {%endif%}
+
+
+              {% if result %}
+              
+              <div class="column-3">
+                <div class="formbg">
+                  <div class="formbg-inner padding-horizontal--20">
+                    {% if cloud_name == "Infomaniak" %}
+                          <div class="d-flex px-2 py-1" style="align-items: center;justify-content: center;">
+                            <div>
+                              <img src="{{ url_for('static', filename='img/IPC.png') }}" class="avatar avatar-sm me-3"
+                                alt="Public">
+                            </div>
+                            <div class="d-flex flex-column justify-content-center">
+                              <h3>Public Cloud</h3>
+                            </div>
+                          </div>
+                          {% else %}
+                          <div class="d-flex px-2 py-1" style="align-items: center;justify-content: center;">
+                            <div>
+                              <img src="{{ url_for('static', filename='img/local.png') }}" class="avatar avatar-sm me-3"
+                                alt="Private">
+                            </div>
+                            <div class="d-flex flex-column justify-content-center">
+                              <h3>Private Cloud</h3>
+                            </div>
+                          </div>
+                          {% endif %}
+                    <span class="padding-bottom--15"><h2 class="center">Deploy application</h2></span>
+                    <div>
+                      {{ result }}
+                    </div>
+                  </div>
+                </div>
+                {%endif%}
           </div>
 
       </div>
