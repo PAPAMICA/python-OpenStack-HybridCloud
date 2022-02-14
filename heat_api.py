@@ -49,8 +49,7 @@ def deploy_app(cloud_name, template, app_name):
 
         connect_heat(cloud_name)
         result = dict()
-        data = subprocess.getoutput(f'openstack stack create --wait -t heat_templates/{template} {app_name} 1> /dev/null && openstack stack show {app_name} -f json')
-        print(data)
+        data = subprocess.getoutput(f'openstack stack create --wait -t /heat_templates/{template} {app_name} 1> /dev/null && openstack stack show {app_name} -f json')
         result = json.loads(data)
         return result
     except:
