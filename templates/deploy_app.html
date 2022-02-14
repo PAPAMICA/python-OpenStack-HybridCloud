@@ -24,20 +24,20 @@
               <div class="formbg">
                 <div class="formbg-inner padding-horizontal--20">
                   {% if cloud == "Infomaniak" %}
-                        <div class="d-flex px-2 py-1">
+                        <div class="d-flex px-2 py-1" style="align-items: center;justify-content: center;">
                           <div>
                             <img src="{{ url_for('static', filename='img/IPC.png') }}" class="avatar avatar-sm me-3"
-                              alt="Public" style="align-items: center;justify-content: center;">
+                              alt="Public">
                           </div>
                           <div class="d-flex flex-column justify-content-center">
                             <h3>Public Cloud</h3>
                           </div>
                         </div>
                         {% else %}
-                        <div class="d-flex px-2 py-1">
+                        <div class="d-flex px-2 py-1" style="align-items: center;justify-content: center;">
                           <div>
                             <img src="{{ url_for('static', filename='img/local.png') }}" class="avatar avatar-sm me-3"
-                              alt="Private" style="align-items: center;justify-content: center;">
+                              alt="Private">
                           </div>
                           <div class="d-flex flex-column justify-content-center">
                             <h3>Private Cloud</h3>
