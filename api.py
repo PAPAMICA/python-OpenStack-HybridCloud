@@ -137,9 +137,9 @@ def create_instance(cloud_name):
     res = bdd.seek_api_key(api_key)
     if res:
         data = request.json
-        print(data['instance_name']', flush=True, file=sys.stdout)
-        print(str(data['instance_name'])', flush=True, file=sys.stdout)
-        print(type(data['instance_name'])', flush=True, file=sys.stdout)
+        print(data['instance_name'], flush=True, file=sys.stdout)
+        print(str(data['instance_name']), flush=True, file=sys.stdout)
+        print(type(data['instance_name']), flush=True, file=sys.stdout)
         instance_name    = data['instance_name']
         instance_image   = data['instance_image']
         instance_flavor  = data['instance_flavor']
