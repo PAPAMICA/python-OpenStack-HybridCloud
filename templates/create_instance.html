@@ -18,6 +18,7 @@
         </div>
         <div class="formbg-outer">
           <div class="row">
+            {%for cloud in resources%}
             
             <div class="column-3">
               <div class="formbg">
@@ -26,10 +27,10 @@
                   <form id="stripe-login" method="post">
                     <label for="iname">Instance name:</label>
                     <input type="text" id="iname" name="iname"> 
-                    {%for resource in resources%}
+                    {%for resource in resources[cloud]%}
                     <label for="{{ resource }}">Choose a {{ resource }}:</label>
                     <select id="{{ resource }}" name="{{ resource }}">
-                      {%for data in resources[resource]%}
+                      {%for data in resources[cloud][resource]%}
                       <option value="{{ data }}">{{ data }}</option>
                       {%endfor%}
                     </select>
@@ -44,6 +45,7 @@
                   </form>
                 </div>
               </div>
+              {%endfor%}
           </div>
 
       </div>
