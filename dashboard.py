@@ -77,10 +77,11 @@ def home():
         
         
         elif request.form.get('create_instance'):
-            cloud = request.form.getlist('cloud')
-            cloud_name = cloud[0]
-            result = bdd.get_resources_list(cloud_name)
-            return render_template("create.html",resources=result, cloud_name=cloud_name)
+            cloud = ['Infomaniak', 'Local']
+            result = {}   
+            for cloud_name in cloud:
+                result[cloud_name] = bdd.get_resources_list(cloud_name)
+            return render_template("create_instance.html",resources=result, cloud_name=cloud_name)
 
         elif request.form.get('create_instance_2'):
             cloud_name = request.form['cloud_name']
@@ -92,6 +93,13 @@ def home():
             instance_sc = request.form['SECURITY_GROUP']
             cloud  = openstack_api.cloud_connection(cloud_name)
             openstack_api.create_instance(cloud, instance_name,instance_image, instance_flavor, instance_network, instance_keypair, instance_sc) 
+
+        elif request.form.get('deploy_app'):
+            cloud = ['Infomaniak', 'Local']
+            result = {}   
+            for cloud_name in cloud:
+                result[cloud_name] = bdd.get_resources_list(cloud_name)
+            return render_template("deploy_app.html",resources=result, cloud_name=cloud_name)
             
         elif request.form.get('refresh-billing'):
             result = {}  

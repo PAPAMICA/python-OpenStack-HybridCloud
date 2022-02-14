@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+
+
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>HybridCloud</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/template.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+
+<body>
+  <div class="login-root">
+    <div class="box-root flex-flex flex-direction--column" style="min-height: 100vh;flex-grow: 1;">
+      <div class="box-root padding-top--24 flex-flex flex-direction--column" style="flex-grow: 1; z-index: 9;">
+        <div class="box-root padding-top--48 padding-bottom--24 flex-flex flex-justifyContent--center">
+          <h1><a href="https://papamica.com" rel="dofollow">HybridCloud</a></h1>
+        </div>
+        <div class="formbg-outer">
+          <div class="row">
+            
+            <div class="column-3">
+              <div class="formbg">
+                <div class="formbg-inner padding-horizontal--20">
+                  <span class="padding-bottom--15"><h2 class="center">Create instances</h2></span>
+                  <form id="stripe-login" method="post">
+                    <label for="iname">Instance name:</label>
+                    <input type="text" id="iname" name="iname"> 
+                    {%for resource in resources%}
+                    <label for="{{ resource }}">Choose a {{ resource }}:</label>
+                    <select id="{{ resource }}" name="{{ resource }}">
+                      {%for data in resources[resource]%}
+                      <option value="{{ data }}">{{ data }}</option>
+                      {%endfor%}
+                    </select>
+                    {%endfor%}
+                    
+                    <div class="field padding-bottom--24 confirm-list row-2">
+                      <input type="hidden" name="cloud_name" value="{{ cloud_name }}"/>
+                      <input class="column-3-2" type="submit" name="list_instances" value="List instances"> 
+                      <input class="column-3-2" type="submit" name="create_instance_2" value="Create instance">
+                    </div>
+                  </div>
+                  </form>
+                </div>
+              </div>
+          </div>
+
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>
