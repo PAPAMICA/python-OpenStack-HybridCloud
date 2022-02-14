@@ -1,5 +1,6 @@
 python-openstackclient
 python-cloudkittyclient 
+python-heatclient   
 flask
 requests
 jq
