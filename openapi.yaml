@@ -442,7 +442,9 @@ definitions:
       instance_network:
         type: "string"
       instance_keypair:
-       type: "string"
+        type: "string"
+      instance_securitygroup:
+        type: "string"
   ApiResponse:
     type: "object"
     properties:
