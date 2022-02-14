@@ -367,7 +367,7 @@ span.status-offline {
 }
 .column-3-3 {
   float: left;
-  width: 18%;
+  width: 18% !important;
   margin: 10px;
 }
 .column-4 {
