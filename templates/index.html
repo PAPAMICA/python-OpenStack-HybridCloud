@@ -34,7 +34,7 @@
               <div class="formbg">
                 <div class="formbg-inner padding-horizontal--20">
                   <span class="padding-bottom--15">
-                    <h2 class="center">Instances</h2>
+                    <h2 class="center">Instances & Applications</h2>
                   </span>
                   <form id="stripe-login" method="post">
                     <div class="row-2">
@@ -60,7 +60,7 @@
 
                     <div class="field padding-bottom--24 confirm-list row-2">
                       <input class="column-3-2" type="submit" name="list_instances" value="List instances">
-                      <input class="column-3-2" type="submit" name="create_instance" value="Create instance">
+                      <input class="column-3-2" type="submit" name="list_applications" value="List applications">
                     </div>
                 </div>
                 </form>
@@ -348,6 +348,9 @@
               </div>
             </div>
           </div>
+          {% endif %}
+          {% if applications %}
+          {{ applications }}
           {% endif %}
           {% if resources %}
           <div class="container-fluid py-4">

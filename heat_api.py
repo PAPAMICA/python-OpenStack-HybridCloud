@@ -72,3 +72,13 @@ def delete_app(cloud_name, app_name):
         return (f"[SUCCESS] {app_name} deleted !")
     except:
         print (f"[ERROR] Can't delete {app_name} !")
+
+def list_app(cloud_name):
+    try:
+        connect_heat(cloud_name)
+        result = dict()
+        data = subprocess.getoutput(f'openstack stack list -f json')
+        result = json.loads(data)
+        return result
+    except:
+        print (f"[ERROR] Can't list applications !")
