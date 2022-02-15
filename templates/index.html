@@ -357,7 +357,7 @@
               {% set online = namespace(value=0) %}
               {% set offline = namespace(value=0) %}
               {%for application in applications[cloud]%}
-              {%if applications[cloud][application]['Stack Status'] == "CREATE_COMPLETE"%}
+              {%if application['Stack Status'] == "CREATE_COMPLETE"%}
               {% set online.value = online.value + 1 %}
               {% else %}
               {% set offline.value = offline.value + 1 %}
