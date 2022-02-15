@@ -5,6 +5,7 @@ import json
 import ast
 from flask import Flask, flash, request, render_template, redirect
 app = Flask(__name__)
+app.secret_key = b'_5#y2L"342F4Q8z\n\xec]/'
 import api
 import openstack_api
 import sys
