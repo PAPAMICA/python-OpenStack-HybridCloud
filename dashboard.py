@@ -134,7 +134,7 @@ def home():
             cloud = request.form.getlist('cloud')
             result = {}   
             for cloud_name in cloud:
-                result[cloud_name] = heat_api.list_app(cloud_connect)
+                result[cloud_name] = heat_api.list_app(cloud_name)
             print(result, flush=True, file=sys.stdout)
             return render_template("index.html",applications=result, cloud_name=cloud_name, billing=billing)
 
