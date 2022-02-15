@@ -350,7 +350,173 @@
           </div>
           {% endif %}
           {% if applications %}
-          {{ applications }}
+          <div class="container-fluid py-4">
+            <div class="row">
+
+              {%for cloud in applications%}
+              {% set online = namespace(value=0) %}
+              {% set offline = namespace(value=0) %}
+              {%for application in applications[cloud]%}
+              {%if applications[cloud][application]['Stack Status'] == "CREATE_COMPLETE"%}
+              {% set online.value = online.value + 1 %}
+              {% else %}
+              {% set offline.value = offline.value + 1 %}
+              {% endif %}
+              {% endfor %}
+
+              {% if cloud == "Infomaniak" %}
+              <div class="col-12-2">
+                <div class="titi">
+                  <div class="d-flex px-2 py-1">
+                    <div>
+                      <img src="{{ url_for('static', filename='img/IPC.png') }}" class="avatar avatar-sm me-3"
+                        alt="Public">
+                    </div>
+                    <div class="d-flex flex-column justify-content-center">
+                      <h3>Applications Onlines</h3>
+                    </div>
+                  </div>
+                  <div class="toto">
+                    <h6 class="font-weight-bolder">Total : {{ online.value }}</h6>
+                  </div>
+                </div>
+              </div>
+              <div class="col-12-2">
+                <div class="titi">
+                  <div class="d-flex px-2 py-1">
+                    <div>
+                      <img src="{{ url_for('static', filename='img/IPC.png') }}" class="avatar avatar-sm me-3"
+                        alt="Public">
+                    </div>
+                    <div class="d-flex flex-column justify-content-center">
+                      <h3>Applications Offlines</h3>
+                    </div>
+                  </div>
+                  <div class="toto">
+                    <h6 class="font-weight-bolder">Total : {{ offline.value }}</h6>
+                  </div>
+                </div>
+              </div>
+              {% else %}
+              <div class="col-12-2">
+                <div class="titi">
+                  <div class="d-flex px-2 py-1">
+                    <div>
+                      <img src="{{ url_for('static', filename='img/local.png') }}" class="avatar avatar-sm me-3"
+                        alt="Private">
+                    </div>
+                    <div class="d-flex flex-column justify-content-center">
+                      <h3>Applications Onlines</h3>
+                    </div>
+                  </div>
+                  <div class="toto">
+                    <h6 class="font-weight-bolder">Total : {{ online.value }}</h6>
+                  </div>
+                </div>
+              </div>
+              <div class="col-12-2">
+                <div class="titi">
+                  <div class="d-flex px-2 py-1">
+                    <div>
+                      <img src="{{ url_for('static', filename='img/local.png') }}" class="avatar avatar-sm me-3"
+                        alt="Private">
+                    </div>
+                    <div class="d-flex flex-column justify-content-center">
+                      <h3>Applications Offlines</h3>
+                    </div>
+                  </div>
+                  <div class="toto">
+                    <h6 class="font-weight-bolder">Total : {{ offline.value }}</h6>
+                  </div>
+                </div>
+              </div>
+              {% endif %}
+              {%endfor%}
+              <div class="row">
+                <div class="col-12">
+                  <div class="card mb-4">
+                    <div class="card-header pb-0">
+                      <h6>Applications list</h6>
+                    </div>
+                    <div class="card-body px-0 pt-0 pb-2">
+                      <div class="table-responsive p-0">
+                        <table class="table align-items-center mb-0">
+                          <thead>
+                            <tr>
+                              <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Name</th>
+                              <th
+                                class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                Status</th>
+                              <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
+                                Actions</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+
+                            {%for cloud in applications%}
+                            {%for application in applications[cloud]%}
+
+
+                            <tr>
+                              <td>
+                                <div class="d-flex px-2 py-1">
+                                  <div>
+                                    {% if cloud == "Infomaniak" %}
+                                    <img src="{{ url_for('static', filename='img/IPC.png') }}"
+                                      class="avatar avatar-sm me-3" alt="user1">
+                                    {% else %}
+                                    <img src="{{ url_for('static', filename='img/local.png') }}"
+                                      class="avatar avatar-sm me-3" alt="user1">
+                                    {% endif %}
+                                  </div>
+                                  <div class="d-flex flex-column justify-content-center">
+                                    <h6 class="mb-0 text-sm">{{ application['Stack Name'] }}</h6>
+                                  </div>
+                                </div>
+                              </td>
+                              {% if applications['Stack Status'] == "CREATE_COMPLETE" %}
+                              <td class="align-middle text-center text-sm">
+                                <span class="badge badge-sm bg-gradient-success">Online</span>
+                              </td>
+                              {% else %}
+                              <td class="align-middle text-center text-sm">
+                                <span class="badge badge-sm bg-gradient-secondary">Offline</span>
+                              </td>
+                              {% endif %}
+                                <div class="d-flex px-2 py-1 outer">
+
+                                  <form class="d-flex two" method="post" action="/">
+                                    <div class="form-group one">
+                                      <input type="submit" name="information" value="{{ application['Stack Name'] }}" />
+                                      <input type="hidden" name="cloud_name" value="{{ cloud }}" />
+                                    </div>
+                                    <div class="form-group one">
+                                      <input type="submit" name="start" value="{{ application['Stack Name'] }}" />
+                                      <input type="hidden" name="cloud_name" value="{{ cloud }}" />
+                                    </div>
+                                    <div class="form-group one">
+                                      <input type="submit" name="stop" value="{{ application['Stack Name'] }}" />
+                                      <input type="hidden" name="cloud_name" value="{{ cloud }}" />
+                                    </div>
+                                    <div class="form-group one">
+                                      <input type="submit" name="destroy" value="{{ application['Stack Name'] }}" />
+                                      <input type="hidden" name="cloud_name" value="{{ cloud }}" />
+                                    </div>
+                                  </form>
+                                </div>
+                              </td>
+                            </tr>
+                            {%endfor%}
+                            {%endfor%}
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
           {% endif %}
           {% if resources %}
           <div class="container-fluid py-4">
