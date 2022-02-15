@@ -3,7 +3,7 @@ from re import A
 import requests
 import json
 import ast
-from flask import Flask, request, render_template, redirect
+from flask import Flask, flash, request, render_template, redirect
 app = Flask(__name__)
 import api
 import openstack_api
@@ -57,6 +57,15 @@ def home():
             result = openstack_api.delete_instance(cloud, instance_name)
             time.sleep(5)
             result = reload_list(cloud_name)
+
+        elif request.form.get('information'):
+            app_name = request.form['information']
+            cloud_name = request.form['cloud_name']
+            #cloud  = openstack_api.cloud_connection(cloud_name)
+            #result = openstack_api.reboot_instance(cloud, app_name)
+            #time.sleep(5)
+            #result = reload_list(cloud_name)
+            flash(f"Youpii t'es un  génie ! {app_name} ")
 
         elif request.form.get('list_apikey'):
             result = bdd.list_api_key()

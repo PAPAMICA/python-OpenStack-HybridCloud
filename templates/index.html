@@ -456,8 +456,6 @@
 
                             {%for cloud in applications%}
                             {%for application in applications[cloud]%}
-
-
                             <tr>
                               <td>
                                 <div class="d-flex px-2 py-1">
@@ -509,6 +507,11 @@
                             </tr>
                             {%endfor%}
                             {%endfor%}
+                            {% extends "layout.html" %}
+                            {% block body %}
+                              <h1>Overview</h1>
+                              <p>Do you want to log in?</a>
+                            {% endblock %}
                           </tbody>
                         </table>
                       </div>
