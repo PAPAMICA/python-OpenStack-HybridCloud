@@ -712,3 +712,7 @@ table {
   flex: 0 0 auto;
   width: 25%;
 }
+
+.card-2 {
+  width: 50%;
+}
