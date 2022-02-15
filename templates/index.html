@@ -23,7 +23,8 @@
           <div class="row">
             <form id="quick-action" method="post">
               <a class="column-3-3" href="http://www.google.com/">Dashboard Private Cloud</a>
-              <a class="column-3-3" href="https://api.pub1.infomaniak.cloud/horizon/auth/login/">Dashboard Public Cloud</a>
+              <a class="column-3-3" href="https://api.pub1.infomaniak.cloud/horizon/auth/login/">Dashboard Public
+                Cloud</a>
               <input class="column-3-3" type="submit" name="create_instance" value="Create Instance">
               <input class="column-3-3" type="submit" name="deploy_app" value="Deploy Application">
               <a class="column-3-3" href="#">Logout</a>
@@ -474,7 +475,7 @@
                                   </div>
                                 </div>
                               </td>
-                              {% if applications['Stack Status'] == "CREATE_COMPLETE" %}
+                              {% if application['Stack Status'] == "CREATE_COMPLETE" %}
                               <td class="align-middle text-center text-sm">
                                 <span class="badge badge-sm bg-gradient-success">Online</span>
                               </td>
@@ -483,8 +484,8 @@
                                 <span class="badge badge-sm bg-gradient-secondary">Offline</span>
                               </td>
                               {% endif %}
+                              <td>
                                 <div class="d-flex px-2 py-1 outer">
-
                                   <form class="d-flex two" method="post" action="/">
                                     <div class="form-group one">
                                       <input type="submit" name="information" value="{{ application['Stack Name'] }}" />
