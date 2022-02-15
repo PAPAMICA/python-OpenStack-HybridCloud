@@ -319,19 +319,19 @@
 
                                   <form class="d-flex two" method="post" action="/">
                                     <div class="form-group one">
-                                      <input type="submit" name="start" value="{{ instance }}" />
+                                      <input type="submit" name="instance_start" value="{{ instance }}" />
                                       <input type="hidden" name="cloud_name" value="{{ cloud_name }}" />
                                     </div>
                                     <div class="form-group one">
-                                      <input type="submit" name="reboot" value="{{ instance }}" />
+                                      <input type="submit" name="instance_reboot" value="{{ instance }}" />
                                       <input type="hidden" name="cloud_name" value="{{ cloud_name }}" />
                                     </div>
                                     <div class="form-group one">
-                                      <input type="submit" name="stop" value="{{ instance }}" />
+                                      <input type="submit" name="instance_stop" value="{{ instance }}" />
                                       <input type="hidden" name="cloud_name" value="{{ cloud_name }}" />
                                     </div>
                                     <div class="form-group one">
-                                      <input type="submit" name="destroy" value="{{ instance }}" />
+                                      <input type="submit" name="instance_destroy" value="{{ instance }}" />
                                       <input type="hidden" name="cloud_name" value="{{ cloud_name }}" />
                                     </div>
                                   </form>
@@ -434,6 +434,29 @@
               {% endif %}
               {%endfor%}
               <div class="row">
+                {% if app_informations %}
+                <div class="card">
+                  <div class="card-body p-3">
+                    <div class="row">
+                            <h3>Informations</h3>
+                    </div>
+                    <div class="row">
+                      {% for data in app_informations %}
+                      {% if data == "outputs" %}
+                        {% for output in app_informations[data] %}
+
+                      <div class="row">
+                        <h6> {{ output['description'] }}: </h6> {{ output['output_value'] }}
+                      </div>
+
+                      {% endfor %}
+                      {% endif %}
+                      {% endfor %}
+                    </div>
+                    </div>
+                </div>
+                {% endif %}
+
                 <div class="col-12">
                   <div class="card mb-4">
                     <div class="card-header pb-0">
@@ -486,19 +509,19 @@
                                 <div class="d-flex px-2 py-1 outer">
                                   <form class="d-flex two" method="post" action="/">
                                     <div class="form-group one">
-                                      <input type="submit" name="information" value="{{ application['Stack Name'] }}" />
+                                      <input type="submit" name="app_information" value="{{ application['Stack Name'] }}" />
                                       <input type="hidden" name="cloud_name" value="{{ cloud }}" />
                                     </div>
                                     <div class="form-group one">
-                                      <input type="submit" name="start" value="{{ application['Stack Name'] }}" />
+                                      <input type="submit" name="app_start" value="{{ application['Stack Name'] }}" />
                                       <input type="hidden" name="cloud_name" value="{{ cloud }}" />
                                     </div>
                                     <div class="form-group one">
-                                      <input type="submit" name="stop" value="{{ application['Stack Name'] }}" />
+                                      <input type="submit" name="app_stop" value="{{ application['Stack Name'] }}" />
                                       <input type="hidden" name="cloud_name" value="{{ cloud }}" />
                                     </div>
                                     <div class="form-group one">
-                                      <input type="submit" name="destroy" value="{{ application['Stack Name'] }}" />
+                                      <input type="submit" name="app_destroy" value="{{ application['Stack Name'] }}" />
                                       <input type="hidden" name="cloud_name" value="{{ cloud }}" />
                                     </div>
                                   </form>
@@ -507,11 +530,6 @@
                             </tr>
                             {%endfor%}
                             {%endfor%}
-                            {% extends "popup.html" %}
-                            {% block body %}
-                              <h1>Overview</h1>
-                              <p>Do you want to log in?</a>
-                            {% endblock %}
                           </tbody>
                         </table>
                       </div>

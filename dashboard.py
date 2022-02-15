@@ -28,45 +28,73 @@ def home():
     key_name = ""
     billing = billingG
     if request.method == 'POST':
-        if request.form.get('start'):
-            instance_name = request.form['start']
+        if request.form.get('instance_start'):
+            instance_name = request.form['instance_start']
             cloud_name = request.form['cloud_name']
             cloud  = openstack_api.cloud_connection(cloud_name)
             openstack_api.start_instance(cloud, instance_name)
             time.sleep(5)
             result = reload_list(cloud_name)
-        elif request.form.get('reboot'):
-            instance_name = request.form['reboot']
+        elif request.form.get('instance_reboot'):
+            instance_name = request.form['instance_reboot']
             cloud_name = request.form['cloud_name']
             cloud  = openstack_api.cloud_connection(cloud_name)
             result = openstack_api.reboot_instance(cloud, instance_name)
             time.sleep(5)
             result = reload_list(cloud_name)
 
-        elif request.form.get('stop'):
-            instance_name = request.form['stop']
+        elif request.form.get('instance_stop'):
+            instance_name = request.form['instance_stop']
             cloud_name = request.form['cloud_name']
             cloud  = openstack_api.cloud_connection(cloud_name)
             result = openstack_api.stop_instance(cloud, instance_name)
             time.sleep(5)
             result = reload_list(cloud_name)
 
-        elif request.form.get('destroy'):
-            instance_name = request.form['destroy']
+        elif request.form.get('instance_destroy'):
+            instance_name = request.form['instance_destroy']
             cloud_name = request.form['cloud_name']
             cloud  = openstack_api.cloud_connection(cloud_name)
             result = openstack_api.delete_instance(cloud, instance_name)
             time.sleep(5)
             result = reload_list(cloud_name)
 
-        elif request.form.get('information'):
-            app_name = request.form['information']
+        if request.form.get('app_start'):
+            instance_name = request.form['app_start']
             cloud_name = request.form['cloud_name']
-            #cloud  = openstack_api.cloud_connection(cloud_name)
-            #result = openstack_api.reboot_instance(cloud, app_name)
-            #time.sleep(5)
-            #result = reload_list(cloud_name)
-            flash(f"Youpii t'es un  génie ! {app_name} ")
+            cloud  = openstack_api.cloud_connection(cloud_name)
+            openstack_api.start_instance(cloud, instance_name)
+            time.sleep(5)
+            result = reload_list(cloud_name)
+        elif request.form.get('app_reboot'):
+            instance_name = request.form['app_reboot']
+            cloud_name = request.form['cloud_name']
+            cloud  = openstack_api.cloud_connection(cloud_name)
+            result = openstack_api.reboot_instance(cloud, instance_name)
+            time.sleep(5)
+            result = reload_list(cloud_name)
+
+        elif request.form.get('app_stop'):
+            instance_name = request.form['app_stop']
+            cloud_name = request.form['cloud_name']
+            cloud  = openstack_api.cloud_connection(cloud_name)
+            result = openstack_api.stop_instance(cloud, instance_name)
+            time.sleep(5)
+            result = reload_list(cloud_name)
+
+        elif request.form.get('app_destroy'):
+            instance_name = request.form['app_destroy']
+            cloud_name = request.form['cloud_name']
+            cloud  = openstack_api.cloud_connection(cloud_name)
+            result = openstack_api.delete_instance(cloud, instance_name)
+            time.sleep(5)
+            result = reload_list(cloud_name)
+
+        elif request.form.get('app_information'):
+            app_name = request.form['app_information']
+            cloud_name = request.form['cloud_name']
+            result = heat_api.get_info(cloud_name, app_name)
+            return render_template("index.html", app_informations=result, cloud_name=cloud_name, billing=billing)
 
         elif request.form.get('list_apikey'):
             result = bdd.list_api_key()
