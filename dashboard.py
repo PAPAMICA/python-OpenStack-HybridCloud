@@ -91,10 +91,11 @@ def home():
             result = reload_list(cloud_name)
 
         elif request.form.get('app_information'):
+            app_list = dict()
             app_name = request.form['app_information']
             cloud_name = request.form['cloud_name']
             result = heat_api.get_info(cloud_name, app_name)
-            app_list= heat_api.list_app(cloud_name)
+            app_list[cloud_name] = heat_api.list_app(cloud_name)
             return render_template("index.html", applications=app_list, app_informations=result, cloud_name=cloud_name, billing=billing)
 
         elif request.form.get('list_apikey'):
