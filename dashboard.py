@@ -94,7 +94,8 @@ def home():
             app_name = request.form['app_information']
             cloud_name = request.form['cloud_name']
             result = heat_api.get_info(cloud_name, app_name)
-            return render_template("index.html", app_informations=result, cloud_name=cloud_name, billing=billing)
+            app_list= heat_api.list_app(cloud_name)
+            return render_template("index.html", applications=app_list, app_informations=result, cloud_name=cloud_name, billing=billing)
 
         elif request.form.get('list_apikey'):
             result = bdd.list_api_key()
