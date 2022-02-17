@@ -280,7 +280,6 @@ def create_instance(cloud, instance_name,instance_image, instance_flavor, instan
     flavor = cloud.compute.find_flavor(instance_flavor)
     network = cloud.network.find_network(instance_network)
     keypair = cloud.compute.find_keypair(instance_keypair)
-    print(keypair)
     security_group = cloud.network.find_security_group(instance_securitygroup)
 
     server = cloud.compute.create_server(
@@ -332,8 +331,6 @@ def delete_instance(cloud, server_name):
     except:
         return f"[ERROR] Can't delete instance {server_name} !"
 
-cloud  = cloud_connection("Infomaniak")
-create_instance(cloud, "instance_test","Debian 10.11 buster", "a1-ram2-disk80-perf1", "ext-net1", "YUBIKEY-PAPAMICA", "bastion")
 #cloud = cloud_connection(cloud_name)
 #result = get_instances_list(cloud)
 #get_instances_list(cloud)
