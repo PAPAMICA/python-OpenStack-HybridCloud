@@ -161,7 +161,7 @@ def create_keypair(cloud, keypair_name):
             print (keypair.public_key)
             return keypair.public_key
     else:
-        return keypair
+        return keypair.public_key
 
 # List keypairs
 #@app.route("/list_keypairs")
