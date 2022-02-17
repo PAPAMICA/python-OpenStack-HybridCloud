@@ -73,7 +73,7 @@
                   <span class="padding-bottom--15">
                     <h2 class="center">Resources</h2>
                   </span>
-                  <form id="stripe-login" method="post">
+                  <form id="resources-form" method="post">
                     <div class="row-2">
                       <div class="column-3-2 cote">
                         <img src="{{ url_for('static', filename='img/local.png') }}" class="logo-cloud"
@@ -109,7 +109,7 @@
                   <span class="padding-bottom--15">
                     <h2 class="center">Billing Public Cloud</h2>
                   </span>
-                  <form id="stripe-login" method="post">
+                  <form id="billing-form" method="post">
                     <div class="row">
                       {% if billing %}
                       {%for delai in billing%}
@@ -131,7 +131,7 @@
                   <span class="padding-bottom--15">
                     <h2 class="center">Generate API Key</h2>
                   </span>
-                  <form id="stripe-login" method="post">
+                  <form id="api-key-form" method="post">
                     <div class="row">
                       <div class="field">
                         <label for="get-apikey">Your API Key</label>

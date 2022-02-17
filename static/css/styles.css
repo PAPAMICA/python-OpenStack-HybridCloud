@@ -21,7 +21,6 @@ a {
     background: #fff;
     display: flex;
     width: 100%;
-    min-height: 100vh;
     overflow: hidden;
 }
 .loginbackground {
