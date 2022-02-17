@@ -332,8 +332,8 @@ def delete_instance(cloud, server_name):
     except:
         return f"[ERROR] Can't delete instance {server_name} !"
 
-
-create_instance("Infomaniak", "instance_test","Debian 10.11 buster", "a1-ram2-disk80-perf1", "ext-net1", "YUBIKEY-PAPAMICA", "bastion")
+cloud  = cloud_connection("Infomaniak")
+create_instance(cloud, "instance_test","Debian 10.11 buster", "a1-ram2-disk80-perf1", "ext-net1", "YUBIKEY-PAPAMICA", "bastion")
 #cloud = cloud_connection(cloud_name)
 #result = get_instances_list(cloud)
 #get_instances_list(cloud)
