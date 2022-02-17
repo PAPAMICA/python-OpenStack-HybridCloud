@@ -130,10 +130,10 @@ def home():
             instance_flavor = request.form['FLAVOR']
             instance_image = request.form['IMAGE']
             instance_keypair = request.form['KEYPAIR']
+            instance_network = request.form['NETWORK']
             print(f'ICI TYPEKEYP : {type(instance_keypair)}', flush=True, file=sys.stdout)
             print(f'ICI IKEYP : {instance_keypair}', flush=True, file=sys.stdout)
             print(f"ICI FORMKEYP : {request.form['KEYPAIR']}", flush=True, file=sys.stdout)
-            instance_network = request.form['NETWORK']
             instance_sc = request.form['SECURITY_GROUP']
             cloud  = openstack_api.cloud_connection(cloud_name)
             openstack_api.create_instance(cloud, instance_name,instance_image, instance_flavor, instance_network, instance_keypair, instance_sc)
