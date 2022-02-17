@@ -716,3 +716,10 @@ table {
   width: 50%;
   height: 400px;
 }
+
+.edit-2 {
+  max-width: 3000px;
+}
+.edit-1 {
+  width: 50%;
+}
