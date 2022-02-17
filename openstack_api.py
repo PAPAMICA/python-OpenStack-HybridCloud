@@ -277,13 +277,12 @@ def list_flavors(cloud):
 # Create instance
 #@app.route("/create_server")
 def create_instance(cloud, instance_name,instance_image, instance_flavor, instance_network, instance_keypair, instance_securitygroup):
+    debug = list_keypairs(cloud)
+    print(f'ICI 1 : {debug}', flush=True, file=sys.stdout)
     image = cloud.compute.find_image(instance_image)
     flavor = cloud.compute.find_flavor(instance_flavor)
-    print(f'ICI 1 : {cloud}', flush=True, file=sys.stdout)
     network = cloud.network.find_network(instance_network)
-    print(f'ICI 2 : {cloud}', flush=True, file=sys.stdout)
     keypair = cloud.compute.find_keypair(instance_keypair)
-    print(f'ICI 3 : {cloud}', flush=True, file=sys.stdout)
     security_group = cloud.network.find_security_group(instance_securitygroup)
 
     server = cloud.compute.create_server(
