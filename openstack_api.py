@@ -280,7 +280,6 @@ def create_instance(cloud, instance_name,instance_image, instance_flavor, instan
     flavor = cloud.compute.find_flavor(instance_flavor)
     network = cloud.network.find_network(instance_network)
     keypair = cloud.compute.find_keypair(instance_keypair)
-    print(f'keypair = {keypair}')
     security_group = cloud.network.find_security_group(instance_securitygroup)
 
     server = cloud.compute.create_server(
