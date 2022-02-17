@@ -134,7 +134,7 @@ def home():
             instance_network = request.form['NETWORK']
             instance_sc = request.form['SECURITY_GROUP']
             cloud  = openstack_api.cloud_connection(cloud_name)
-            openstack_api.create_instance(cloud, instance_name,instance_image, instance_flavor, instance_network, instance_keypair, instance_sc) 
+            openstack_api.create_instance(cloud, instance_name,instance_image, instance_flavor, instance_network, instance_keypair, instance_sc)
 
         elif request.form.get('deploy_app'):
             clouds = ['Infomaniak', 'Local']
