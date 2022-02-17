@@ -283,6 +283,7 @@ def create_instance(cloud, instance_name,instance_image, instance_flavor, instan
     network = cloud.network.find_network(instance_network)
     keypair = cloud.compute.find_keypair(instance_keypair)
     print(f"ICI APIKEYP2 : {keypair}", flush=True, file=sys.stdout)
+    print(f"ICI APIKEYP3 : {instance_keypair}", flush=True, file=sys.stdout)
     security_group = cloud.network.find_security_group(instance_securitygroup)
 
     server = cloud.compute.create_server(
