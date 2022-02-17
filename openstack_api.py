@@ -280,7 +280,7 @@ def create_instance(cloud, instance_name,instance_image, instance_flavor, instan
     image = cloud.compute.find_image(instance_image)
     flavor = cloud.compute.find_flavor(instance_flavor)
     network = cloud.network.find_network(instance_network)
-    keypair = cloud.compute.find_keypair(str(instance_keypair))
+    keypair = cloud.compute.find_keypair("YUBIKEY-PAPAMICA")
     security_group = cloud.network.find_security_group(instance_securitygroup)
 
     server = cloud.compute.create_server(
