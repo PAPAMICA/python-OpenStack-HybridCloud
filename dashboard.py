@@ -130,6 +130,7 @@ def home():
             instance_flavor = request.form['FLAVOR']
             instance_image = request.form['IMAGE']
             instance_keypair = request.form['KEYPAIR']
+            print(f'ICI KEYP : {instance_keypair}', flush=True, file=sys.stdout)
             instance_network = request.form['NETWORK']
             instance_sc = request.form['SECURITY_GROUP']
             cloud  = openstack_api.cloud_connection(cloud_name)
