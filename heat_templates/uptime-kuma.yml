@@ -1,0 +1,129 @@
+heat_template_version: rocky
+description:  Uptime Kuma
+parameters:
+  image:
+    type: string
+    description: image use for kuma
+    default: Debian 11.2 bullseye
+  flavor:
+    type: string
+    description: flavor used by kuma
+    default: a1-ram2-disk20-perf1
+  network:
+    type: string
+    description: network used by kuma
+    default: kuma-network
+  subnet_id:
+    type: string
+    description: dedicated subnet for kuma
+    default: kuma-subnet
+  floating_network_id:
+    type: string
+    description: UUID of a Neutron external network
+    default: ext-floating1
+
+resources:
+  wait_condition:
+    type: OS::Heat::WaitCondition
+    properties:
+      handle: { get_resource: wait_handle }
+      timeout: 600
+
+  wait_handle:
+    type: OS::Heat::WaitConditionHandle
+
+
+
+  # security group
+  kuma_security_group:
+    type: OS::Neutron::SecurityGroup
+    properties:
+      name: "kuma_security_group"
+      description: >
+        Allows 3001
+      rules:
+         - { direction: ingress, protocol: tcp, port_range_min: 3001, port_range_max: 3001 }
+
+  # network resources
+  kuma_network:
+    type: OS::Neutron::Net
+    properties:
+      name: { get_param: network }
+      value_specs:
+        mtu: 1500
+
+  kuma_subnet:
+    type: OS::Neutron::Subnet
+    properties:
+      name: 'kuma-subnet'
+      network_id: { get_resource: kuma_network }
+      cidr: "10.11.3.0/24"
+      dns_nameservers:
+        - "84.16.67.69"
+        - "84.16.67.70"
+      ip_version: 4
+
+  kuma_router:
+    type: OS::Neutron::Router
+    properties:
+      name:  'kuma-router'
+      external_gateway_info: { network: ext-floating1 }
+
+  kuma_router_subnet_interface:
+    type: OS::Neutron::RouterInterface
+    properties:
+      router_id: { get_resource: kuma_router }
+      subnet: { get_resource: kuma_subnet }
+
+  kuma_port:
+    type: OS::Neutron::Port
+    properties:
+      network: { get_resource: kuma_network }
+      security_groups: [ { get_resource: kuma_security_group } ]
+      fixed_ips:
+        - subnet_id: { get_resource: kuma_subnet }
+
+  kuma_floating:
+    type: OS::Neutron::FloatingIP
+    properties:
+      floating_network_id: { get_param: floating_network_id }
+      port_id: { get_resource: kuma_port }
+
+  # instance
+  server:
+    type: OS::Nova::Server
+    depends_on: [ kuma_router]
+    properties:
+      flavor: { get_param: flavor }
+      image: { get_param: image }
+      networks:
+        - port: { get_resource: kuma_port }
+      user_data:
+        str_replace:
+          template: |
+            #!/bin/bash -v
+            apt update && apt upgrade -y
+            apt install -y git curl
+            curl -sL https://deb.nodesource.com/setup_16.x | sudo bash -
+            apt update
+            apt install -y nodejs
+            npm install pm2 -g
+            git clone https://github.com/louislam/uptime-kuma.git
+            cd uptime-kuma
+            npm run setup
+            pm2 start server/server.js --name uptime-kuma
+            pm2 startup
+            wc_notify --data-binary '{"status": "SUCCESS"}'
+
+          params:
+            wc_notify: { get_attr: ['wait_handle', 'curl_cli'] }
+
+
+outputs:
+  server_IP:
+    value: 
+      str_replace:
+        template: http://IP:3001
+        params:
+          IP: { get_attr: [kuma_floating, floating_ip_address] }
+    description: "IP"
