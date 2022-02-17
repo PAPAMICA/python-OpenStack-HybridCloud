@@ -151,15 +151,15 @@ def create_keypair(cloud, keypair_name):
     if not keypair:
         keypair = cloud.compute.create_keypair(name=keypair_name)
         if arg_dict == 1:
-            data = {'Private Key': keypair.private_key}
+            data = {'Private Key': keypair.public_key}
             return data
         elif arg_json == 1:
-            data = {'Private Key': keypair.private_key}
+            data = {'Private Key': keypair.public_key}
             data = json.dumps(data, indent = 4)
             return data
         else:
-            print (keypair.private_key)
-            return keypair
+            print (keypair.public_key)
+            return keypair.public_key
     else:
         return keypair
 
