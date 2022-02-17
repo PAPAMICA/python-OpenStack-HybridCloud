@@ -158,7 +158,7 @@ def create_keypair(cloud, keypair_name):
             return data
         else:
             print (keypair.private_key)
-            return keypair
+            return keypair.private_key
     else:
         return keypair
 
