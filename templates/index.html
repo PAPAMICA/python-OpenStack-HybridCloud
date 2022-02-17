@@ -15,7 +15,7 @@
 
 
     <div class="box-root flex-flex flex-direction--column">
-      <div class="box-root padding-top--24 flex-flex flex-direction--column" style="flex-grow: 1; z-index: 9;">
+      <div class="box-root padding-top--24 flex-flex flex-direction--column">
         <div class="box-root padding-top--48 padding-bottom--24 flex-flex flex-justifyContent--center">
           <h1><a href="https://papamica.com" rel="dofollow">HybridCloud</a></h1>
         </div>
@@ -430,108 +430,110 @@
     </div>
     {% endif %}
     {%endfor%}
-    <div class="card-2">
-      <div class="card-body p-3">
-        <div class="row">
-          <h3>Informations</h3>
-        </div>
-        {% if app_informations %}
-        <div class="row">
-          {% for data in app_informations %}
-          {% if data == "outputs" %}
-          {% for output in app_informations[data] %}
-
+    <div class="row">
+      <div class="card-2">
+        <div class="card-body p-3">
           <div class="row">
-            <h6> {{ output['description'] }}: </h6> {{ output['output_value'] }}
+            <h3>Informations</h3>
           </div>
+          {% if app_informations %}
+          <div class="row">
+            {% for data in app_informations %}
+            {% if data == "outputs" %}
+            {% for output in app_informations[data] %}
 
-          {% endfor %}
+            <div class="row">
+              <h6> {{ output['description'] }}: </h6> {{ output['output_value'] }}
+            </div>
+
+            {% endfor %}
+            {% endif %}
+            {% endfor %}
+            {% else %}
+            <div class="row">
+              <h6> Click on application information </h6>
+            </div>
+
+          </div>
           {% endif %}
-          {% endfor %}
-          {% else %}
-          <div class="row">
-            <h6> Click on application information </h6>
-          </div>
-
         </div>
-        {% endif %}
       </div>
-    </div>
 
-    <div class="card-2">
-      <div class="mb-4">
-        <div class="card-header pb-0">
-          <h6>Applications list</h6>
-        </div>
-        <div class="card-body px-0 pt-0 pb-2">
-          <div class="table-responsive p-0">
-            <table class="table align-items-center mb-0">
-              <thead>
-                <tr>
-                  <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Name</th>
-                  <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                    Status</th>
-                  <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
-                    Actions</th>
-                </tr>
-              </thead>
-              <tbody>
+      <div class="card-2">
+        <div class="mb-4">
+          <div class="card-header pb-0">
+            <h6>Applications list</h6>
+          </div>
+          <div class="card-body px-0 pt-0 pb-2">
+            <div class="table-responsive p-0">
+              <table class="table align-items-center mb-0">
+                <thead>
+                  <tr>
+                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Name</th>
+                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                      Status</th>
+                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
+                      Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
 
-                {%for cloud in applications%}
-                {%for application in applications[cloud]%}
-                <tr>
-                  <td>
-                    <div class="d-flex px-2 py-1">
-                      <div>
-                        {% if cloud == "Infomaniak" %}
-                        <img src="{{ url_for('static', filename='img/IPC.png') }}" class="avatar avatar-sm me-3"
-                          alt="user1">
-                        {% else %}
-                        <img src="{{ url_for('static', filename='img/local.png') }}" class="avatar avatar-sm me-3"
-                          alt="user1">
-                        {% endif %}
+                  {%for cloud in applications%}
+                  {%for application in applications[cloud]%}
+                  <tr>
+                    <td>
+                      <div class="d-flex px-2 py-1">
+                        <div>
+                          {% if cloud == "Infomaniak" %}
+                          <img src="{{ url_for('static', filename='img/IPC.png') }}" class="avatar avatar-sm me-3"
+                            alt="user1">
+                          {% else %}
+                          <img src="{{ url_for('static', filename='img/local.png') }}" class="avatar avatar-sm me-3"
+                            alt="user1">
+                          {% endif %}
+                        </div>
+                        <div class="d-flex flex-column justify-content-center">
+                          <h6 class="mb-0 text-sm">{{ application['Stack Name'] }}</h6>
+                        </div>
                       </div>
-                      <div class="d-flex flex-column justify-content-center">
-                        <h6 class="mb-0 text-sm">{{ application['Stack Name'] }}</h6>
+                    </td>
+                    {% if application['Stack Status'] == "CREATE_COMPLETE" %}
+                    <td class="align-middle text-center text-sm">
+                      <span class="badge badge-sm bg-gradient-success">Online</span>
+                    </td>
+                    {% else %}
+                    <td class="align-middle text-center text-sm">
+                      <span class="badge badge-sm bg-gradient-secondary">Offline</span>
+                    </td>
+                    {% endif %}
+                    <td>
+                      <div class="d-flex px-2 py-1 outer">
+                        <form class="d-flex two" method="post" action="/">
+                          <div class="form-group one">
+                            <input type="submit" name="app_information" value="{{ application['Stack Name'] }}" />
+                            <input type="hidden" name="cloud_name" value="{{ cloud }}" />
+                          </div>
+                          <div class="form-group one">
+                            <input type="submit" name="app_start" value="{{ application['Stack Name'] }}" />
+                            <input type="hidden" name="cloud_name" value="{{ cloud }}" />
+                          </div>
+                          <div class="form-group one">
+                            <input type="submit" name="app_stop" value="{{ application['Stack Name'] }}" />
+                            <input type="hidden" name="cloud_name" value="{{ cloud }}" />
+                          </div>
+                          <div class="form-group one">
+                            <input type="submit" name="app_destroy" value="{{ application['Stack Name'] }}" />
+                            <input type="hidden" name="cloud_name" value="{{ cloud }}" />
+                          </div>
+                        </form>
                       </div>
-                    </div>
-                  </td>
-                  {% if application['Stack Status'] == "CREATE_COMPLETE" %}
-                  <td class="align-middle text-center text-sm">
-                    <span class="badge badge-sm bg-gradient-success">Online</span>
-                  </td>
-                  {% else %}
-                  <td class="align-middle text-center text-sm">
-                    <span class="badge badge-sm bg-gradient-secondary">Offline</span>
-                  </td>
-                  {% endif %}
-                  <td>
-                    <div class="d-flex px-2 py-1 outer">
-                      <form class="d-flex two" method="post" action="/">
-                        <div class="form-group one">
-                          <input type="submit" name="app_information" value="{{ application['Stack Name'] }}" />
-                          <input type="hidden" name="cloud_name" value="{{ cloud }}" />
-                        </div>
-                        <div class="form-group one">
-                          <input type="submit" name="app_start" value="{{ application['Stack Name'] }}" />
-                          <input type="hidden" name="cloud_name" value="{{ cloud }}" />
-                        </div>
-                        <div class="form-group one">
-                          <input type="submit" name="app_stop" value="{{ application['Stack Name'] }}" />
-                          <input type="hidden" name="cloud_name" value="{{ cloud }}" />
-                        </div>
-                        <div class="form-group one">
-                          <input type="submit" name="app_destroy" value="{{ application['Stack Name'] }}" />
-                          <input type="hidden" name="cloud_name" value="{{ cloud }}" />
-                        </div>
-                      </form>
-                    </div>
-                  </td>
-                </tr>
-                {%endfor%}
-                {%endfor%}
-              </tbody>
-            </table>
+                    </td>
+                  </tr>
+                  {%endfor%}
+                  {%endfor%}
+                </tbody>
+              </table>
+            </div>
           </div>
         </div>
       </div>
