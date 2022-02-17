@@ -72,7 +72,8 @@ def create_keypair(cloud_name):
         keypair_name = data['keypair_name']
         cloud  = openstack_api.cloud_connection(cloud_name)
         result = openstack_api.create_keypair(cloud, keypair_name)
-        return Response(result,status=201)
+        json_result = json.dumps(result)
+        return Response(json_result,status=201)
     else:
         return Response("403 : Access denied",status=403)
 
