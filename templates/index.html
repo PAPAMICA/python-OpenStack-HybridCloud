@@ -439,22 +439,21 @@
           {% if app_informations %}
           <div class="row">
             {% for data in app_informations %}
-            {% if data == "outputs" %}
-            {% for output in app_informations[data] %}
+              {% if data == "outputs" %}
+                {% for output in app_informations[data] %}
 
             <div class="row">
               <h6> {{ output['description'] }}: </h6> {{ output['output_value'] }}
             </div>
 
+                { % endfor %}
+              {% endif %}
             {% endfor %}
-            {% endif %}
-            {% endfor %}
-            {% else %}
+          </div>
+          {% else %}
             <div class="row">
               <h6> Click on application information </h6>
             </div>
-
-          </div>
           {% endif %}
         </div>
       </div>
