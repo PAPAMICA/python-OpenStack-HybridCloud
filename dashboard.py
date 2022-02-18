@@ -59,36 +59,14 @@ def home():
             time.sleep(5)
             result = reload_list(cloud_name)
 
-        if request.form.get('app_start'):
-            instance_name = request.form['app_start']
-            cloud_name = request.form['cloud_name']
-            cloud  = openstack_api.cloud_connection(cloud_name)
-            openstack_api.start_instance(cloud, instance_name)
-            time.sleep(5)
-            result = reload_list(cloud_name)
-        elif request.form.get('app_reboot'):
-            instance_name = request.form['app_reboot']
-            cloud_name = request.form['cloud_name']
-            cloud  = openstack_api.cloud_connection(cloud_name)
-            result = openstack_api.reboot_instance(cloud, instance_name)
-            time.sleep(5)
-            result = reload_list(cloud_name)
-
-        elif request.form.get('app_stop'):
-            instance_name = request.form['app_stop']
-            cloud_name = request.form['cloud_name']
-            cloud  = openstack_api.cloud_connection(cloud_name)
-            result = openstack_api.stop_instance(cloud, instance_name)
-            time.sleep(5)
-            result = reload_list(cloud_name)
-
         elif request.form.get('app_destroy'):
-            instance_name = request.form['app_destroy']
+            app_name = request.form['app_destroy']
             cloud_name = request.form['cloud_name']
-            cloud  = openstack_api.cloud_connection(cloud_name)
-            result = openstack_api.delete_instance(cloud, instance_name)
+            result = heat_api.delete_app(cloud_name, app_name)
             time.sleep(5)
-            result = reload_list(cloud_name)
+            app_list[cloud_name] = heat_api.list_app(cloud_name)
+            return render_template("index.html", applications=app_list, cloud_name=cloud_name, billing=billing)
+
 
         elif request.form.get('app_information'):
             app_list = dict()
