@@ -26,6 +26,9 @@ def get_billing(cloud_name):
     result = dict()
     for d in delay:
         data = subprocess.getoutput(f'openstack rating dataframes get {d[1]} -c Resources -f json | jq \'map(.Resources[].rating | tonumber) | add | . / 50\' ')
-        data = round(float(data),2)
+        if data == None:
+            data = 0
+        else:
+            data = round(float(data),2)
         result[d[0]] = data
     return result
