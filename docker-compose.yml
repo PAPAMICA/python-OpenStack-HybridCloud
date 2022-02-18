@@ -9,3 +9,4 @@ services:
     volumes:
     - /etc/localtime:/etc/localtime
     - /apps/hybridcloud/openrc:/openrc
+    - /apps/hybridcloud/heat_templates:/heat_templates/
