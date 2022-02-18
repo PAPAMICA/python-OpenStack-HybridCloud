@@ -60,6 +60,7 @@ def home():
             result = reload_list(cloud_name)
 
         elif request.form.get('app_destroy'):
+            app_list = dict()
             app_name = request.form['app_destroy']
             cloud_name = request.form['cloud_name']
             result = heat_api.delete_app(cloud_name, app_name)
