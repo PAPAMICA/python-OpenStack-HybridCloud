@@ -32,12 +32,15 @@ def connect_heat(cloud_name):
     os.putenv('OS_USER_DOMAIN_NAME', OS_USER_DOMAIN_NAME)  
 
 
-def list_template():
+def list_template(clouds):
     try:
-        result = list()
-        folder = os.listdir("/heat_templates")
-        for file in folder:
-            result.append(file)
+        result = dict()
+        for cloud in clouds:
+            fileslist = list()
+            folder = os.listdir(f"/heat_templates/{cloud}")
+            for file in folder:
+                fileslist.append(file)
+            result[cloud] = fileslist
         return result
     except:
         print (f"[ERROR] Can't list templates !")
@@ -49,7 +52,7 @@ def deploy_app(cloud_name, template, app_name):
 
         connect_heat(cloud_name)
         result = dict()
-        data = subprocess.getoutput(f'openstack stack create --wait -t /heat_templates/{template} {app_name} 1> /dev/null && openstack stack show {app_name} -f json')
+        data = subprocess.getoutput(f'openstack stack create --wait -t /heat_templates/{cloud_name}/{template} {app_name} 1> /dev/null && openstack stack show {app_name} -f json')
         result = json.loads(data)
         return result
     except:

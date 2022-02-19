@@ -50,7 +50,7 @@
                     <input type="text" id="aname" name="aname"> 
                     <label for="template">Choose a template:</label>
                     <select id="template" name="template">
-                      {%for template in templates%}
+                      {%for template in templates[cloud]%}
                       <option value="{{ template }}">{{ template }}</option>
                       {%endfor%}
                     </select>
